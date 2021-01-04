@@ -1,0 +1,22 @@
+<ng-template #cpuInput>
+  <mat-form-field>
+    <mat-label>{{formData.label}}</mat-label>
+    <mat-select
+      [formControl]="formGroup.controls[formName]"
+      [(value)]="value"
+      [required]="formData.isRequired">
+      <ng-container *ngFor="let item of items">
+        <mat-option *ngIf="item.value!='-'" [value]="item.value">
+          {{item.label}}
+        </mat-option>
+        <mat-option *ngIf="item.value=='-'" disabled>
+          <ng-container *ngIf="item.label!=null">{{item.label}}</ng-container>
+          <mat-divider [inset]="false"></mat-divider>
+        </mat-option>
+      </ng-container>
+    </mat-select>
+    <app-error [formName]="formName" [formGroup]="formGroup"></app-error>
+  </mat-form-field>
+</ng-template>
+
+<app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>

@@ -1,0 +1,6 @@
+<ng-container
+  *ngIf="es.showControlErrorsInControl && formGroup!=null && formName!=null && formGroup.controls[formName].validator!=null">
+  <mat-error
+    *ngFor="let v of es.validatorMessages(formName, '',
+  formGroup.controls[formName].validator(formGroup.controls[formName]))">{{v.text}}</mat-error>
+</ng-container>

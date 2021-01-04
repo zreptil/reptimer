@@ -1,0 +1,26 @@
+<ng-template #cpuInput>
+  <!--  <fieldset>
+      <legend id="{{id}}">{{label}}</legend>-->
+  <mat-card>
+    <mat-card-title *ngIf="formData.label?.length>0">{{formData.label}} {{formData.isRequired ? '*' : ''}}</mat-card-title>
+    <mat-card-content>
+      <mat-radio-group
+        [attr.name]="groupName()"
+        [attr.aria-label]="formData.label"
+        [formControl]="formGroup.controls[formName]"
+        [required]="formData.isRequired">
+        <ng-container *ngFor="let item of formData.items">
+          <mat-radio-button [checked]="item.checked"
+                            [value]="item.value"
+                            [disabled]="item.disabled">
+            {{item.label}}
+          </mat-radio-button>
+        </ng-container>
+      </mat-radio-group>
+    </mat-card-content>
+    <app-error [formName]="formName" [formGroup]="formGroup"></app-error>
+  </mat-card>
+  <!--  </fieldset>-->
+</ng-template>
+
+<app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>

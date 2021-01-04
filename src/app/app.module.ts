@@ -1,18 +1,50 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {MaterialModule} from './material.module';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DialogComponent} from '@/core/components/dialog/dialog.component';
+import {ErrorDisplayComponent} from '@/core/components/error-display/error-display.component';
+import {AppRoutingModule} from '@/app-routing.module';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions} from '@angular/material/form-field';
+import {VisualsModule} from '@/visuals/visuals.module';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import localeDe from '@angular/common/locales/de';
+import {registerLocaleData} from '@angular/common';
+import { SplashScreenComponent } from './core/components/splash-screen/splash-screen.component';
+
+registerLocaleData(localeDe, 'de-DE');
+
+const appearance: MatFormFieldDefaultOptions = {
+  appearance: 'outline'  /* alternativ: fill */
+};
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DialogComponent,
+    ErrorDisplayComponent,
+    SplashScreenComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    // Material Design
+    MaterialModule,
+
+    // Routing Module
+    AppRoutingModule,
+    VisualsModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: appearance},
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

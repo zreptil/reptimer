@@ -1,0 +1,44 @@
+div.error-display {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  max-height: 100%;
+  width: 100%;
+
+  .bold {
+    font-weight: bold;
+  }
+
+  button.error {
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+    background: transparent;
+    max-width: 90%;
+
+    mat-error {
+      display: flex;
+      align-items: center;
+      white-space: normal;
+      line-height: 1.1em;
+
+      mat-icon {
+        font-size: 16px;
+        padding-left: 0.5em;
+        height: initial;
+        width: initial;
+      }
+    }
+  }
+
+  div {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+  }
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+}

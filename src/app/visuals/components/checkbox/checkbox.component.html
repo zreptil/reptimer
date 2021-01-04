@@ -1,0 +1,9 @@
+<ng-template #cpuInput>
+  <mat-checkbox [formControl]="formGroup.controls[formName]"
+                [labelPosition]="labelPosition">
+    {{formData.label}}
+    <app-error [formName]="formName" [formGroup]="formGroup"></app-error>
+  </mat-checkbox>
+</ng-template>
+
+<app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>

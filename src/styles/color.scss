@@ -1,0 +1,210 @@
+/*
+  Only color styles (no typography / font or layou style) for cpu-ag.com
+
+  Included *after* layout.scss
+ */
+
+/* colors from CPU AG CI / web page */
+$color-ci-red: #880038;
+$color-ci-grey: #999a9c;
+$color-ci-blue: #002f62;
+$color-ci-default: #333;
+$color-table-label: rgba(0, 0, 0, 0.54);
+$color-bg-input: #eee;
+$color-bg-app: #f5f5f5;
+$color-bg-dialog-input: #fafafa;
+$color-bg-button: rgba(0,0,0,0.1);
+$color-bg-table: #fff;
+$color-border-input: #dfdfdf;
+$color-border-button: rgba(0,0,0,.5);
+$color-button-disabled: rgba(0,0,0,.5);
+$color-button-enabled: rgba(0,0,0,.87);
+
+
+$color-header-default: $color-ci-blue;
+$color-text-default: $color-ci-default;
+
+html
+{
+  color: $color-text-default;
+  background-color: $color-bg-app;
+}
+
+html *
+{
+  color: inherit;
+  /*background-color: inherit;*/
+}
+/*
+.outer--divider {
+  border-bottom-color:  $color-header-default;
+}
+
+
+ */
+.outer--divider h2 {
+  color: $color-header-default;
+}
+
+
+app-radio-group .inner > * {
+  background-color: $color-bg-input;
+}
+
+.outer .mat-radio-checked .mat-radio-outer-circle{
+  border-color: $color-ci-blue !important;
+}
+
+.outer .mat-radio-inner-circle
+{
+  background-color: $color-ci-blue !important;
+}
+
+.outer .mat-checkbox-checked .mat-checkbox-background{
+  background-color: $color-ci-blue;
+}
+
+.outer .mat-card {
+  border-color: $color-border-input;
+  box-shadow: none;
+}
+
+app-checkbox .inner {
+  border-color: $color-border-input;
+  background-color: $color-bg-input;
+}
+
+app-select-group {
+  .inner > * {
+    background-color: $color-bg-input;
+  }
+
+  .outer .mat-pseudo-checkbox-checked {
+    background-color: $color-ci-blue;
+  }
+}
+
+.outer {
+  .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: $color-ci-blue;
+  }
+
+  .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+  .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: transparent !important;
+  }
+
+}
+.sidenav,
+.mat-toolbar,
+.mat-drawer-container,
+.mat-drawer-inner-container,
+.mat-drawer,
+.mat-tree,
+.mat-tab-list {
+  background: $color-bg-app;
+}
+
+
+.mat-tab-list a {
+  border-color:  $color-border-button;
+}
+
+.mat-tab-link-container {
+  background-color: $color-bg-app;
+}
+
+.mat-toolbar button.language {
+  background-color: transparent !important;
+}
+
+
+app-login .Button-Area button {
+  background-color: $color-bg-button !important;
+  border-color: $color-border-button; /*rgba(0,0,0,0.25);  */
+  color: $color-button-enabled !important;
+}
+
+app-login .Button-Area button[disabled="true"] {
+  color: $color-button-disabled !important;
+}
+
+
+.dialog-content {
+  background-color: $color-bg-dialog-input;
+}
+
+
+.app-table {
+
+  .outer table th,
+  .outer table td {
+    border-color: $color-border-input;
+  }
+
+  mat-paginator.mat-paginator {
+    background-color: $color-bg-dialog-input;
+  }
+/*
+  th {
+    color: $color-header-default;
+  }
+
+ */
+}
+
+.big-table.app-table {
+  .label--td {
+    color: $color-table-label;
+  }
+
+  td {
+    background-color: $color-bg-table;
+  }
+
+  tr:nth-child(odd) td {
+    background-color: $color-bg-app;
+  }
+
+  table,
+  tbody,
+  tr {
+    background-color: transparent !important;
+  }
+
+  tr.hovered td {
+    background-color: $color-bg-input !important;
+  }
+
+}
+
+
+@media(max-width: 60em){
+  .app-table {
+    .label--td {
+      color: $color-table-label;
+    }
+
+    td, th {
+      background-color: $color-bg-table;
+    }
+
+    tr:nth-child(odd) td {
+      background-color: $color-bg-app;
+    }
+
+    table,
+    tbody,
+    tr {
+      background-color: transparent !important;
+    }
+
+    tr.hovered td {
+      background-color: $color-bg-input !important;
+    }
+
+  }
+}
+
+

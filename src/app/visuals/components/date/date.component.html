@@ -1,0 +1,22 @@
+<ng-template #cpuInput>
+  <mat-form-field>
+    <mat-label>{{formData.label}}</mat-label>
+    <!-- pattern attribute as fallback for browser without native datepicker -->
+    <input  #widget
+            matInput
+           [formControl]="formGroup.controls[formName]"
+           type="date"
+           [required]="formData.isRequired"
+    (focusout)="onFocusOut($event)">
+    <app-error [formName]="formName" [formGroup]="formGroup"></app-error>
+  </mat-form-field>
+  <!--
+
+  oder nativ Material Design s. https://material.angular.io/components/datepicker/overview
+  <input matInput [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+-->
+</ng-template>
+
+<app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>

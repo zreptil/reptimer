@@ -1,0 +1,54 @@
+/*  TODO(LyMe) Die Regeln in typo|layout|color.scss integrieren;
+    Achtung! .mat-form-field.width ist das, was mir die outer/inner Breiten verpfuschte.
+    Bei Fragen zu beabsichtigten Auswirkungen Roland fragen.
+ */
+
+/*
+.mat-form-field {
+    margin: 2px;
+    width: 250px;
+    font-size: 14px;
+    line-height: 1.0;
+
+    // fontSize: 10px;
+}
+
+
+ */
+.mat-form-field-outline {
+    background-color: #EEE;
+}
+/*
+.mat-input-wrapper {
+    width: 200px;
+}
+
+mat-input {
+    margin: 0px;
+
+}
+mat-select {
+    margin: 0px;
+}
+
+
+
+// !!! Important !!!
+// This is the "safe" way for changing the height of the input fields
+mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix  { padding: 0.4em 0px }
+mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix > span.mat-form-field-label-wrapper { top: -1.5em; }
+
+
+ */
+.outer .mat-form-field-infix
+{
+  padding: 0.4em 0px
+}
+.outer .mat-form-field-label-wrapper
+{
+  top: -1.5em;
+}
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}

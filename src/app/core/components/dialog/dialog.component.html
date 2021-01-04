@@ -1,0 +1,27 @@
+<div mat-dialog-title class="type{{data?.type}}">{{data.title}}</div>
+<div mat-dialog-content>
+  <div *ngFor="let text of data.display">{{text}}</div>
+  <ng-container *ngFor="let ctrl of data.controlList; let idx = index">
+    <app-select-group *ngIf="ctrl.type === 'selectgroup'"
+                      [formName]="ctrl.key"
+                      [formGroup]="form"
+                      innerWidth="2"
+                      outerWidth="2"></app-select-group>
+    <app-radio-group *ngIf="ctrl.type === 'radiogroup'"
+                      [formName]="ctrl.key"
+                      [formGroup]="form"
+                      innerWidth="2"
+                      outerWidth="2"></app-radio-group>
+  </ng-container>
+</div>
+<div mat-dialog-actions class="type{{data?.type}}">
+  <ng-container *ngFor="let btn of data.buttons; let idx = index">
+    <button *ngIf="btn.focus" mat-button (click)="closeDialog(btn)" cdkFocusInitial>
+      {{btn.title}}
+    </button>
+    <button *ngIf="!btn.focus" mat-button (click)="closeDialog(btn)">
+      {{btn.title}}
+    </button>
+  </ng-container>
+</div>
+

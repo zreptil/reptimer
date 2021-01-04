@@ -1,0 +1,576 @@
+/*
+  Only layout-style (no typography / font or color) for cpu-ag.com
+
+  Included *before* color.scss
+ */
+
+$outer-margin-small: 0.25em;
+$outer-margin-medium: 0.5em;
+$outer-margin-big: 1em;
+$outer-padding-small: 0.25em;
+$outer-padding-medium: 0.5em;
+$border-radius-small: 0.25em;
+$border-radius-medium: 0.5em;
+$border-width-thin: 1px;
+$line-height-default: 1.5em;
+/*$inner-width-default: 15em;*/
+$inner-width-short: 10em;
+
+$inner-width-1-col: 15em;
+$inner-width-2-col: #{$inner-width-1-col*2+$outer-padding-medium*2};
+$inner-width-3-col: #{$inner-width-1-col*3+$outer-padding-medium*4};
+$inner-width-4-col: #{$inner-width-1-col*4+$outer-padding-medium*6};
+$outer-width-1-col: #{$inner-width-1-col+$outer-padding-medium*2};
+$outer-width-2-col: #{$inner-width-1-col*2+$outer-padding-medium*2+$outer-padding-medium*2};
+$outer-width-3-col: #{$inner-width-1-col*3+$outer-padding-medium*4+$outer-padding-medium*2};
+$outer-width-4-col: #{$inner-width-1-col*4+$outer-padding-medium*6+$outer-padding-medium*2};
+
+$breakpoint-4-col: #{$inner-width-1-col*4};
+$breakpoint-3-col: #{$inner-width-1-col*3};
+$breakpoint-2-col: #{$inner-width-1-col*2};
+
+
+.header {
+  text-align: center;
+  max-width: 100%;
+}
+
+.outer--end-line:after,
+.outer--end-line::after
+{
+  content: '\A';
+  white-space: pre;
+  visibility: hidden;
+  height: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.outer--width-1-col
+{
+  width: $outer-width-1-col;
+  max-width: 100%;
+}
+
+.outer--width-2-col
+{
+  width: $outer-width-2-col;
+  max-width: 100%;
+}
+
+.outer--width-3-col
+{
+  width: $outer-width-3-col;
+  max-width: 100%;
+}
+
+.outer--width-4-col
+{
+  width: $outer-width-4-col;
+  max-width: 100%;
+}
+
+.input--width-1-col,
+.input--width-1-col > *
+{
+  width: $inner-width-1-col;
+  max-width: 100%;
+}
+
+.input--width-2-col,
+.input--width-2-col > *
+{
+  width: $inner-width-2-col;
+  max-width: 100%;
+}
+
+.input--width-3-col,
+.input--width-3-col > *
+{
+  width: $inner-width-3-col;
+  max-width: 100%;
+}
+
+.input--width-4-col,
+.input--width-4-col > *,
+.mdc-text-field--textarea.input--width-4-col
+{
+  width: $inner-width-4-col;
+  max-width: 100%;
+}
+
+#main-details,
+.form,
+.outer
+{
+  max-width: 100%;
+}
+
+.input--width-short
+{
+  width: $inner-width-short;
+  max-width: 100%;
+}
+
+#main-content {
+  display: grid;
+  grid-template-columns: 15em auto;
+  grid-template-rows: auto;
+  gap: 0.5em 0.5em;
+  justify-items: start;
+  justify-content: start;
+  align-items: start;
+  align-content: start;
+}
+
+.header--navigation {
+}
+
+#sidebar {
+  grid-column: 1;
+  grid-row: 1;
+  overflow: auto;
+}
+
+#main-details {
+  grid-column: 2;
+  grid-row: 1;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.outer {
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.outer--empty {
+  visibility: hidden;
+}
+
+.outer .mat-form-field-appearance-outline .mat-form-field-wrapper
+{
+  padding-bottom: 0;
+}
+
+.outer *
+{
+  max-width: 100%;
+}
+
+.outer .mat-radio-label
+{
+  margin-bottom: $outer-margin-small;
+}
+
+.debug--false,
+.debug
+{
+  display: none;
+}
+
+.outer * {
+  word-break: break-word;
+  white-space: break-spaces;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.outer .mat-checkbox-inner-container{
+  margin-top: $outer-margin-small;
+}
+
+.outer .mat-radio-label{
+  align-items: self-start;
+}
+
+
+.outer .mat-card {
+  border-style: solid;
+  border-width: $border-width-thin;
+  border-radius: 5px;
+}
+
+app-checkbox .inner {
+  border-style: solid;
+  border-width: $border-width-thin;
+  border-radius: 5px;
+  padding: $outer-padding-small;
+  margin: $outer-margin-small 0;
+}
+
+/* TODO(LyMe): 20201123, wg. Unvollständigkeit wg. MD Textarea vor dem Merge auskommentiert
+app-textarea {
+  display: inline-block;
+}
+
+ */
+
+app-textarea .outer--width-4-col {
+  width: 100%;
+  max-width: $outer-width-4-col;
+}
+
+.dialog-content {
+  padding: 0 $outer-margin-medium;
+}
+
+.outer .mat-radio-button{
+  display: block;
+}
+
+.outer--divider {
+  margin-bottom: $outer-margin-medium;
+}
+
+.dialog-content nav {
+  margin-left: -$outer-margin-medium;
+}
+
+.mat-tab-list {
+  bottom: -$outer-margin-medium;
+}
+
+.mat-tab-list a {
+  border-style: solid;
+  border-width: $border-width-thin;
+  border-radius: $border-radius-small;
+  margin-left: $outer-margin-small;
+}
+
+.mat-tab-list a:first-of-type {
+  margin-left: $outer-margin-medium;
+}
+
+.mat-tab-link-container {
+}
+
+.mat-toolbar button.language {
+  border: none !important;
+}
+
+/*
+app-radio-group {
+  &.ng-invalid.ng-touched.ng-dirty {
+    .mat-card {
+      border-color: rgb(244, 67, 54); /* aus MD *
+      border-width: 2px;
+    }
+
+    .mat-card-title {
+      color: rgb(244, 67, 54); /* aus MD *
+    }
+  }
+}
+
+app-select-group {
+  &.ng-invalid.ng-touched.ng-dirty {
+    .mat-card {
+      border-color: rgb(244, 67, 54); /* aus MD *
+      border-width: 2px;
+    }
+
+    .mat-card-title {
+      color: rgb(244, 67, 54); /* aus MD *
+    }
+  }
+}
+*/
+
+.app-table {
+  .outer {
+    margin-bottom: $outer-margin-big;
+  }
+
+  .outer table tr {
+    line-height: $line-height-default;
+  }
+
+  .outer table th,
+  .outer table td {
+    padding: $outer-padding-small;
+    min-width: 5em;
+    vertical-align: top;
+    border: solid $border-width-thin;
+    border-collapse: collapse;
+  }
+
+  tr:first-of-type th:first-of-type {
+    border-top-left-radius: $border-radius-small;
+  }
+
+  tr:first-of-type th:last-of-type {
+    border-top-right-radius: $border-radius-small;
+  }
+
+  tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: $border-radius-small;
+  }
+
+  tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: $border-radius-small;
+  }
+
+  .outer table td .mat-icon {
+    vertical-align: top;
+  }
+
+  .label--td {
+    display: none;
+  }
+}
+
+.big-table.app-table {
+  .label--td {
+    display: block;
+  }
+/*
+  thead {
+    display: none;
+  }
+*/
+  td, th {
+    display: inline-block;
+    width: 15em;
+    min-height: 3em;
+  }
+
+  tr {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: unset !important;
+  }
+}
+
+@media(max-width: 60em){
+  .app-table {
+    .label--td {
+      display: block;
+      font-size: 75%;
+    }
+
+    /*
+    thead {
+      display: none;
+    }
+
+     */
+
+    td, th {
+      display: inline-block;
+      width: 15em;
+      min-height: 3em;
+    }
+
+    tr {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      height: unset !important;
+    }
+  }
+}
+
+
+app-login .Button-Area button {
+  margin-top: $outer-margin-big;
+  margin-right: $outer-margin-big;
+  border-style: solid;
+  border-width: $border-width-thin;
+  box-shadow: none !important;
+}
+
+app-kunden-info .infoPanel {
+  margin-bottom: $outer-margin-medium;
+  padding-left: 0em !important;
+  border: none !important;
+}
+
+
+app-select-group {
+
+  .outer .mat-selection-list .mat-list-option .mat-list-item-content {
+    align-items: self-start;
+  }
+
+  .outer .mat-selection-list .mat-list-option {
+    height: unset;
+    margin-bottom: $outer-margin-small;
+  }
+}
+
+/* TODO(LyMe): warum funktioniert dieser app-navigation-tree block nicht in navigation-tree.component.scss? */
+/* TODO(LyMe): absolute Werte durch Variable ersetzen */
+app-navigation-tree{
+
+  /* Werden weitere Einrückungs-Level (aria-level) benötigt, dann müssen diese ähnlich mit ähnlichen
+  Margin versehen werden (jeweils das Mehrfache von 1.5em, also margin-left:=(aria-level-1)*1.5em
+   */
+
+  .mat-tree-node {
+    min-height: 2em;
+
+    button.active * {
+      text-decoration: underline;
+    }
+
+    .mat-icon-button{
+      + button {
+        padding-left: 0em;
+      }
+
+      + button,
+      + button *,
+      + button.active,
+      + button.active * {
+        background-color: transparent;
+      }
+    }
+  }
+
+  button.mat-icon-button{
+    display: inline-block;
+    width: 1.5em;
+    height: 2em;
+    line-height: 2em;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: -0.5em;
+  }
+
+  .mat-tree-node[aria-level="1"] {
+    margin-left: 1.5em;
+
+    button {
+      padding-left: 0em;
+    }
+  }
+
+  .mat-tree-node[aria-level="2"]{
+    margin-left: 1.5em;
+
+    button.mat-icon-button {
+      margin-left: 0.5em;
+    }
+  }
+
+  .mat-tree-node[aria-level="3"]{
+    margin-left: 2.5em;
+  }
+}
+
+app-margin {
+  .cpu-margin {
+    display: block;
+    width: 100%;
+  }
+
+  .cpu-margin--small {
+    height: 0.5em;
+    min-height: 0.5em;
+  }
+
+  .cpu-margin--default {
+    height: 1em;
+    min-height: 1em;
+  }
+
+  .cpu-margin--big {
+    height: 1.5em;
+    min-height: 1.5em;
+  }
+}
+
+app-currency {
+  $currency-label-width: 3em;
+
+  .input--width-1-col {
+    .cpu-currency-label {
+      width: $currency-label-width;
+    }
+
+    .mat-form-field {
+      width: #{$inner-width-1-col - $outer-margin-small - $currency-label-width};
+      margin-right: $outer-margin-small;
+    }
+  }
+
+  .input--width-2-col {
+    .cpu-currency-label {
+      width: $currency-label-width;
+    }
+
+    .mat-form-field {
+      width: #{$inner-width-1-col*2+$outer-padding-medium*2 - $outer-margin-small - $currency-label-width};
+      margin-right: $outer-margin-small;
+    }
+  }
+
+  .input--width-3-col {
+    .cpu-currency-label {
+      width: $currency-label-width;
+    }
+
+    .mat-form-field {
+      width: #{$inner-width-1-col*3+$outer-padding-medium*4 - $outer-margin-small - $currency-label-width};
+      margin-right: $outer-margin-small;
+    }
+  }
+
+  .input--width-4-col {
+    .cpu-currency-label {
+      width: $currency-label-width;
+    }
+
+    .mat-form-field {
+      width: #{$inner-width-1-col*4+$outer-padding-medium*6 - $outer-margin-small - $currency-label-width};
+      margin-right: $outer-margin-small;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-4-col) {
+  .outer--empty,
+  .outer:empty {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: $breakpoint-3-col) {
+  .input--width-wide {
+    width: 100%;
+  }
+
+  .outer--empty,
+  .outer:empty {
+    display: none;
+  }
+
+  /* TODO(LyMe): 20201123, wg. Unvollständigkeit wg. MD Textarea vor dem Merge auskommentiert
+app-textarea {
+  display: inline-block;
+}
+
+ */
+
+  .outer--end-line:after,
+  .outer--end-line::after
+  {
+    content: '';
+    white-space: unset;
+    display:none;
+  }
+}
+
+@media screen and (max-width: $breakpoint-2-col) {
+  .outer {
+    display: block;
+  }
+}
+

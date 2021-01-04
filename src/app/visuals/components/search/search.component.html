@@ -1,0 +1,12 @@
+<ng-template #cpuInput >
+  <mat-form-field >
+    <mat-label>{{formData.label}}</mat-label>
+    <input matInput
+           [formControl]="formGroup.controls[formName]"
+           type="search"
+           [required]="formData.isRequired">
+    <app-error [formName]="formName" [formGroup]="formGroup"></app-error>
+  </mat-form-field>
+</ng-template>
+
+<app-base [componentsTemplate]="cpuInput" [childContext]="ctx" ></app-base>

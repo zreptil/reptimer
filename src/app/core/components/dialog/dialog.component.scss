@@ -1,0 +1,40 @@
+@import '~node_modules/@angular/material/theming';
+@import '~src/styles/common';
+@import '~src/styles/theme';
+$c1: $clCpuRed;
+$c2: $clCpuBlue;
+$c3: $clCpuGrey;
+
+[mat-dialog-title] {
+  display: flex;
+  padding: 1em;
+  margin: 0 !important;
+  color: $clCpuRed;
+  background: $clGrey;
+}
+
+.type2 {
+  color: $c2;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px $c1, 0 0 30px $c1, 0 0 40px $c1, 0 0 55px $c1, 0 0 75px $c1;
+  * {
+    color: $c2;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px $c1, 0 0 30px $c1, 0 0 40px $c1, 0 0 55px $c1, 0 0 75px $c1;
+  }
+  background: repeating-linear-gradient(45deg, $c1, $c1 1.5em, $c2 0.5em, $c2 3em) !important;
+}
+
+[mat-dialog-content] {
+  margin: 0 !important;
+  padding: 1em !important;
+}
+
+[mat-dialog-actions] {
+  justify-content: flex-end;
+  margin-bottom: 0 !important;
+  padding: 0 0.5em !important;
+  background: $clGrey;
+
+  [cdkfocusinitial] {
+    color: $clCpuBlue;
+  }
+}

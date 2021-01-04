@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+@import 'src/styles/variables';
+
+$cpu-theme-primary: mat-palette($mat-grey, 700, 300, 900);
+$cpu-theme-accent: mat-palette($mat-indigo, 900);
+$cpu-theme-warn: mat-palette($mat-pink);
+
+$cpu-theme: mat-light-theme($cpu-theme-primary, $cpu-theme-accent, $cpu-theme-warn);
+
+$color-urlaub: map-get($mat-blue, 300);
+$color-urlaubhalb: map-get($mat-blue, 200);
+$color-teilzeitfrei: map-get($mat-green, 200);
+$color-urlaub-body: map-get($mat-blue, 200);
+$color-urlaubhalb-body: map-get($mat-blue, 100);
+$color-teilzeitfrei-body: map-get($mat-green, 100);
+$color-krank: map-get($mat-amber, 300);
+$color-krank-body: #ff7;
+$color-feiertag: map-get($mat-pink, 300);
+$color-feiertag-body: #fcc;
