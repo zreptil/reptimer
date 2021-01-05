@@ -1,12 +1,24 @@
 import {BaseDBData} from '@/_models/base-data';
-import {ProjectData} from '@/_models/project-data';
+import {TimeData} from '@/_models/time-data';
+
+enum DayType {
+  Arbeitstag,
+  Urlaub,
+  UrlaubHalb,
+  Teilzeitfrei,
+  Feiertag,
+  Krank
+}
 
 export class DayData extends BaseDBData {
   xmlCfg = {
     className: 'DayData'
   };
 
-  projects: ProjectData[] = [];
+  date: number = null;
+  type: DayType = null;
+  info: string = null;
+  times: TimeData[] = [];
 
   static factory(): DayData {
     const ret = new DayData();

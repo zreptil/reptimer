@@ -3,6 +3,7 @@ import {ComponentService} from '@/_services/component.service';
 import {AppBaseComponent} from '@/core/classes/app-base-component';
 import {ControlObject} from '@/core/classes/ibase-component';
 import {SessionService} from '@/_services/session.service';
+import {YearData} from '@/_models/year-data';
 
 @Component({
   selector: 'app-splash-screen',
@@ -26,5 +27,7 @@ export class SplashScreenComponent extends AppBaseComponent implements AfterView
 
   ngAfterViewInit(): void {
     this.ss.titleInfo = 'Lade Daten...';
+    const year = new YearData();
+    year.fill(2021);
   }
 }
