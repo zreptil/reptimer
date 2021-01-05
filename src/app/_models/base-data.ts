@@ -149,17 +149,13 @@ export abstract class BaseData {
 }
 
 export abstract class BaseDBData extends BaseData {
-
-  fkUserMandant: number = null;
-
-  // Meta-Data
-  createtime: Date = null;
-  createuser: string = null;
-  locktime: Date = null;
-  lockuser: string = null;
-  modifytime: Date = null;
-  modifyuser: string = null;
-  deleted: number = null;
-  readonly: number = null;
+  toJson(): any {
+    return JSON.stringify(this, (key, value) => {
+      if (key === 'xmlCfg') {
+        return undefined;
+      }
+      return value;
+    });
+  }
 }
 

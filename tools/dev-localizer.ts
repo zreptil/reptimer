@@ -7,8 +7,8 @@ const fileList = [];
 // const lng = localStorage.getItem('language') || 'de-DE';
 const outFile = '../src/locale/messages.json';
 
-createJson(['de-DE', 'en-GB'], []);
-// createJson(['de-DE'], []);
+// createJson(['de-DE', 'en-GB'], []);
+createJson(['de-DE'], []);
 
 function createJson(codes: any, list: any): void {
   const file = `../src/locale/messages.${codes[0]}.xlf`;

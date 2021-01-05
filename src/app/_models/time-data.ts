@@ -1,4 +1,5 @@
 import {BaseDBData} from '@/_models/base-data';
+import {ClassEPMap} from '@/_models/class-epmap';
 
 enum TimeType {
   Arbeitszeit,
@@ -6,6 +7,7 @@ enum TimeType {
 }
 
 export class TimeData extends BaseDBData {
+  static CEM = new ClassEPMap<TimeData>('day', TimeData.factory);
   xmlCfg = {
     className: 'TimeData'
   };

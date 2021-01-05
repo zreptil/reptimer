@@ -1,0 +1,7 @@
+<div [class]="['day', 't' + day.type]" *ngIf="day.isValid">
+  <div>{{day.day}}</div>
+  <div class="info" [innerHTML]="day.info"></div>
+  <div class="overlay"></div>
+</div>
+<div class="empty" *ngIf="!day.isValid">
+</div>

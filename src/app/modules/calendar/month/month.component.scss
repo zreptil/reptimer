@@ -1,0 +1,46 @@
+@import 'node_modules/@angular/material/theming';
+@import 'src/styles/theme';
+
+mat-card {
+  width: calc(7 * 9 * #{$cal-size});
+  height: calc(45 * #{$cal-size});
+  margin: 1em;
+
+  mat-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  mat-card-content {
+    display: flex;
+    flex-flow: column;
+
+    .week {
+      display: flex;
+      flex-flow: row;
+
+      .num {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: calc(4 * #{$cal-size});
+      }
+    }
+  }
+}
+
+
+.month {
+  display: flex;
+  flex-flow: column;
+  border: 2px solid black;
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+  }
+
+}

@@ -13,6 +13,9 @@ import {EnvironmentService} from '@/_services/environment.service';
 import {BaseDBData} from '@/_models/base-data';
 import {DataService} from '@/_services/data.service';
 import {ClassEPMap} from '@/_models/class-epmap';
+import {CEM} from '@/_models/cem';
+import {YearData} from '@/_models/year-data';
+import {DayType} from '@/_models/day-data';
 
 /**
  * Class to manage sessionStorage
@@ -81,8 +84,8 @@ class Storage {
    * @param type typeinformation for the data
    * @returns value read from sessionStorage
    */
-  read<T>(type: ClassEPMap<T>): any {
-    const src = sessionStorage.getItem(type.endpoint);
+  read<T>(type: ClassEPMap<T>): T {
+    const src = localStorage.getItem(type.endpoint);
     if (src == null) {
       return null;
     }
@@ -102,13 +105,13 @@ class Storage {
    * @param value   the value, will be converted to string using JSON.stringify
    * @param encrypt if true, the value is encrypted before written to sessionStorage
    */
-  write<T>(type: ClassEPMap<T>, value: any, encrypt: boolean = true): void {
+  write<T>(type: ClassEPMap<T>, value: BaseDBData, encrypt: boolean = true): void {
     console.log('writing', value);
-    value = JSON.stringify(value);
+    let data = value.toJson();
     if (encrypt) {
-      value = Storage.encrypt(value);
+      data = Storage.encrypt(data);
     }
-    sessionStorage.setItem(type.endpoint, value);
+    localStorage.setItem(type.endpoint, data);
   }
 
   /**
@@ -116,7 +119,7 @@ class Storage {
    * @param key identifier for the value
    */
   remove(key: string): void {
-    sessionStorage.removeItem(key);
+    localStorage.removeItem(key);
   }
 }
 
@@ -198,8 +201,8 @@ export class SessionService {
     }]],
     ['navigation', [{defKey: 'prev'}, {defKey: 'next'}]],
   ]);
+  public session: SessionData = new SessionData();
   private selKontoId = 0;
-  private session: SessionData = new SessionData();
   private storage = new Storage(this.ds);
 
   constructor(private dialog: MatDialog,
@@ -227,10 +230,7 @@ export class SessionService {
   }
 
   public initDBData(data: BaseDBData): void {
-    data.createuser = `${this.as.currentUserValue.idUserAccount}`;
-    // Createtime is set by databaseService on CREATE
-    data.readonly = 0;
-    data.deleted = 0;
+//    data.createuser = `${this.as.currentUserValue.idUserAccount}`;
   }
 
   logout(): void {
@@ -242,11 +242,23 @@ export class SessionService {
   // Sessiondata Methods
   // **********************************************************************
   loadSession(): void {
-    // this.storage.read(CEM.Vorgang);
+    this.session.year = this.storage.read(CEM.Year);
+    if (true || this.session.year == null) {
+      this.titleInfo = $localize`Lade Daten...`;
+      this.session.year = YearData.factory();
+      this.session.year.days[0].type = DayType.Arbeitstag;
+      this.session.year.days[1].type = DayType.Urlaub;
+      this.session.year.days[2].type = DayType.UrlaubHalb;
+      this.session.year.days[3].type = DayType.Teilzeitfrei;
+      this.session.year.days[4].type = DayType.Feiertag;
+      this.session.year.days[5].type = DayType.Krank;
+      this.saveSession();
+    }
+    this.router.navigate(['calendar']);
   }
 
   saveSession(): void {
-    // this.storage.write(CEM.Vorgang, this.vorgang);
+    this.storage.write(CEM.Year, this.session.year, false);
   }
 
   // **********************************************************************

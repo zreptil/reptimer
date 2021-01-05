@@ -2,6 +2,14 @@
  * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
  */
 import '@angular/localize/init';
+import * as messages from 'src/locale/messages.json';
+
+const check = localStorage.getItem('language') || 'de-DE';
+let lng = (messages as any).default.find((lang) => lang.id === check);
+if (!lng) {
+  lng = (messages as any).default[0];
+}
+loadTranslations(lng.data);
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
@@ -59,7 +67,8 @@ import '@angular/localize/init';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone';  // Included with Angular CLI.
+import 'zone.js/dist/zone';
+import {loadTranslations} from '@angular/localize';  // Included with Angular CLI.
 
 
 /***************************************************************************************************

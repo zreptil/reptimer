@@ -21,12 +21,12 @@ export abstract class AppBaseComponent implements IBaseComponent, OnInit {
   servicebar: { [name: string]: ServiceBarControl } = {};
   protected debugKeys = [];
 
-  protected constructor(public sessionService: SessionService,
+  protected constructor(public ss: SessionService,
                         public cs: ComponentService) {
   }
 
   setSessionComponent(): void {
-    this.sessionService.currentComponent = this;
+    this.ss.currentComponent = this;
   }
 
   /**
@@ -56,14 +56,14 @@ export abstract class AppBaseComponent implements IBaseComponent, OnInit {
   async abstract writeToSession(data: any): Promise<boolean>;
 
   saveSession(): void {
-    this.sessionService.saveSession();
+    this.ss.saveSession();
   }
 
   ngOnInit(): void {
     this.cs.init(this);
     const msg = this.cs.readSessionData(this);
     if (msg && !this.skipMissingControlMessage) {
-      this.sessionService.debug(msg);
+      this.ss.debug(msg);
     }
   }
 
@@ -91,7 +91,7 @@ export abstract class AppBaseComponent implements IBaseComponent, OnInit {
   }
 
   transferServicebarControls(): any {
-    for (const ctrl of this.sessionService.servicebar) {
+    for (const ctrl of this.ss.servicebar) {
       if (ctrl.name) {
         this.servicebar[ctrl.name] = ctrl;
       }

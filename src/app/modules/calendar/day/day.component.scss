@@ -1,0 +1,64 @@
+@import 'node_modules/@angular/material/theming';
+@import 'src/styles/theme';
+
+$size: calc(8 * #{$cal-size});
+
+:host {
+  font-size: $cal-size;
+}
+
+.day, .empty {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1em;
+  width: $size;
+  height: $size;
+  padding: 0.2em;
+}
+
+.day {
+  border-radius: 1em;
+  cursor: pointer;
+  position: relative;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $size;
+    height: $size;
+    background: rgba(0,0,0,0.2);
+    opacity: 0;
+    border-radius: 1em;
+  }
+}
+
+.day:hover .overlay {
+  opacity: 1;
+}
+
+.info {
+  text-align: center;
+}
+
+.t1 {
+  background: $color-urlaub;
+}
+
+.t2 {
+  background: $color-urlaubhalb;
+}
+
+.t3 {
+  background: $color-teilzeitfrei;
+}
+
+.t4 {
+  background: $color-feiertag;
+}
+
+.t5 {
+  background: $color-krank;
+}

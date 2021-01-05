@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {SVItem} from '@/_models/sv-item';
 import {SVMap} from '@/core/classes/svmap.enum';
 import {EnvironmentService} from '@/_services/environment.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 // export const API_ENDPOINT = new InjectionToken<string>('API_ENDPOINT');
 
@@ -35,7 +35,7 @@ export class SVService {
     private env: EnvironmentService
   ) {
     console.log(`SV-Service apiUrl: ${this.apiUrl}`);
-    this.buildCache();
+    // this.buildCache();
   }
 
   /**

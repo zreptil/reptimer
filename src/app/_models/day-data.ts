@@ -1,7 +1,8 @@
 import {BaseDBData} from '@/_models/base-data';
 import {TimeData} from '@/_models/time-data';
+import {ClassEPMap} from '@/_models/class-epmap';
 
-enum DayType {
+export enum DayType {
   Arbeitstag,
   Urlaub,
   UrlaubHalb,
@@ -11,6 +12,7 @@ enum DayType {
 }
 
 export class DayData extends BaseDBData {
+  static CEM = new ClassEPMap<DayData>('day', DayData.factory);
   xmlCfg = {
     className: 'DayData'
   };
@@ -19,10 +21,41 @@ export class DayData extends BaseDBData {
   type: DayType = null;
   info: string = null;
   times: TimeData[] = [];
+  timesARR = TimeData.CEM;
+
+  get isValid(): boolean {
+    return this.date != null;
+  }
+
+  get month(): number {
+    return new Date(this.date).getMonth() + 1;
+  }
+
+  get day(): number {
+    return new Date(this.date).getDate();
+  }
+
+  get year(): number {
+    return new Date(this.date).getFullYear();
+  }
+
+  get week(): number {
+    const date = new Date(this.date);
+    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    const dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    return Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+  }
 
   static factory(): DayData {
     const ret = new DayData();
     return ret;
+  }
+
+  dateString(): string {
+    const date = new Date(this.date);
+    return date.toString();
   }
 
   create(): DayData {
