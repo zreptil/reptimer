@@ -8,7 +8,8 @@ export enum DayType {
   UrlaubHalb,
   Teilzeitfrei,
   Feiertag,
-  Krank
+  Krank,
+  Info
 }
 
 export class DayData extends BaseDBData {

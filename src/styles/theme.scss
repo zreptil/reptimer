@@ -17,5 +17,7 @@ $color-krank: map-get($mat-amber, 300);
 $color-krank-body: #ff7;
 $color-feiertag: map-get($mat-pink, 300);
 $color-feiertag-body: #fcc;
+$color-info: map-get($mat-pink, 100);
+$color-cursor: map-get($mat-green, 200);
 
-$cal-size: 1em;
+$cal-size: 0.7em;

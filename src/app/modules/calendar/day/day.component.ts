@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DayData} from '@/_models/day-data';
+import {YearData} from '@/_models/year-data';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,6 +14,17 @@ export class DayComponent implements OnInit {
   day: DayData;
 
   constructor() {
+  }
+
+  dayClass(day: DayData): any {
+    const ret = ['day', 't' + day.type];
+    if (YearData.dayOfWeek(new Date(day.date)) === 6) {
+      ret.push('w6');
+    }
+    if (day.info != null && day.info.trim() !== '') {
+      ret.push('info');
+    }
+    return ret;
   }
 
   ngOnInit(): void {

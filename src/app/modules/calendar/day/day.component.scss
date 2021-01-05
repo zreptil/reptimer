@@ -16,31 +16,49 @@ $size: calc(8 * #{$cal-size});
   width: $size;
   height: $size;
   padding: 0.2em;
+  margin: 1px;
+  border-radius: 1em;
 }
 
 .day {
-  border-radius: 1em;
   cursor: pointer;
   position: relative;
 
-  .overlay {
+  .number, .info {
     position: absolute;
     top: 0;
     left: 0;
-    width: $size;
-    height: $size;
-    background: rgba(0,0,0,0.2);
-    opacity: 0;
-    border-radius: 1em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+  }
+
+  .number {
+    font-size: 200%;
+    font-weight: bold;
+  }
+
+  .info {
+    display: none;
+    text-align: center;
+    color: black;
   }
 }
 
-.day:hover .overlay {
+.day:hover {
   opacity: 1;
+  background: $color-cursor;
 }
 
-.info {
-  text-align: center;
+.day.info:hover .info {
+  display: flex;
+}
+
+.day.info:hover .number {
+  display: none;
 }
 
 .t1 {
@@ -61,4 +79,17 @@ $size: calc(8 * #{$cal-size});
 
 .t5 {
   background: $color-krank;
+}
+
+.t6 {
+  background: $color-info;
+}
+
+.w6 {
+  color: red;
+}
+
+.w6.t4 {
+  background: transparent;
+  border: 1px solid red;
 }

@@ -30,6 +30,14 @@ export class YearData extends BaseDBData {
     return month >= 1 && month < 13 ? names[month - 1] : $localize`???`;
   }
 
+  static dayOfWeek(date: Date): number {
+    if (date === undefined) {
+      return 1;
+    }
+    const ret = date.getDay() - 1;
+    return ret >= 0 ? ret : 6;
+  }
+
   private static calcEasterSunday(date: Date): void {
     const g = date.getFullYear() % 19;
     const c = Math.floor(date.getFullYear() / 100);
@@ -45,14 +53,6 @@ export class YearData extends BaseDBData {
       date.setMonth(3);
       date.setDate(l - 3);
     }
-  }
-
-  private static dayOfWeek(date: Date): number {
-    if (date === undefined) {
-      return 1;
-    }
-    const ret = date.getDay() - 1;
-    return ret >= 0 ? ret : 6;
   }
 
   create(): YearData {
@@ -112,16 +112,21 @@ export class YearData extends BaseDBData {
     this.addHoliday(new Date(this.year, 7, 8), `Friedensfest (Augsburg)`);
     this.addHoliday(new Date(this.year, 7, 15), `Mariä Himmelfahrt`);
     this.addHoliday(new Date(this.year, 9, 3), `Tag der deutschen Einheit`);
-    this.addHoliday(new Date(this.year, 10, 1), `Allerheiligen`);
-    this.addHoliday(new Date(this.year, 11, 25), `1. Weihnachtsfeiertag`);
-    this.addHoliday(new Date(this.year, 11, 26), `2. Weihnachtsfeiertag`);
+    this.addHoliday(new Date(this.year, 10, 1), `Aller&shy;hei&shy;ligen`);
+    this.addHoliday(new Date(this.year, 11, 25), `1. Weih&shy;nachts&shy;feier&shy;tag`);
+    this.addHoliday(new Date(this.year, 11, 26), `2. Weih&shy;nachts&shy;feier&shy;tag`);
   }
 
   private addHoliday(date: Date, info: string): void {
     const day = this.days.find((entry) => entry.date === date.getTime());
     if (day != null) {
-      day.info = info;
-      day.type = DayType.Feiertag;
+      if (info.startsWith('-')) {
+        day.info = info.substring(1);
+        day.type = DayType.Info;
+      } else {
+        day.info = info;
+        day.type = DayType.Feiertag;
+      }
     }
   }
 

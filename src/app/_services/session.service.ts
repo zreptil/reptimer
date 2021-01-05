@@ -246,12 +246,6 @@ export class SessionService {
     if (true || this.session.year == null) {
       this.titleInfo = $localize`Lade Daten...`;
       this.session.year = YearData.factory();
-      this.session.year.days[0].type = DayType.Arbeitstag;
-      this.session.year.days[1].type = DayType.Urlaub;
-      this.session.year.days[2].type = DayType.UrlaubHalb;
-      this.session.year.days[3].type = DayType.Teilzeitfrei;
-      this.session.year.days[4].type = DayType.Feiertag;
-      this.session.year.days[5].type = DayType.Krank;
       this.saveSession();
     }
     this.router.navigate(['calendar']);
