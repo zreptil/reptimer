@@ -15,7 +15,6 @@ import {DataService} from '@/_services/data.service';
 import {ClassEPMap} from '@/_models/class-epmap';
 import {CEM} from '@/_models/cem';
 import {YearData} from '@/_models/year-data';
-import {DayType} from '@/_models/day-data';
 
 /**
  * Class to manage sessionStorage
@@ -243,12 +242,16 @@ export class SessionService {
   // **********************************************************************
   loadSession(): void {
     this.session.year = this.storage.read(CEM.Year);
-    if (true || this.session.year == null) {
+    if (this.session.year == null) {
       this.titleInfo = $localize`Lade Daten...`;
       this.session.year = YearData.factory();
       this.saveSession();
     }
-    this.router.navigate(['calendar']);
+    let dst = 'calendar';
+    if (this.session.year.day != null) {
+      dst = 'dashboard';
+    }
+    this.router.navigate([dst]);
   }
 
   saveSession(): void {

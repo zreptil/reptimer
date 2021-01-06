@@ -93,3 +93,7 @@ $size: calc(8 * #{$cal-size});
   background: transparent;
   border: 1px solid red;
 }
+
+.today {
+  box-shadow: 0 0 15px 2px $color-today;
+}

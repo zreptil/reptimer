@@ -1,4 +1,4 @@
-<div [class]="dayClass(day)" *ngIf="day.isValid">
+<div [class]="dayClass(day)" *ngIf="day.isValid" (click)="clickEvent.emit(day)">
   <div class="number">{{day.day}}</div>
   <div class="info" [innerHTML]="day.info"></div>
 </div>

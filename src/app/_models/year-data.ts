@@ -6,12 +6,45 @@ export class YearData extends BaseDBData {
     className: 'YearData'
   };
 
-  year: number;
+  year: number = null;
+  month: number = null;
   days: DayData[] = [];
   daysARR = DayData.CEM;
 
   private constructor() {
     super();
+  }
+
+  _dayIdx: number = null;
+
+  get dayIdx(): number {
+    return this._dayIdx;
+  }
+
+  set dayIdx(value: number) {
+    if (value >= this.days.length) {
+      value = this.days.length - 1;
+    }
+    if (value < 0) {
+      value = 0;
+    }
+    this._dayIdx = value;
+  }
+
+  get day(): DayData {
+    return this.days[this.dayIdx];
+  }
+
+  set day(value: DayData) {
+    this.dayIdx = this.days.findIndex(entry => {
+      return entry.date === value.date && entry.month === value.month && entry.year === value.year;
+    });
+  }
+
+  get week(): DayData[] {
+    return this.days.filter(day => {
+      return day.week === this.day.week;
+    });
   }
 
   static factory(): YearData {
@@ -30,12 +63,16 @@ export class YearData extends BaseDBData {
     return month >= 1 && month < 13 ? names[month - 1] : $localize`???`;
   }
 
-  static dayOfWeek(date: Date): number {
-    if (date === undefined) {
-      return 1;
-    }
-    const ret = date.getDay() - 1;
-    return ret >= 0 ? ret : 6;
+  public static weekdayName(dayOfWeek: number, short: boolean = false): string {
+    const longNames = [$localize`Montag`, $localize`Dienstag`,
+      $localize`Mittwoch`, $localize`Donnerstag`,
+      $localize`Freitag`, $localize`Samstag`, $localize`Sonntag`];
+    const shortNames = [$localize`Mo`, $localize`Di`, $localize`Mi`,
+      $localize`Do`, $localize`Fr`, $localize`Sa`, $localize`So`];
+
+    const names = short ? shortNames : longNames;
+
+    return dayOfWeek >= 0 && dayOfWeek < 7 ? names[dayOfWeek] : $localize`??`;
   }
 
   private static calcEasterSunday(date: Date): void {
@@ -53,6 +90,20 @@ export class YearData extends BaseDBData {
       date.setMonth(3);
       date.setDate(l - 3);
     }
+  }
+
+  weekDayNameLong(day: number | DayData): string {
+    if (typeof day !== 'number') {
+      day = DayData.dayOfWeek(new Date(day.date));
+    }
+    return YearData.weekdayName(day, false);
+  }
+
+  weekDayNameShort(day: number | DayData): string {
+    if (typeof day !== 'number') {
+      day = DayData.dayOfWeek(new Date(day.date));
+    }
+    return YearData.weekdayName(day, true);
   }
 
   create(): YearData {
@@ -73,7 +124,7 @@ export class YearData extends BaseDBData {
 
     // add information to days
     const hd = new Date(this.year, 10, 27);
-    hd.setDate(hd.getDate() + (6 - YearData.dayOfWeek(hd)));
+    hd.setDate(hd.getDate() + (6 - DayData.dayOfWeek(hd)));
     this.addHoliday(hd, $localize`-1. Advent`);
     hd.setDate(hd.getDate() + 7);
     this.addHoliday(hd, $localize`-2. Advent`);
@@ -87,7 +138,7 @@ export class YearData extends BaseDBData {
     this.addHoliday(hd, $localize`-Volks&shy;trauertag`);
     hd.setDate(1);
     hd.setMonth(4);
-    hd.setDate(14 - YearData.dayOfWeek(hd));
+    hd.setDate(14 - DayData.dayOfWeek(hd));
     this.addHoliday(hd, $localize`-Muttertag`);
     YearData.calcEasterSunday(hd);
     this.addHoliday(hd, $localize`-Oster&shy;sonntag`);

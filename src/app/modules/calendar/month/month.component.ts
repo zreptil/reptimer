@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {SessionService} from '@/_services/session.service';
 import {DayData} from '@/_models/day-data';
 import {YearData} from '@/_models/year-data';
+import {Router} from '@angular/router';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -9,11 +10,12 @@ import {YearData} from '@/_models/year-data';
   templateUrl: './month.component.html',
   styleUrls: ['./month.component.scss']
 })
-export class MonthComponent implements OnInit {
+export class MonthComponent {
   days: DayData[];
   weeks: { nr: number, days: DayData[] }[];
 
-  constructor(public ss: SessionService) {
+  constructor(public ss: SessionService,
+              private router: Router) {
   }
 
   _month: number;
@@ -52,7 +54,6 @@ export class MonthComponent implements OnInit {
     if (this.days.length === 0) {
       return;
     }
-    console.log(this.month, this.days.length, this.ss.session.year);
     let week = this.days[0].week;
     this.weeks.push({nr: week, days: []});
     for (const day of this.days) {
@@ -78,7 +79,10 @@ export class MonthComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  activateDay(day: DayData): void {
+    console.log('test');
+    this.ss.session.year.day = day;
+    this.ss.saveSession();
+    this.router.navigate(['dashboard']);
   }
-
-}
+ }

@@ -49,6 +49,18 @@ export class DayData extends BaseDBData {
     return Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
   }
 
+  get dayOfWeek(): number {
+    return DayData.dayOfWeek(new Date(this.date));
+  }
+
+  static dayOfWeek(date: Date): number {
+    if (date === undefined) {
+      return 1;
+    }
+    const ret = date.getDay() - 1;
+    return ret >= 0 ? ret : 6;
+  }
+
   static factory(): DayData {
     const ret = new DayData();
     return ret;

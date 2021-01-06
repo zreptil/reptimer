@@ -1,0 +1,49 @@
+<!--
+  <div class="types">
+    <div on-tap="tapNormal" class$="normal {{isType('',rnd)}}">
+      {{getNormal(rnd)}}
+      <paper-icon-button on-tap="tapPrint" hidden$="{{!isType('',rnd)}}" icon="print"></paper-icon-button>
+    </div>
+    <div on-tap="tapTeilzeitFrei" class$="TeilzeitFrei {{isType('TeilzeitFrei',rnd)}}">Teilzeit Frei</div>
+    <div on-tap="tapUrlaub" class$="Urlaub {{isType('Urlaub',rnd)}}">
+      Urlaub
+      <paper-icon-button on-tap="tapPrint" hidden$="{{!isType('Urlaub',rnd)}}" icon="print"></paper-icon-button>
+    </div>
+    <div on-tap="tapUrlaubHalb" class$="UrlaubHalb {{isType('UrlaubHalb',rnd)}}">Urlaub 1/2</div>
+    <div on-tap="tapKrank" class$="Krank {{isType('Krank',rnd)}}">Krank</div>
+    <div on-tap="tapFeiertag" class$="Feiertag {{isType('Feiertag',rnd)}}">Feiertag</div>
+  </div>
+-->
+<div class="header">
+  <div class="week">
+    <button mat-flat-button (click)="clickPrevWeek()">
+      <mat-icon>arrow_left</mat-icon>
+    </button>
+    <button mat-flat-button [class]="weekClass(day)" *ngFor="let day of ss.session.year.week" (click)="clickWeekDay(day)">
+      {{ss.session.year.weekDayNameShort(day)}} {{day.day}}
+    </button>
+    <button mat-flat-button (click)="clickNextWeek()">
+      <mat-icon>arrow_right</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="controls">
+  <button mat-flat-button (click)="clickPlayPause($event)">
+    <mat-icon *ngIf="data?.start == null">play_arrow</mat-icon>
+    <mat-icon *ngIf="data?.start != null">pause</mat-icon>
+  </button>
+
+  <button mat-flat-button [disabled]="data==null" (click)="clickStop($event)">
+    <mat-icon>stop</mat-icon>
+  </button>
+</div>
+<div class="times">
+  <mat-card  [class]="timeClass(idx)" *ngFor="let time of ss.session.year.day.times; let idx = index" (click)="toggleTime(idx)">
+    <mat-card-header>
+      <mat-card-title>{{time.typeForDisplay}}</mat-card-title>
+      <button *ngIf="idx===dataIdx" mat-icon-button (click)="deleteTime(idx)"><mat-icon>delete</mat-icon></button>
+      <button *ngIf="idx!==dataIdx" mat-icon-button></button>
+    </mat-card-header>
+    {{time.from}} - {{time.to}}
+  </mat-card>
+</div>

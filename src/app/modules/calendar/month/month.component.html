@@ -6,7 +6,7 @@
     <div class="week" *ngFor="let week of weeks">
       <div class="num">{{week.nr}}</div>
       <ng-container *ngFor="let day of week.days">
-        <cal-day [day]="day"></cal-day>
+        <cal-day [day]="day" (clickEvent)="activateDay(day)"></cal-day>
       </ng-container>
     </div>
   </mat-card-content>

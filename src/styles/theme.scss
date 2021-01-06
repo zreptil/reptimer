@@ -18,6 +18,31 @@ $color-krank-body: #ff7;
 $color-feiertag: map-get($mat-pink, 300);
 $color-feiertag-body: #fcc;
 $color-info: map-get($mat-pink, 100);
-$color-cursor: map-get($mat-green, 200);
+$color-cursor: rgba(64,64,255,0.3);
+$color-today: #44f;
 
 $cal-size: 0.7em;
+
+.t1 {
+  background: $color-urlaub;
+}
+
+.t2 {
+  background: $color-urlaubhalb;
+}
+
+.t3 {
+  background: $color-teilzeitfrei;
+}
+
+.t4 {
+  background: $color-feiertag;
+}
+
+.t5 {
+  background: $color-krank;
+}
+
+.t6 {
+  background: $color-info;
+}

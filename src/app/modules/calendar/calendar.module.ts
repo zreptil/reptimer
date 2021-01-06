@@ -6,9 +6,10 @@ import {MaterialModule} from '@/material.module';
 import {VisualsModule} from '@/visuals/visuals.module';
 import { MonthComponent } from './month/month.component';
 import { DayComponent } from './day/day.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [YearComponent, MonthComponent, DayComponent],
+  declarations: [YearComponent, MonthComponent, DayComponent, DashboardComponent],
   imports: [
     CommonModule,
     CalendarRoutingModule,

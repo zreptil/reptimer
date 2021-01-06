@@ -1,0 +1,98 @@
+@import 'node_modules/@angular/material/theming';
+@import 'src/styles/theme';
+
+:host {
+  display: flex;
+  flex-flow: column;
+  max-height: 100%;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+
+.header {
+  margin-bottom: 5px;
+
+  .week {
+    display: flex;
+    flex-flow: row;
+
+    button {
+    }
+
+    .active {
+      border: 2px solid $color-cursor;
+    }
+
+    .tnull {
+      background: #a0a0ff;
+    }
+
+    button:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+}
+
+.controls {
+  display: flex;
+  flex-flow: row;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 5px;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #a0a0ff;
+    padding: 0;
+    flex: 1;
+    font-size: 10em;
+
+    mat-icon {
+      font-size: 1em;
+      height: 100%;
+      width: 100%;
+    }
+
+    border-radius: 0.1em;
+  }
+
+  button:not(:last-child) {
+    margin-right: 5px;
+  }
+}
+
+.times {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+
+  mat-card {
+    cursor: pointer;
+
+    .mat-card-header .mat-card-title {
+      margin-bottom: 0;
+    }
+
+    mat-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+    }
+  }
+
+  ::ng-deep .mat-card-header-text {
+    margin: 0 !important;
+  }
+
+  .active {
+    background: #a0a0ff;
+  }
+}
+
