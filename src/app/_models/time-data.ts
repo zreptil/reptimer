@@ -3,7 +3,7 @@ import {ClassEPMap} from '@/_models/class-epmap';
 
 export enum TimeType {
   Arbeitszeit,
-
+  Pause
 }
 
 export class TimeData extends BaseDBData {
@@ -17,12 +17,40 @@ export class TimeData extends BaseDBData {
   info: string = null;
   type: TimeType = null;
 
+  static get now(): number {
+    return TimeData.timeFromDate(new Date(Date.now()));
+  }
+
   get typeForDisplay(): string {
     switch (this.type) {
       case TimeType.Arbeitszeit:
         return $localize`Arbeitszeit`;
+      case TimeType.Pause:
+        return $localize`Pause`;
     }
     return $localize`unbekannt`;
+  }
+
+  get fromValue(): string {
+    return this.from;
+  }
+
+  set fromValue(value: string) {
+    const parts = value.split(':');
+    if (parts.length === 2) {
+      this.start = +(+parts[0] * 60 + +parts[1]);
+    }
+  }
+
+  get toValue(): string {
+    return this.to;
+  }
+
+  set toValue(value: string) {
+    const parts = value.split(':');
+    if (parts.length === 2) {
+      this.end = +(+parts[0] * 60 + +parts[1]);
+    }
   }
 
   get from(): string {
@@ -43,7 +71,7 @@ export class TimeData extends BaseDBData {
     }
     const h = Math.floor(value / 60);
     const m = value % 60;
-    return `${h}:${m}`;
+    return `${h < 10 ? '0' : ''}${h}:${m < 10 ? '0' : ''}${m}`;
   }
 
   static factory(): TimeData {

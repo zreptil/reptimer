@@ -7,6 +7,7 @@ import {VisualsModule} from '@/visuals/visuals.module';
 import { MonthComponent } from './month/month.component';
 import { DayComponent } from './day/day.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [YearComponent, MonthComponent, DayComponent, DashboardComponent],
@@ -14,7 +15,8 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
     CommonModule,
     CalendarRoutingModule,
     MaterialModule,
-    VisualsModule
+    VisualsModule,
+    FormsModule
   ]
 })
 export class CalendarModule {

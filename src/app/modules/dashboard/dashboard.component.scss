@@ -11,6 +11,9 @@
 }
 
 .header {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
   margin-bottom: 5px;
 
   .week {
@@ -18,10 +21,11 @@
     flex-flow: row;
 
     button {
+      border: 3px solid transparent;
     }
 
     .active {
-      border: 2px solid $color-cursor;
+      border-color: rgba(0, 0, 0, 0.5);
     }
 
     .tnull {
@@ -42,21 +46,17 @@
   margin-bottom: 5px;
 
   button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: #a0a0ff;
     padding: 0;
-    flex: 1;
-    font-size: 10em;
+    font-size: 1em;
+    border-radius: 1em;
+    width: 100%;
 
-    mat-icon {
-      font-size: 1em;
-      height: 100%;
-      width: 100%;
+    ::ng-deep .mat-icon {
+      font-size: 10em;
+      height: initial;
+      width: initial;
     }
-
-    border-radius: 0.1em;
   }
 
   button:not(:last-child) {
@@ -84,6 +84,21 @@
       align-items: center;
       justify-content: space-between;
       height: 48px;
+    }
+
+    .content {
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+
+      div {
+        padding: 0.5em;
+      }
+
+      input {
+        background: transparent;
+        border: none;
+      }
     }
   }
 
