@@ -3,18 +3,28 @@ import {TimeData} from '@/_models/time-data';
 import {ClassEPMap} from '@/_models/class-epmap';
 
 export enum DayType {
-  Arbeitstag,
-  Urlaub,
+  Arbeitstag = null,
+  Urlaub = 1,
   UrlaubHalb,
   Teilzeitfrei,
   Feiertag,
   Krank,
-  Info
+  Info,
+  Frei
 }
 
 export class DayData extends BaseDBData {
-
   static CEM = new ClassEPMap<DayData>('day', DayData.factory);
+  static typeList = [
+    {id: DayType.Arbeitstag, label: $localize`Arbeitstag`},
+    {id: DayType.Frei, label: $localize`Frei`},
+    {id: DayType.Urlaub, label: $localize`Urlaub`},
+    {id: DayType.UrlaubHalb, label: $localize`Urlaub 1/2`},
+    {id: DayType.Teilzeitfrei, label: $localize`Teilzeitfrei`},
+    {id: DayType.Feiertag, label: $localize`Feiertag`},
+    {id: DayType.Krank, label: $localize`Krank`},
+    {id: DayType.Info, label: $localize`Info`}
+  ];
   xmlCfg = {
     className: 'DayData'
   };

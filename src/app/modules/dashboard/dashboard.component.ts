@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {SessionService} from '@/_services/session.service';
 import {TimeData, TimeType} from '@/_models/time-data';
 import {DialogResult, DialogResultButton} from '@/_models/dialog-data';
-import {DayData} from '@/_models/day-data';
+import {DayData, DayType} from '@/_models/day-data';
 import {Router} from '@angular/router';
 
 @Component({
@@ -16,6 +16,10 @@ export class DashboardComponent {
 
   constructor(public ss: SessionService,
               private router: Router) {
+  }
+
+  public get dayTypeList(): any[] {
+    return DayData.typeList;
   }
 
   public get data(): TimeData {
@@ -89,6 +93,14 @@ export class DashboardComponent {
     return ret;
   }
 
+  typeClass(type: DayType): string[] {
+    const ret = ['t' + type];
+    if (this.ss.session.year.day.type === type) {
+      ret.push('active');
+    }
+    return ret;
+  }
+
   weekClass(day: DayData): string[] {
     const ret = ['t' + day.type];
     if (this.ss.session.year.day.dayOfWeek === day.dayOfWeek) {
@@ -120,5 +132,10 @@ export class DashboardComponent {
     this.ss.session.year.dayIdx = null;
     this.ss.saveSession();
     this.router.navigate(['calendar']);
+  }
+
+  clickDayType(type: DayType): void {
+    this.ss.session.year.day.type = type;
+    this.ss.saveSession();
   }
 }

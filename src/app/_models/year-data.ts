@@ -1,5 +1,6 @@
 import {BaseDBData} from '@/_models/base-data';
 import {DayData, DayType} from '@/_models/day-data';
+import {CEM} from '@/_models/cem';
 
 export class YearData extends BaseDBData {
   xmlCfg = {
@@ -111,6 +112,15 @@ export class YearData extends BaseDBData {
   }
 
   fillHolidays(): void {
+    const times = [];
+    if (this.days && this.days.length > 0) {
+      for (const d of this.days) {
+        for (const time of d.times) {
+          times.push({date: d.date, time});
+        }
+      }
+    }
+
     this.days = [];
     const day = new Date(this.year, 0, 1);
 
@@ -118,6 +128,9 @@ export class YearData extends BaseDBData {
     do {
       const data = new DayData();
       data.date = day.getTime();
+      if (data.dayOfWeek === 5 || data.dayOfWeek === 6) {
+        data.type = DayType.Frei;
+      }
       this.days.push(data);
       day.setDate(day.getDate() + 1);
     } while (day.getFullYear() === this.year);
@@ -166,6 +179,17 @@ export class YearData extends BaseDBData {
     this.addHoliday(new Date(this.year, 10, 1), `Aller&shy;hei&shy;ligen`);
     this.addHoliday(new Date(this.year, 11, 25), `1. Weih&shy;nachts&shy;feier&shy;tag`);
     this.addHoliday(new Date(this.year, 11, 26), `2. Weih&shy;nachts&shy;feier&shy;tag`);
+
+    for (const time of times) {
+      this.addTime(time.date, time.time);
+    }
+  }
+
+  private addTime(date: number, time: any): void {
+    const day = this.days.find((entry) => entry.date === date);
+    if (day != null) {
+      day.times.push(CEM.Time.classify(time));
+    }
   }
 
   private addHoliday(date: Date, info: string): void {

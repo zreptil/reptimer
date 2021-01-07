@@ -2,6 +2,62 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="de-DE" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="2160411809428543998" datatype="html">
+        <source>Arbeitstag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4353401914624818217" datatype="html">
+        <source>Frei</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7606216724451613048" datatype="html">
+        <source>Urlaub</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6515529043985612244" datatype="html">
+        <source>Urlaub 1/2</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8723816733457318156" datatype="html">
+        <source>Teilzeitfrei</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6184292966501253839" datatype="html">
+        <source>Feiertag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7572713683663013879" datatype="html">
+        <source>Krank</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="314315645942131479" datatype="html">
+        <source>Info</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5037437391296624618" datatype="html">
         <source>Information</source>
         <context-group purpose="location">
@@ -63,7 +119,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">123</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4096320719528083212" datatype="html">
@@ -77,301 +133,301 @@
         <source>Januar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7029265543969180461" datatype="html">
         <source>Februar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6007938108488521736" datatype="html">
         <source>März</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1809521303476565743" datatype="html">
         <source>April</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2219446267498213550" datatype="html">
         <source>Mai</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5829316612883860294" datatype="html">
         <source>Juni</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1899381576479788257" datatype="html">
         <source>Juli</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3984618989093293779" datatype="html">
         <source>August</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5872622085239011307" datatype="html">
         <source>September</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1280165460303116228" datatype="html">
         <source>Oktober</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1109977718843277527" datatype="html">
         <source>November</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3022543557445694316" datatype="html">
         <source>Dezember</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3331087435785673260" datatype="html">
         <source>???</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5270327487333064698" datatype="html">
         <source>Montag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2030976869636220684" datatype="html">
         <source>Dienstag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4990093896014871902" datatype="html">
         <source>Mittwoch</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9039993581689232399" datatype="html">
         <source>Donnerstag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1560223753499023916" datatype="html">
         <source>Freitag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3204076460615791312" datatype="html">
         <source>Samstag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3155764298718431288" datatype="html">
         <source>Sonntag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4197236438302165051" datatype="html">
         <source>Mo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5908714162235067735" datatype="html">
         <source>Di</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7915175571113450409" datatype="html">
         <source>Mi</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6408870772587289662" datatype="html">
         <source>Do</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8598262708800132669" datatype="html">
         <source>Fr</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="569007902695332072" datatype="html">
         <source>Sa</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2812565712576597206" datatype="html">
         <source>So</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5957096213757959421" datatype="html">
         <source>??</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2640308846288645351" datatype="html">
         <source>-1. Advent</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">106</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8565032994718682310" datatype="html">
         <source>-2. Advent</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1700679646881091015" datatype="html">
         <source>-3. Advent</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1620478919723740731" datatype="html">
         <source>-4. Advent</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1354529745239475057" datatype="html">
         <source>-Toten&amp;shy;sonntag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">114</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7518394577305312334" datatype="html">
         <source>-Volks&amp;shy;trauertag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="787668762694012103" datatype="html">
         <source>-Muttertag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2382050086495280114" datatype="html">
         <source>-Oster&amp;shy;sonntag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">122</context>
+          <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3168247944822148871" datatype="html">
         <source>-Ascher&amp;shy;mittwoch</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">124</context>
+          <context context-type="linenumber">136</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2468229904301976401" datatype="html">
         <source>Karfreitag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">138</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6317149525747194007" datatype="html">
         <source>Oster&amp;shy;montag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">140</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8602322193655392658" datatype="html">
         <source>Vatertag / Christi Himmelfahrt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">130</context>
+          <context context-type="linenumber">142</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5662834797269001100" datatype="html">
         <source>Pfingst&amp;shy;montag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7062857525310424675" datatype="html">
         <source>-Pfingst&amp;shy;sonntag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="linenumber">146</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1660320971915084520" datatype="html">
         <source>Fron&amp;shy;leichnam</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/year-data.js</context>
-          <context context-type="linenumber">136</context>
+          <context context-type="linenumber">148</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7954281944413144209" datatype="html">
@@ -546,28 +602,35 @@
         <source>Kommen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8379866940554229637" datatype="html">
         <source>Pause beenden</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4054029360531153137" datatype="html">
+        <source><x id="PH" equiv-text="this.ss.session.year.day.times[idx].typeForDisplay"/> wirklich löschen?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">156</context>
         </context-group>
       </trans-unit>
       <trans-unit id="84dcbbe5b0ac8fd75036dba42f78ff3505822554" datatype="html">
         <source>Gehen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
-          <context context-type="linenumber">174</context>
+          <context context-type="linenumber">225</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b4f775784d8a3164b133fb8634a38051154c945e" datatype="html">
         <source>bis</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
-          <context context-type="linenumber">180</context>
+          <context context-type="linenumber">231</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4973528606869406386" datatype="html">

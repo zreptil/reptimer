@@ -16,29 +16,54 @@
   justify-content: space-between;
   margin-bottom: 5px;
 
-  .week {
+  .daytypes {
+    display: flex;
+    flex-flow: row;
+    flex: 1;
+
+    button {
+      flex: 1;
+    }
+  }
+
+  .week, .daytypes {
     display: flex;
     flex-flow: row;
 
+    .active {
+      border-color: rgba(0, 0, 0, 0.5) !important;
+    }
+
     button {
+      display: flex;
+    }
+
+    button:not(.weekctrl) {
+      justify-content: center;
       border: 3px solid transparent;
     }
 
-    .active {
-      border-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .today {
-      color: rgba(255, 255, 255, 0.8);
-      font-weight: bold;
+    button:not(:last-child) {
+      margin-right: 5px;
     }
 
     .tnull {
       background: #a0a0ff;
     }
+  }
 
-    button:not(:last-child) {
-      margin-right: 5px;
+  .week {
+    button:not(.weekctrl) {
+      width: 6em;
+    }
+
+    .weekctrl {
+      min-width: initial;
+    }
+
+    .today {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: bold;
     }
   }
 }
@@ -79,6 +104,7 @@
   flex: 1;
   width: 100%;
   max-width: 100%;
+  margin-bottom: 5px;
 
   mat-card {
     cursor: pointer;

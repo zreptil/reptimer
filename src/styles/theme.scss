@@ -20,6 +20,8 @@ $color-feiertag-body: #fcc;
 $color-info: map-get($mat-pink, 100);
 $color-cursor: rgba(64,64,255,0.3);
 $color-today: #44f;
+$color-frei: #eee;
+$color-frei-font: #800;
 
 $cal-size: 0.7em;
 
@@ -45,4 +47,9 @@ $cal-size: 0.7em;
 
 .t6 {
   background: $color-info;
+}
+
+.t7 {
+  background: $color-frei;
+  color: $color-frei-font;
 }
