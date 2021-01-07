@@ -21,6 +21,7 @@
     </button>
     <button mat-flat-button [class]="weekClass(day)" *ngFor="let day of ss.session.year.week"
             (click)="clickWeekDay(day)">
+      <ng-container *ngIf="day.times.length > 0">*</ng-container>
       {{ss.session.year.weekDayNameShort(day)}} {{day.day}}
     </button>
     <button mat-flat-button (click)="clickNextWeek()">
@@ -34,7 +35,7 @@
   </div>
 </div>
 <div class="controls">
-  <button mat-flat-button (click)="clickPlay($event)">
+  <button mat-flat-button (click)="clickPlay($event)" [class]="weekClass(ss.session.year.day)">
     <div>{{playData.text}}</div>
     <mat-icon>{{playData.icon}}</mat-icon>
   </button>

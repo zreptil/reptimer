@@ -82,7 +82,7 @@ export class DashboardComponent {
   }
 
   timeClass(idx: number): string[] {
-    const ret = [];
+    const ret = ['t' + this.ss.session.year.day.type];
     if (this.dataIdx === idx) {
       ret.push('active');
     }
@@ -93,6 +93,10 @@ export class DashboardComponent {
     const ret = ['t' + day.type];
     if (this.ss.session.year.day.dayOfWeek === day.dayOfWeek) {
       ret.push('active');
+    }
+
+    if (DayData.isToday(day)) {
+      ret.push('today');
     }
     return ret;
   }

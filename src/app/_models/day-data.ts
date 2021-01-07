@@ -13,11 +13,11 @@ export enum DayType {
 }
 
 export class DayData extends BaseDBData {
+
   static CEM = new ClassEPMap<DayData>('day', DayData.factory);
   xmlCfg = {
     className: 'DayData'
   };
-
   date: number = null;
   type: DayType = null;
   info: string = null;
@@ -66,6 +66,11 @@ export class DayData extends BaseDBData {
     return ret;
   }
 
+  static isToday(day: DayData): boolean {
+    const today = new Date(Date.now());
+    return today.getDate() === day.day && today.getMonth() === day.month - 1 && today.getFullYear() === day.year;
+  }
+
   dateString(): string {
     const date = new Date(this.date);
     return date.toString();
@@ -74,5 +79,4 @@ export class DayData extends BaseDBData {
   create(): DayData {
     return DayData.factory();
   }
-
 }
