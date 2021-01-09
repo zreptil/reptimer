@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {SessionData} from '@/_models/session-data';
 
-import {DialogData, DialogResult, DialogResultButton, DialogType} from '@/_models/dialog-data';
+import {DialogData, DialogResult, DialogResultButton, DialogType, IDialogDef} from '@/_models/dialog-data';
 import {Observable, of} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogComponent} from '@/core/components/dialog/dialog.component';
@@ -12,115 +12,11 @@ import {ControlObject} from '@/core/classes/ibase-component';
 import {EnvironmentService} from '@/_services/environment.service';
 import {BaseDBData} from '@/_models/base-data';
 import {DataService} from '@/_services/data.service';
-import {ClassEPMap} from '@/_models/class-epmap';
 import {CEM} from '@/_models/cem';
 import {YearData} from '@/_models/year-data';
-
-/**
- * Class to manage sessionStorage
- */
-class Storage {
-
-  constructor(private ds: DataService) {
-  }
-
-  /**
-   * Gets a random integer number in range [0..max]
-   * @param max   maximum value for the number
-   * @private
-   */
-  private static rnd(max: number): number {
-    return Math.floor(Math.random() * max);
-  }
-
-  /**
-   * Decrypts a string, if it starts with a @
-   * @param src  the string to decrypt
-   * @private
-   */
-  private static decrypt(src: string): string {
-    if (src == null) {
-      return '';
-    }
-    if (!src.startsWith('@')) {
-      return src;
-    }
-
-    src = src.substring(1);
-    let ret = '';
-    const pos = Math.floor(src.length / 2);
-    src = `${src.substring(pos + 1)}${src.substring(0, pos - 1)}`;
-    try {
-      ret = atob(src);
-      // .forEach((value) {
-      //    ret = '${ret}${String.fromCharCode(value)}';
-      //  });
-      // ret = convert.utf8.decode(ret.codeUnits);
-    } catch (ex) {
-      console.error(src, ex.message);
-    }
-
-    return ret;
-  }
-
-  /**
-   * Encrypts a string and prepends a @
-   * @param src  string to encrypt
-   * @private
-   */
-  private static encrypt(src: string): string {
-    let ret = btoa(src);
-    const pos = Math.floor(ret.length / 2);
-    String.fromCharCode(Storage.rnd(26) + 64);
-    ret =
-      `@${ret.substring(pos)}${String.fromCharCode(Storage.rnd(26) + 64)}` +
-      `${String.fromCharCode(Storage.rnd(10) + 48)}${ret.substring(0, pos)}`;
-    return ret;
-  }
-
-  /**
-   * Reads a value from sessionStorage
-   * @param type typeinformation for the data
-   * @returns value read from sessionStorage
-   */
-  read<T>(type: ClassEPMap<T>): T {
-    const src = localStorage.getItem(type.endpoint);
-    if (src == null) {
-      return null;
-    }
-    let ret = null;
-    try {
-      ret = type.classify(JSON.parse(Storage.decrypt(src)));
-      console.log('Session: read', ret);
-    } catch (ex) {
-      console.error(src, ex.message);
-    }
-    return ret;
-  }
-
-  /**
-   * writes a value to sessionStorage
-   * @param type    typeinformation for the data
-   * @param value   the value, will be converted to string using JSON.stringify
-   * @param encrypt if true, the value is encrypted before written to sessionStorage
-   */
-  write<T>(type: ClassEPMap<T>, value: BaseDBData, encrypt: boolean = true): void {
-    console.log('writing', value);
-    let data = value.toJson();
-    if (encrypt) {
-      data = Storage.encrypt(data);
-    }
-    localStorage.setItem(type.endpoint, data);
-  }
-
-  /**
-   * Removes a value from sessionStorage
-   * @param key identifier for the value
-   */
-  remove(key: string): void {
-    localStorage.removeItem(key);
-  }
-}
+import {StorageService} from '@/_services/storage.service';
+import {ConfigData} from '@/_models/config-data';
+import {UserData} from '@/_models/user-data';
 
 export declare type ServiceBarFn<T> = (self: AppBaseComponent) => T;
 
@@ -141,6 +37,7 @@ export class ServiceBarControl {
   providedIn: 'root',
 })
 export class SessionService {
+
   /**
    * Diese variable dient dazu, bestimmte Elemente in originellerer Art darzustellen.
    */
@@ -160,22 +57,6 @@ export class SessionService {
    * static servicebar: ServiceBarControl[] = [{defKey: 'next'}];
    */
   servicebarDefs = new Map<string, Array<ServiceBarControl>>([
-    // ['prev', [{
-    //   label: '@prev',
-    //   icon: 'navigate_before',
-    //   position: 'left',
-    //   method: (self: any) => {
-    //     self.sessionService.navigatePrev();
-    //   }
-    // }]],
-    // ['next', [{
-    //   label: '@next',
-    //   icon: 'navigate_next',
-    //   position: 'right',
-    //   method: (self: any) => {
-    //     self.sessionService.navigateNext();
-    //   }
-    // }]],
     ['save', [{
       label: $localize`Speichern`,
       icon: 'save',
@@ -201,17 +82,25 @@ export class SessionService {
     ['navigation', [{defKey: 'prev'}, {defKey: 'next'}]],
   ]);
   public session: SessionData = new SessionData();
-  private selKontoId = 0;
-  private storage = new Storage(this.ds);
+  titleToolbar: string;
 
   constructor(private dialog: MatDialog,
               private as: AuthenticationService,
               private ds: DataService,
+              private storage: StorageService,
               private router: Router,
               public env: EnvironmentService
   ) {
     this.loadSession();
     this.languageCode = localStorage.getItem('language') || 'de-DE';
+  }
+
+  public get calendar(): YearData {
+    return this.session.year;
+  }
+
+  get hasServicebar(): boolean {
+    return this.servicebar.length > 0;
   }
 
   _titleInfo: string;
@@ -224,38 +113,57 @@ export class SessionService {
     setTimeout(() => this._titleInfo = value, 1);
   }
 
-  get hasServicebar(): boolean {
-    return this.servicebar.length > 0;
+  public get mayDebug(): boolean {
+    return this.session.cfg.isDebug && (this.session.user?.may.debug || false);
   }
 
   public initDBData(data: BaseDBData): void {
-//    data.createuser = `${this.as.currentUserValue.idUserAccount}`;
-  }
-
-  logout(): void {
-    this.storage.remove('vorgang');
-    this.as.logout();
   }
 
   // **********************************************************************
   // Sessiondata Methods
   // **********************************************************************
   loadSession(): void {
-    this.session.year = this.storage.read(CEM.Year);
+    this.session.user = UserData.factory();
+    this.session.cfg = this.storage.read(CEM.Config);
+    if (this.session.cfg == null) {
+      this.session.cfg = ConfigData.factory();
+      this.session.cfg.authorization = '';
+    }
+    this.session.year = this.storage.read(CEM.YearStorage);
     if (this.session.year == null) {
       this.titleInfo = $localize`Lade Daten...`;
       this.session.year = YearData.factory();
       this.saveSession();
     }
     let dst = 'calendar';
-    if (this.session.year.day != null) {
+    if (this.session.day != null) {
       dst = 'dashboard';
     }
     this.router.navigate([dst]);
   }
 
   saveSession(): void {
-    this.storage.write(CEM.Year, this.session.year, false);
+    this.storage.write(CEM.Config, this.session.cfg, false);
+    this.storage.write(CEM.YearStorage, this.session.year, false);
+    if (this.session.user.isAuthorized) {
+      const list = [];
+      for (const day of this.calendar.days) {
+        list.push(day.toJson());
+      }
+      const data = {year: this.calendar.year, days: list};
+      this.ds.update(CEM.Year, data).subscribe(result => {
+        const ret = [];
+        for (const day of result.days) {
+          ret.push(JSON.parse(day));
+        }
+        result.days = ret;
+        this.session.year = CEM.YearStorage.classify(result);
+      }, error => {
+        console.log(error);
+        this.debug(error);
+      });
+    }
   }
 
   // **********************************************************************
@@ -320,7 +228,7 @@ export class SessionService {
     return this.showDialog(DialogType.confirm, content);
   }
 
-  showDialog(type: DialogType, content: string | string[] | ControlObject): Observable<DialogResult> {
+  showDialog(type: DialogType | IDialogDef, content: string | string[] | ControlObject): Observable<DialogResult> {
     const dlgRef = this.dialog.open(DialogComponent, {
       data: new DialogData(type, content)
     });

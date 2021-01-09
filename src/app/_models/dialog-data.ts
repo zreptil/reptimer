@@ -19,12 +19,23 @@ export class DialogResult {
   data?: any;
 }
 
+export interface IDialogButton {
+  title: string;
+  result: DialogResult;
+  focus?: boolean;
+}
+
+export interface IDialogDef {
+  title: string;
+  buttons: IDialogButton[];
+}
+
 export class DialogData {
   result: DialogResult;
   title: string | string[] | ControlObject;
   buttons: IDialogButton[];
   controlListInternal: IFormControl[] = null;
-  private defs = new Map<DialogType, any>([
+  private defs = new Map<DialogType, IDialogDef>([
     [DialogType.info, {
       title: $localize`Information`,
       buttons: [
@@ -49,11 +60,16 @@ export class DialogData {
     ]
   ]);
 
-  constructor(public type: DialogType,
+  constructor(public type: DialogType | IDialogDef,
               public content: string | string[] | ControlObject,
               public ownButtons?: IDialogButton[]) {
-    this.buttons = this.defs.get(type).buttons;
-    this.title = this.defs.get(type).title;
+    if (typeof type === 'number') {
+      this.buttons = this.defs.get(type).buttons;
+      this.title = this.defs.get(type).title;
+    } else {
+      this.buttons = type.buttons;
+      this.title = type.title;
+    }
   }
 
   get controlList(): IFormControl[] {
@@ -89,10 +105,4 @@ export class DialogData {
     }
     return [typeof this.content === 'string' ? this.content : null];
   }
-}
-
-export interface IDialogButton {
-  title: string;
-  result: DialogResult;
-  focus: boolean;
 }

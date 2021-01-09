@@ -7,10 +7,13 @@ $c3: $clCpuGrey;
 
 [mat-dialog-title] {
   display: flex;
-  padding: 1em;
+  align-items: center;
+  padding: 0.5em;
   margin: 0 !important;
-  color: $clCpuRed;
-  background: $clGrey;
+  mat-icon {
+    margin-right: 0.5em;
+    color: red;
+  }
 }
 
 .type2 {
@@ -26,6 +29,12 @@ $c3: $clCpuGrey;
 [mat-dialog-content] {
   margin: 0 !important;
   padding: 1em !important;
+}
+
+[mat-dialog-title],
+[mat-dialog-actions] {
+  color: #000;
+  background: rgba(0,0,0,0.1);
 }
 
 [mat-dialog-actions] {

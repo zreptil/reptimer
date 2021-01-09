@@ -34,6 +34,14 @@ export class DayData extends BaseDBData {
   times: TimeData[] = [];
   timesARR = TimeData.CEM;
 
+  get display(): string {
+    let ret = `${this.day}`;
+    if (this.times.length > 0) {
+      ret = `[${ret}]`;
+    }
+    return ret;
+  }
+
   get isValid(): boolean {
     return this.date != null;
   }
@@ -63,6 +71,11 @@ export class DayData extends BaseDBData {
     return DayData.dayOfWeek(new Date(this.date));
   }
 
+  get dateString(): string {
+    const date = new Date(this.date);
+    return date.toLocaleDateString();
+  }
+
   static dayOfWeek(date: Date): number {
     if (date === undefined) {
       return 1;
@@ -81,9 +94,8 @@ export class DayData extends BaseDBData {
     return today.getDate() === day.day && today.getMonth() === day.month - 1 && today.getFullYear() === day.year;
   }
 
-  dateString(): string {
-    const date = new Date(this.date);
-    return date.toString();
+  isSameDay(check: DayData): boolean {
+    return this.day === check.day && this.month === check.month && this.year === check.year;
   }
 
   create(): DayData {

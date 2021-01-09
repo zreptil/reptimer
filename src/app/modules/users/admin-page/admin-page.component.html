@@ -1,0 +1,4 @@
+<div content>
+  <button mat-raised-button [ngClass]="classForUser(user)" *ngFor="let user of userList" (click)="userClick(user)">{{displayName(user)}}</button>
+</div>
+

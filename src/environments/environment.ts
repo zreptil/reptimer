@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   infoFmt: '@date\\nEntwickler',
-  apiUrl: '/api/database-service/'
+  apiUrl: 'https://webapi.reptilefarm.ddns.net/apps/reptimer',
+  dbAdminUrl: 'https://192.168.178.100/phpMyAdmin/sql.php?db=reptimer&table=users'
 };
 
 /*

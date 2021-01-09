@@ -34,7 +34,7 @@ export class SVService {
     private http: HttpClient,
     private env: EnvironmentService
   ) {
-    console.log(`SV-Service apiUrl: ${this.apiUrl}`);
+    // console.log(`SV-Service apiUrl: ${this.apiUrl}`);
     // this.buildCache();
   }
 

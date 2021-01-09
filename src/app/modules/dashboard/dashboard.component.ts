@@ -13,9 +13,11 @@ import {Router} from '@angular/router';
 export class DashboardComponent {
 
   public dataIdx: number = null;
+  triggerUpdate = false;
 
   constructor(public ss: SessionService,
               private router: Router) {
+    this.updateTitle();
   }
 
   public get dayTypeList(): any[] {
@@ -23,7 +25,7 @@ export class DashboardComponent {
   }
 
   public get data(): TimeData {
-    return this.ss.session.year.day.times[this.dataIdx];
+    return this.ss.session.day.times[this.dataIdx];
   }
 
   get playData(): { text: string, icon: string } {
@@ -39,10 +41,20 @@ export class DashboardComponent {
     return ret;
   }
 
+  updateTitle(): void {
+    this.ss.titleToolbar = `${this.ss.session.day.dateString}`;
+  }
+
+  updateSession(): void {
+    this.ss.saveSession();
+    this.triggerUpdate = !this.triggerUpdate;
+    this.updateTitle();
+  }
+
   clickPlay($event: MouseEvent): void {
     if (this.data == null) {
-      this.ss.session.year.day.times.push(TimeData.factory());
-      this.dataIdx = this.ss.session.year.day.times.length - 1;
+      this.ss.session.day.times.push(TimeData.factory());
+      this.dataIdx = this.ss.session.day.times.length - 1;
     }
     if (this.data.start == null) {
       this.data.start = TimeData.now;
@@ -50,28 +62,28 @@ export class DashboardComponent {
     } else {
       const prevType = this.data.type;
       this.data.end = TimeData.now;
-      this.ss.session.year.day.times.push(TimeData.factory());
-      this.dataIdx = this.ss.session.year.day.times.length - 1;
+      this.ss.session.day.times.push(TimeData.factory());
+      this.dataIdx = this.ss.session.day.times.length - 1;
       this.data.start = TimeData.now;
       this.data.type = prevType === TimeType.Arbeitszeit ? TimeType.Pause : TimeType.Arbeitszeit;
     }
-    this.ss.saveSession();
+    this.updateSession();
   }
 
   clickStop($event: MouseEvent): void {
     this.data.end = TimeData.now;
     this.dataIdx = null;
-    this.ss.saveSession();
+    this.updateSession();
   }
 
   deleteTime($event, idx: number): void {
     $event.stopPropagation();
-    this.ss.confirm($localize`${this.ss.session.year.day.times[idx].typeForDisplay} wirklich löschen?`).subscribe(
+    this.ss.confirm($localize`${this.ss.session.day.times[idx].typeForDisplay} wirklich löschen?`).subscribe(
       (result: DialogResult) => {
         switch (result.btn) {
           case DialogResultButton.yes:
-            this.ss.session.year.day.times.splice(idx, 1);
-            this.ss.saveSession();
+            this.ss.session.day.times.splice(idx, 1);
+            this.updateSession();
             break;
         }
       });
@@ -86,7 +98,7 @@ export class DashboardComponent {
   }
 
   timeClass(idx: number): string[] {
-    const ret = ['t' + this.ss.session.year.day.type];
+    const ret = ['t' + this.ss.session.day.type];
     if (this.dataIdx === idx) {
       ret.push('active');
     }
@@ -95,7 +107,7 @@ export class DashboardComponent {
 
   typeClass(type: DayType): string[] {
     const ret = ['t' + type];
-    if (this.ss.session.year.day.type === type) {
+    if (this.ss.session.day.type === type) {
       ret.push('active');
     }
     return ret;
@@ -103,7 +115,7 @@ export class DashboardComponent {
 
   weekClass(day: DayData): string[] {
     const ret = ['t' + day.type];
-    if (this.ss.session.year.day.dayOfWeek === day.dayOfWeek) {
+    if (this.ss.session.day.dayOfWeek === day.dayOfWeek) {
       ret.push('active');
     }
 
@@ -114,28 +126,37 @@ export class DashboardComponent {
   }
 
   clickWeekDay(day: DayData): void {
-    this.ss.session.year.day = day;
+    this.ss.session.day = day;
     if (day.times.length > 0 && day.times[day.times.length - 1].end == null) {
       this.dataIdx = day.times.length - 1;
     }
+    this.updateTitle();
   }
 
   clickPrevWeek(): void {
-    this.ss.session.year.dayIdx -= 7;
+    this.ss.session.dayIdx -= 7;
+    this.updateTitle();
   }
 
   clickNextWeek(): void {
-    this.ss.session.year.dayIdx += 7;
-  }
-
-  clickCalendar(): void {
-    this.ss.session.year.dayIdx = null;
-    this.ss.saveSession();
-    this.router.navigate(['calendar']);
+    this.ss.session.dayIdx += 7;
+    this.updateTitle();
   }
 
   clickDayType(type: DayType): void {
-    this.ss.session.year.day.type = type;
-    this.ss.saveSession();
+    this.ss.session.day.type = type;
+    this.updateSession();
+    this.updateTitle();
+  }
+
+  clickRefresh(): void {
+    this.ss.confirm($localize`Hiermit werden die Feiertage und Wochenenden des Jahres erneut befüllt. Die Zeiten bleiben erhalten, aber die Arten der Tage, die nicht als Urlaub, Krank oder Teilzeitfrei definiert wurden, werden zurückgesetzt. Soll das ausgeführt werden?`).subscribe(result => {
+      switch (result.btn) {
+        case DialogResultButton.yes:
+          this.ss.calendar.fillHolidays();
+          this.updateSession();
+          break;
+      }
+    });
   }
 }

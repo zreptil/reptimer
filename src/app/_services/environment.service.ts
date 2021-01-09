@@ -10,6 +10,7 @@ export class EnvironmentService {
   public isProduction: boolean;
   public apiUrl: string;
   public buildInfo: string;
+  public dbAdminUrl: string;
 
   constructor() {
     const dp = new DatePipe('de-DE');
@@ -20,5 +21,9 @@ export class EnvironmentService {
     });
     this.isProduction = environment.production;
     this.apiUrl = environment.apiUrl;
+    if (!this.apiUrl.endsWith('/')) {
+      this.apiUrl += '/';
+    }
+    this.dbAdminUrl = environment.dbAdminUrl;
   }
 }

@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {SessionService} from '@/_services/session.service';
 import {DayData} from '@/_models/day-data';
 import {YearData} from '@/_models/year-data';
 import {Router} from '@angular/router';
+import {Observable, of} from 'rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,9 +14,33 @@ import {Router} from '@angular/router';
 export class MonthComponent {
   days: DayData[];
   weeks: { nr: number, days: DayData[] }[];
+  dayNames: string[];
+
+  @Input()
+  navigation = false;
 
   constructor(public ss: SessionService,
               private router: Router) {
+    this.dayNames = [];
+    for (const day of [0, 1, 2, 3, 4, 5, 6]) {
+      this.dayNames.push(YearData.weekdayName(day, true));
+    }
+  }
+
+  get class(): string {
+    return this.navigation ? '' : 'year';
+  }
+
+  _update: Observable<any> = null;
+
+  @Input()
+  set update(value: any) {
+    this._update = of(value);
+    if (this._update != null) {
+      this._update.subscribe(data => {
+        this.fillData();
+      });
+    }
   }
 
   _month: number;
@@ -43,12 +68,16 @@ export class MonthComponent {
   }
 
   get name(): string {
-    return YearData.monthName(this.month);
+    let ret = YearData.monthName(this.month);
+    if (this.navigation) {
+      ret += ' ' + this.year;
+    }
+    return ret;
   }
 
   fillData(): void {
     this.weeks = [];
-    this.days = this.ss.session.year.days.filter((value) => {
+    this.days = this.ss.calendar.days.filter((value) => {
       return value.month === this.month && value.year === this.year;
     });
     if (this.days.length === 0) {
@@ -67,22 +96,29 @@ export class MonthComponent {
     if (this.weeks[this.weeks.length - 1].days.length === 0) {
       this.weeks.splice(this.weeks.length - 1, 1);
     }
-    let idx = 7 - this.weeks[0].days.length;
-    while (idx > 0) {
+    while (this.weeks[0].days.length < 7) {
       this.weeks[0].days.splice(0, 0, new DayData());
-      idx--;
     }
-    idx = 7 - this.weeks[this.weeks.length - 1].days.length;
-    while (idx > 0) {
+    while (this.weeks[this.weeks.length - 1].days.length < 7) {
       this.weeks[this.weeks.length - 1].days.push(new DayData());
-      idx--;
     }
   }
 
   activateDay(day: DayData): void {
-    console.log('test');
-    this.ss.session.year.day = day;
+    this.ss.session.day = day;
     this.ss.saveSession();
     this.router.navigate(['dashboard']);
   }
- }
+
+  prevMonth(): void {
+    this.ss.session.addMonth(-1);
+    this.ss.saveSession();
+    this.fillData();
+  }
+
+  nextMonth(): void {
+    this.ss.session.addMonth(1);
+    this.ss.saveSession();
+    this.fillData();
+  }
+}

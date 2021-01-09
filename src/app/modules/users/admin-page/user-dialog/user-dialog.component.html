@@ -1,0 +1,30 @@
+<div mat-dialog-title>Benutzerdaten</div>
+<div mat-dialog-content>
+  <div class="content">
+    <form [formGroup]="form" #formDirective="ngForm">
+      <ng-container *ngIf="user.id!==''">
+        <app-input-text i18n-label label="Login Name" formName="username" [formGroup]="form" autofocus></app-input-text>
+        <mat-slide-toggle color="primary" *ngIf="user.id!==ss.session.cfg.authorization" formControlName="isAuthorized" [formGroup]="form" i18n>
+          ist autorisiert
+        </mat-slide-toggle>
+      </ng-container>
+      <app-newline></app-newline>
+      <app-input-text [innerWidth]="2" [outerWidth]="2" i18n-label label="Voller Name" formName="fullname"
+                      [formGroup]="form" autofocus></app-input-text>
+      <ng-container *ngFor="let perm of permissionList">
+        <app-newline></app-newline>
+        <mat-slide-toggle color="primary" [formControlName]="perm.key" [formGroup]="form">
+          {{perm.title}}
+        </mat-slide-toggle>
+      </ng-container>
+    </form>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="saveClick()" i18n>Speichern
+    <mat-icon>save</mat-icon>
+  </button>
+  <button *ngIf="user.id!==ss.session.cfg.authorization && user.id!==''" mat-raised-button (click)="deleteClick()" i18n>Löschen
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

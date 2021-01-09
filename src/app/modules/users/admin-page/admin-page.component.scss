@@ -1,0 +1,17 @@
+[content] {
+  padding: 1em;
+  button{
+    height: 8em;
+    width: 8em;
+    border-radius: 20px;
+  }
+  button.active {
+    background: rgba(255,255,0,0.2);
+  }
+}
+
+button[mat-fab] {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}

@@ -121,8 +121,31 @@ td {
   font-size: $cube*3;
 }
 
-mat-dialog-container {
-  padding: 0 !important;
-  min-width: 30vw;
-}
+.debug-outer {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  border-radius: 0.8em;
+  background: repeating-linear-gradient(
+      45deg,
+      #fa0,
+      #fa0 10px,
+      #000 10px,
+      #000 20px
+  );
 
+  div.debug, a.debug  {
+    background: rgba(240, 240, 240, 0.95);
+    border-radius: 0.6em;
+  }
+
+  div.debug {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    padding: 0.3em;
+    margin-left: 5px;
+  }
+}

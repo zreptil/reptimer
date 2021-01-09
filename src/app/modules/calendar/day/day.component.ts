@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DayData} from '@/_models/day-data';
+import {SessionService} from '@/_services/session.service';
+import {Observable} from 'rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -11,11 +13,10 @@ export class DayComponent implements OnInit {
 
   @Input()
   day: DayData;
-
   @Output()
   clickEvent = new EventEmitter<DayData>();
 
-  constructor() {
+  constructor(private ss: SessionService) {
   }
 
   dayClass(day: DayData): any {
@@ -25,6 +26,9 @@ export class DayComponent implements OnInit {
     }
     if (day.info != null && day.info.trim() !== '') {
       ret.push('info');
+    }
+    if (day.isSameDay(this.ss.session.day)) {
+      ret.push('active');
     }
     const c = new Date(day.date).toLocaleDateString();
     const t = new Date(Date.now()).toLocaleDateString();

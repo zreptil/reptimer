@@ -4,31 +4,29 @@
   </div>
 </div>
 <div class="header">
-  <div class="week">
-    <button mat-flat-button class="weekctrl" (click)="clickPrevWeek()">
+  <div class="week" *ngIf="false">
+    <button [disabled]="ss.session.day.day === 1 && ss.session.day.month === 1" mat-flat-button class="weekctrl" (click)="clickPrevWeek()">
       <mat-icon>arrow_left</mat-icon>
     </button>
-    <button mat-flat-button [class]="weekClass(day)" *ngFor="let day of ss.session.year.week"
+    <button mat-flat-button [class]="weekClass(day)" *ngFor="let day of ss.session.week"
             (click)="clickWeekDay(day)">
       <ng-container *ngIf="day.times.length > 0">[</ng-container>
-      {{ss.session.year.weekDayNameShort(day)}} {{day.day}}
+      {{ss.calendar.weekDayNameShort(day)}} {{day.day}}
       <ng-container *ngIf="day.times.length > 0">]</ng-container>
     </button>
     <button mat-flat-button class="weekctrl" (click)="clickNextWeek()">
       <mat-icon>arrow_right</mat-icon>
     </button>
   </div>
+  <cal-month [navigation]="true" [update]="triggerUpdate" [month]="ss.session.day.month" [year]="ss.session.day.year"></cal-month>
   <div class="ctrls">
-    <button mat-flat-button (click)="ss.session.year.fillHolidays()">
+    <button mat-flat-button (click)="clickRefresh()">
       <mat-icon>refresh</mat-icon>
-    </button>
-    <button mat-flat-button (click)="clickCalendar()">
-      <mat-icon>today</mat-icon>
     </button>
   </div>
 </div>
 <div class="times">
-  <mat-card [class]="timeClass(idx)" *ngFor="let time of ss.session.year.day.times; let idx = index"
+  <mat-card [class]="timeClass(idx)" *ngFor="let time of ss.session.day.times; let idx = index"
             (click)="toggleTime(idx)">
     <mat-card-header>
       <mat-card-title>{{time.typeForDisplay}}</mat-card-title>
@@ -45,12 +43,12 @@
   </mat-card>
 </div>
 <div class="controls">
-  <button mat-flat-button (click)="clickPlay($event)" [class]="weekClass(ss.session.year.day)">
+  <button mat-flat-button (click)="clickPlay($event)" [class]="weekClass(ss.session.day)">
     {{playData.text}}
     <mat-icon>{{playData.icon}}</mat-icon>
   </button>
 
-  <button mat-flat-button [disabled]="data==null" (click)="clickStop($event)">
+  <button mat-flat-button [disabled]="data==null" (click)="clickStop($event)" [class]="weekClass(ss.session.day)">
     <div i18n>Gehen</div>
     <mat-icon>home</mat-icon>
   </button>

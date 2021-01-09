@@ -1,8 +1,19 @@
-<mat-card>
+<button mat-flat-button *ngIf="navigation" (click)="prevMonth()">
+  <mat-icon>arrow_left</mat-icon>
+</button>
+<mat-card [class]="class">
   <mat-card-header>
-    <mat-card-title>{{name}}</mat-card-title>
+    <mat-card-title>
+      <div>{{name}}</div>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <div class="week">
+      <div class="num"></div>
+      <ng-container *ngFor="let day of dayNames">
+        <div class="day">{{day}}</div>
+      </ng-container>
+    </div>
     <div class="week" *ngFor="let week of weeks">
       <div class="num">{{week.nr}}</div>
       <ng-container *ngFor="let day of week.days">
@@ -11,3 +22,6 @@
     </div>
   </mat-card-content>
 </mat-card>
+<button mat-flat-button *ngIf="navigation" (click)="nextMonth()">
+  <mat-icon>arrow_right</mat-icon>
+</button>

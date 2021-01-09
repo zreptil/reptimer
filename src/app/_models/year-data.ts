@@ -1,6 +1,6 @@
 import {BaseDBData} from '@/_models/base-data';
 import {DayData, DayType} from '@/_models/day-data';
-import {CEM} from '@/_models/cem';
+import {TimeData} from '@/_models/time-data';
 
 export class YearData extends BaseDBData {
   xmlCfg = {
@@ -8,44 +8,11 @@ export class YearData extends BaseDBData {
   };
 
   year: number = null;
-  month: number = null;
   days: DayData[] = [];
   daysARR = DayData.CEM;
 
   private constructor() {
     super();
-  }
-
-  _dayIdx: number = null;
-
-  get dayIdx(): number {
-    return this._dayIdx;
-  }
-
-  set dayIdx(value: number) {
-    if (value >= this.days.length) {
-      value = this.days.length - 1;
-    }
-    if (value < 0) {
-      value = 0;
-    }
-    this._dayIdx = value;
-  }
-
-  get day(): DayData {
-    return this.days[this.dayIdx];
-  }
-
-  set day(value: DayData) {
-    this.dayIdx = this.days.findIndex(entry => {
-      return entry.date === value.date && entry.month === value.month && entry.year === value.year;
-    });
-  }
-
-  get week(): DayData[] {
-    return this.days.filter(day => {
-      return day.week === this.day.week;
-    });
   }
 
   static factory(): YearData {
@@ -113,8 +80,17 @@ export class YearData extends BaseDBData {
 
   fillHolidays(): void {
     const times = [];
+    const saved = [];
     if (this.days && this.days.length > 0) {
       for (const d of this.days) {
+        switch (d.type) {
+          case DayType.Krank:
+          case DayType.Teilzeitfrei:
+          case DayType.Urlaub:
+          case DayType.UrlaubHalb:
+            saved.push(d);
+            break;
+        }
         for (const time of d.times) {
           times.push({date: d.date, time});
         }
@@ -183,12 +159,19 @@ export class YearData extends BaseDBData {
     for (const time of times) {
       this.addTime(time.date, time.time);
     }
+
+    for (const s of saved) {
+      const d = this.days.find((entry) => entry.date === s.date);
+      if (d != null) {
+        d.type = s.type;
+      }
+    }
   }
 
   private addTime(date: number, time: any): void {
     const day = this.days.find((entry) => entry.date === date);
     if (day != null) {
-      day.times.push(CEM.Time.classify(time));
+      day.times.push(TimeData.CEM.classify(time));
     }
   }
 

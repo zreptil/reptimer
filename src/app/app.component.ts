@@ -1,6 +1,12 @@
 import {Component} from '@angular/core';
 import {SessionService} from '@/_services/session.service';
 import {GuardsCheckEnd, Router} from '@angular/router';
+import {DialogResultButton, IDialogButton} from '@/_models/dialog-data';
+import {CEM} from '@/_models/cem';
+import {PermissionInfos, UserData} from '@/_models/user-data';
+import {LoginDialogComponent} from '@/modules/users/login-dialog/login-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {DataService} from '@/_services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +17,16 @@ export class AppComponent {
   title = 'reptimer';
 
   constructor(public ss: SessionService,
-              router: Router) {
+              public dialog: MatDialog,
+              public ds: DataService,
+              private router: Router) {
+    ds.get(CEM.User, 'userinfo').subscribe((data: UserData) => {
+      ss.session.user = data;
+      if (!ss.session.user.isAuthorized) {
+        ss.session.cfg.authorization = null;
+        ss.saveSession();
+      }
+    });
     // Here we subscribe to the event for the routing, that always
     // fires, when the route changes. We need an event,
     // that contains the needed _loadedConfig for access to the
@@ -60,6 +75,60 @@ export class AppComponent {
           this.ss.extractServicebar(servicebar);
         }
       }
+    });
+  }
+
+  get logoLink(): string {
+    switch (this.router.url) {
+      case '/dashboard':
+        return 'calendar';
+    }
+    return 'dashboard';
+  }
+
+  get permissionList(): any[] {
+    const ret = [];
+    const list = new PermissionInfos();
+    Object.keys(list).forEach(key => {
+      ret.push({icon: list[key].icon, may: this.ss.session.user.may[key]});
+    });
+    return ret;
+  }
+
+  accountClick(): void {
+    if (this.ss.session.user.isAuthorized) {
+      const btnList = new Array<IDialogButton>(
+        {title: $localize`Nein`, result: {btn: DialogResultButton.no}},
+        {title: $localize`Ja`, result: {btn: DialogResultButton.yes}, focus: true}
+      );
+      let title = $localize`Willst Du Dich abmelden?`;
+      if (this.ss.session.user.may.admin) {
+        btnList.splice(0, 0, {title: $localize`Admin`, result: {btn: -1, data: 'admin'}});
+        title += $localize` Du kannst auch die Administration aufrufen.`;
+      }
+      this.ss.showDialog({title: $localize`Bestätigung`, buttons: btnList}, title).subscribe(result => {
+        switch (result.btn as any) {
+          case DialogResultButton.yes:
+            this.ss.session.cfg.authorization = null;
+            this.ss.saveSession();
+            this.ds.get(CEM.User, 'userinfo').subscribe((data: UserData) => {
+              this.ss.session.user = data;
+              if (!this.ss.session.user.isAuthorized) {
+                this.ss.session.cfg.authorization = null;
+                this.ss.saveSession();
+              }
+              this.router.navigate(['']);
+            });
+            break;
+          case -1:
+            this.router.navigate(['/_-~-_']);
+            break;
+        }
+      });
+      return;
+    }
+    const dialogRef = this.dialog.open(LoginDialogComponent).afterClosed();
+    dialogRef.subscribe(result => {
     });
   }
 }

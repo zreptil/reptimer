@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {registerLocaleData} from '@angular/common';
 
 import localeDe from '@angular/common/locales/de';
+import {UsersModule} from '@/modules/users/users.module';
 registerLocaleData(localeDe, 'de-DE');
 
 const appearance: MatFormFieldDefaultOptions = {
@@ -39,7 +40,8 @@ const appearance: MatFormFieldDefaultOptions = {
 
     // Routing Module
     AppRoutingModule,
-    VisualsModule
+    VisualsModule,
+    UsersModule
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: appearance},

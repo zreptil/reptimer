@@ -1,9 +1,29 @@
 <mat-toolbar>
   <div class="title">
-    <img src="assets/png/logo.png">
-    {{ss.titleInfo}}
+    <button mat-flat-button  [routerLink]="logoLink">
+      <img src="assets/png/logo.png">
+    </button>
+    <div>
+      {{ss.titleInfo}}
+      <pre class="versioninfo">{{ss.env.buildInfo}}</pre>
+    </div>
   </div>
-  <pre class="versioninfo">{{ss.env.buildInfo}}</pre>
+  <div>
+    {{ss.titleToolbar}}
+  </div>
+  <div class="debug-outer" *ngIf="ss.mayDebug">
+    <a mat-button class="debug" href="{{ss.env.dbAdminUrl}}" target="_blank" i18n>DB Admin</a>
+    <div class="debug">
+      <ng-container *ngFor="let perm of permissionList">
+        <mat-icon *ngIf="perm.may">{{perm.icon}}</mat-icon>
+      </ng-container>
+    </div>
+  </div>
+  <button mat-flat-button logo (click)="accountClick()">
+    <mat-icon [class]="ss.session.user?.isAuthorized||false?'loggedin':'loggedout'">
+      {{ss.session.user?.isAuthorized ? 'how_to_reg' : 'login'}}
+    </mat-icon>
+  </button>
 </mat-toolbar>
 <div class="content">
   <router-outlet></router-outlet>
