@@ -7,6 +7,7 @@ import {EnvironmentService} from '@/_services/environment.service';
 import {ClassEPMap} from '@/_models/class-epmap';
 import {StorageService} from '@/_services/storage.service';
 import {CEM} from '@/_models/cem';
+import {BaseDBData} from '@/_models/base-data';
 
 /**
  * Generic service class for all kind of data access to backend
@@ -34,10 +35,11 @@ export class DataService {
 
   private get httpHeaders(): HttpHeaders {
     const cfg = this.storage.read(CEM.Config);
-    return new HttpHeaders({
+    const ret = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: cfg?.authorization || ''
     });
+    return ret;
   }
 
   // /**

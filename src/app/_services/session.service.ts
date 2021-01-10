@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {SessionData} from '@/_models/session-data';
 
 import {DialogData, DialogResult, DialogResultButton, DialogType, IDialogDef} from '@/_models/dialog-data';
-import {Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogComponent} from '@/core/components/dialog/dialog.component';
 import {Router} from '@angular/router';
@@ -84,6 +84,9 @@ export class SessionService {
   public session: SessionData = new SessionData();
   titleToolbar: string;
 
+  public afterSave: Observable<void>;
+  public afterSaveSubject: BehaviorSubject<void>;
+
   constructor(private dialog: MatDialog,
               private as: AuthenticationService,
               private ds: DataService,
@@ -93,6 +96,8 @@ export class SessionService {
   ) {
     this.loadSession();
     this.languageCode = localStorage.getItem('language') || 'de-DE';
+    this.afterSaveSubject = new BehaviorSubject<void>(null);
+    this.afterSave = this.afterSaveSubject.asObservable();
   }
 
   public get calendar(): YearData {
@@ -120,6 +125,29 @@ export class SessionService {
   public initDBData(data: BaseDBData): void {
   }
 
+  setUser(user: UserData): void {
+    this.session.user = user ?? UserData.factory();
+    console.log('user', this.session.user);
+    if (!this.session.user.isAuthorized) {
+      this.session.cfg.authorization = null;
+      this.saveSession();
+    } else {
+      this.ds.get(CEM.Year, 'year&year=2021').subscribe(result => {
+        console.log('result', result);
+        // const ret = [];
+        // for (const day of result.days) {
+        //   ret.push(JSON.parse(day));
+        // }
+        // result.days = ret;
+        this.session.year = CEM.YearStorage.classify(result);
+        this.saveSession();
+      }, error => {
+        console.log(error);
+        this.debug(error);
+      });
+    }
+  }
+
   // **********************************************************************
   // Sessiondata Methods
   // **********************************************************************
@@ -131,7 +159,8 @@ export class SessionService {
       this.session.cfg.authorization = '';
     }
     this.session.year = this.storage.read(CEM.YearStorage);
-    if (this.session.year == null) {
+    console.log('year', this.session.year);
+    if (this.session.year?.days == null) {
       this.titleInfo = $localize`Lade Daten...`;
       this.session.year = YearData.factory();
       this.saveSession();
@@ -143,8 +172,12 @@ export class SessionService {
     this.router.navigate([dst]);
   }
 
-  saveSession(): void {
+  saveConfig(): void {
     this.storage.write(CEM.Config, this.session.cfg, false);
+  }
+
+  saveSession(): void {
+    this.saveConfig();
     this.storage.write(CEM.YearStorage, this.session.year, false);
     if (this.session.user.isAuthorized) {
       const list = [];
@@ -153,17 +186,13 @@ export class SessionService {
       }
       const data = {year: this.calendar.year, days: list};
       this.ds.update(CEM.Year, data).subscribe(result => {
-        const ret = [];
-        for (const day of result.days) {
-          ret.push(JSON.parse(day));
-        }
-        result.days = ret;
         this.session.year = CEM.YearStorage.classify(result);
       }, error => {
         console.log(error);
         this.debug(error);
       });
     }
+    this.afterSaveSubject?.next();
   }
 
   // **********************************************************************

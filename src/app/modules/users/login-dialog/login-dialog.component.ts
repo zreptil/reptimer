@@ -59,9 +59,9 @@ export class LoginDialogComponent implements OnInit {
     this.loginData.password = Md5.hashStr(this.loginForm.get('password').value) as any;
     this.loginData.tfacode = this.loginForm.get('tfacode').value;
     this.ds.post(CEM.Login, 'login', this.loginData).subscribe((data: LoginData) => {
-      console.log(data);
-      this.ss.session.user = data.user;
       this.ss.session.cfg.authorization = data.id;
+      this.ss.saveConfig();
+      this.ss.setUser(data.user);
       this.loginDone();
     }, error => {
       if (error.status === 401) {
@@ -85,7 +85,6 @@ export class LoginDialogComponent implements OnInit {
   }
 
   loginDone(): void {
-    this.ss.saveSession();
     this.dialogRef.close();
   }
 

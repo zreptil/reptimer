@@ -9,12 +9,13 @@ export class ConfigData extends BaseDBData {
     className: 'ConfigData'
   };
 
-  _dayIdx: number = null;
+  _dayIdx = 0;
 
   static factory(): ConfigData {
     const ret = new ConfigData();
     ret.authorization = '';
     ret.isDebug = false;
+    ret._dayIdx = 0;
     return ret;
   }
 

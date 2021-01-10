@@ -75,7 +75,9 @@ export class StorageService {
     }
     let ret = null;
     try {
+      console.log('read src', StorageService.decrypt(src));
       ret = type.classify(JSON.parse(StorageService.decrypt(src)));
+      console.log('read ret', ret);
     } catch (ex) {
       console.error(src, ex.message);
     }
@@ -89,7 +91,7 @@ export class StorageService {
    * @param encrypt if true, the value is encrypted before written to sessionStorage
    */
   write<T>(type: ClassEPMap<T>, value: BaseDBData, encrypt: boolean = true): void {
-    let data = value.toJson();
+    let data = JSON.stringify(value.toJson());
     if (encrypt) {
       data = StorageService.encrypt(data);
     }

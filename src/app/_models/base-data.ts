@@ -150,12 +150,12 @@ export abstract class BaseData {
 
 export abstract class BaseDBData extends BaseData {
   toJson(): any {
-    return JSON.stringify(this, (key, value) => {
+    return JSON.parse(JSON.stringify(this, (key, value) => {
       if (key === 'xmlCfg' || key.endsWith('ARR')) {
         return undefined;
       }
       return value;
-    });
+    }));
   }
 }
 

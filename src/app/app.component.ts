@@ -21,11 +21,7 @@ export class AppComponent {
               public ds: DataService,
               private router: Router) {
     ds.get(CEM.User, 'userinfo').subscribe((data: UserData) => {
-      ss.session.user = data;
-      if (!ss.session.user.isAuthorized) {
-        ss.session.cfg.authorization = null;
-        ss.saveSession();
-      }
+      ss.setUser(data);
     });
     // Here we subscribe to the event for the routing, that always
     // fires, when the route changes. We need an event,
@@ -110,14 +106,10 @@ export class AppComponent {
         switch (result.btn as any) {
           case DialogResultButton.yes:
             this.ss.session.cfg.authorization = null;
+            this.ss.session.user = UserData.factory();
             this.ss.saveSession();
             this.ds.get(CEM.User, 'userinfo').subscribe((data: UserData) => {
-              this.ss.session.user = data;
-              if (!this.ss.session.user.isAuthorized) {
-                this.ss.session.cfg.authorization = null;
-                this.ss.saveSession();
-              }
-              this.router.navigate(['']);
+              this.ss.setUser(data);
             });
             break;
           case -1:

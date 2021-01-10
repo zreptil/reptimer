@@ -30,6 +30,9 @@ export class DayComponent implements OnInit {
     if (day.isSameDay(this.ss.session.day)) {
       ret.push('active');
     }
+    if (day.times.length > 0) {
+      ret.push('hastimes');
+    }
     const c = new Date(day.date).toLocaleDateString();
     const t = new Date(Date.now()).toLocaleDateString();
     if (c === t) {

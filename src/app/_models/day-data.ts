@@ -37,7 +37,7 @@ export class DayData extends BaseDBData {
   get display(): string {
     let ret = `${this.day}`;
     if (this.times.length > 0) {
-      ret = `[${ret}]`;
+      ret = `[ ${ret} ]`;
     }
     return ret;
   }

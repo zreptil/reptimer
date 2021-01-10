@@ -18,6 +18,16 @@ export class DashboardComponent {
   constructor(public ss: SessionService,
               private router: Router) {
     this.updateTitle();
+    ss.afterSave.subscribe( _ => this.updateSession());
+  }
+
+  updateTitle(): void {
+    this.ss.titleToolbar = `${this.ss.session.day.dateString}`;
+  }
+
+  updateSession(): void {
+    this.triggerUpdate = !this.triggerUpdate;
+    this.updateTitle();
   }
 
   public get dayTypeList(): any[] {
@@ -41,16 +51,6 @@ export class DashboardComponent {
     return ret;
   }
 
-  updateTitle(): void {
-    this.ss.titleToolbar = `${this.ss.session.day.dateString}`;
-  }
-
-  updateSession(): void {
-    this.ss.saveSession();
-    this.triggerUpdate = !this.triggerUpdate;
-    this.updateTitle();
-  }
-
   clickPlay($event: MouseEvent): void {
     if (this.data == null) {
       this.ss.session.day.times.push(TimeData.factory());
@@ -67,13 +67,13 @@ export class DashboardComponent {
       this.data.start = TimeData.now;
       this.data.type = prevType === TimeType.Arbeitszeit ? TimeType.Pause : TimeType.Arbeitszeit;
     }
-    this.updateSession();
+    this.ss.saveSession();
   }
 
   clickStop($event: MouseEvent): void {
     this.data.end = TimeData.now;
     this.dataIdx = null;
-    this.updateSession();
+    this.ss.saveSession();
   }
 
   deleteTime($event, idx: number): void {
@@ -83,7 +83,7 @@ export class DashboardComponent {
         switch (result.btn) {
           case DialogResultButton.yes:
             this.ss.session.day.times.splice(idx, 1);
-            this.updateSession();
+            this.ss.saveSession();
             break;
         }
       });
@@ -145,7 +145,7 @@ export class DashboardComponent {
 
   clickDayType(type: DayType): void {
     this.ss.session.day.type = type;
-    this.updateSession();
+    this.ss.saveSession();
     this.updateTitle();
   }
 
@@ -154,7 +154,7 @@ export class DashboardComponent {
       switch (result.btn) {
         case DialogResultButton.yes:
           this.ss.calendar.fillHolidays();
-          this.updateSession();
+          this.ss.saveSession();
           break;
       }
     });

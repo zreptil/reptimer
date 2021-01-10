@@ -2,9 +2,10 @@ import {YearData} from '@/_models/year-data';
 import {ConfigData} from '@/_models/config-data';
 import {UserData} from '@/_models/user-data';
 import {DayData} from '@/_models/day-data';
+import {CEM} from '@/_models/cem';
 
 export class SessionData {
-  year: YearData = null;
+  year: YearData = YearData.factory();
   cfg: ConfigData = null;
   user: UserData = null;
 
@@ -13,6 +14,9 @@ export class SessionData {
   }
 
   set dayIdx(value: number) {
+    if (value == null) {
+      value = 0;
+    }
     if (value >= this.year.days.length) {
       value = this.year.days.length - 1;
     }
@@ -23,7 +27,7 @@ export class SessionData {
   }
 
   get day(): DayData {
-    return this.year.days[this.dayIdx];
+    return this.year.days[this.dayIdx] ?? DayData.factory();
   }
 
   set day(value: DayData) {
