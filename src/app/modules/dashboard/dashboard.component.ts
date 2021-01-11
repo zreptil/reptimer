@@ -44,7 +44,6 @@ export class DashboardComponent {
   }
 
   updateTitle(): void {
-    this.ss.titleToolbar = `${this.ss.session.day.dateString}`;
   }
 
   updateSession(): void {

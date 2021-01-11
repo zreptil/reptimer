@@ -4,8 +4,8 @@
             (click)="clickDayType(entry.id)">{{entry.label}}</button>
   </div>
 </div>
-<div class="calendar">
-  <div class="header">
+<div class="calendarpanel">
+  <div class="calendar">
     <div class="week" *ngIf="false">
       <button [disabled]="ss.session.day.day === 1 && ss.session.day.month === 1" mat-flat-button class="weekctrl"
               (click)="clickPrevWeek()">
@@ -24,22 +24,25 @@
     <cal-month [navigation]="true" [update]="triggerUpdate" [month]="ss.session.day.month"
                [year]="ss.session.day.year"></cal-month>
   </div>
-  <div class="times">
-    <mat-card [class]="timeClass(idx)" *ngFor="let time of ss.session.day.times; let idx = index"
-              (click)="toggleTime(idx)">
-      <mat-card-header>
-        <mat-card-title>{{time.typeForDisplay}}</mat-card-title>
-        <button *ngIf="idx===dataIdx" mat-icon-button (click)="deleteTime($event, idx)">
-          <mat-icon>delete</mat-icon>
-        </button>
-        <button *ngIf="idx!==dataIdx" mat-icon-button></button>
-      </mat-card-header>
-      <div class="content">
-        <input type="time" [(ngModel)]="time.fromValue" (ngModelChange)="ss.saveSession()">
-        <div i18n>bis</div>
-        <input type="time" [(ngModel)]="time.toValue" (ngModelChange)="ss.saveSession()">
-      </div>
-    </mat-card>
+  <div class="timepanel">
+    <div class="title" i18n>Zeiten für {{ss.session.day.dateString}}</div>
+    <div class="times">
+      <mat-card [class]="timeClass(idx)" *ngFor="let time of ss.session.day.times; let idx = index"
+                (click)="toggleTime(idx)">
+        <mat-card-header>
+          <mat-card-title>{{time.typeForDisplay}}</mat-card-title>
+          <button *ngIf="idx===dataIdx" mat-icon-button (click)="deleteTime($event, idx)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button *ngIf="idx!==dataIdx" mat-icon-button></button>
+        </mat-card-header>
+        <div class="content">
+          <input type="time" [(ngModel)]="time.fromValue" (ngModelChange)="ss.saveSession()">
+          <div i18n>bis</div>
+          <input type="time" [(ngModel)]="time.toValue" (ngModelChange)="ss.saveSession()">
+        </div>
+      </mat-card>
+    </div>
   </div>
   <div class="ctrls">
     <button mat-flat-button (click)="clickRefresh()">
@@ -57,7 +60,7 @@
   </button>
 
   <button mat-flat-button [disabled]="data==null" (click)="clickStop($event)" [class]="weekClass(ss.session.day)">
-    <div i18n>Gehen</div>
+    <ng-container i18n>Gehen</ng-container>
     <mat-icon>home</mat-icon>
   </button>
 </div>
