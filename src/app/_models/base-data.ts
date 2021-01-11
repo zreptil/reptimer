@@ -149,6 +149,10 @@ export abstract class BaseData {
 }
 
 export abstract class BaseDBData extends BaseData {
+  get asString(): string {
+    return JSON.stringify(this.toJson());
+  }
+
   toJson(): any {
     return JSON.parse(JSON.stringify(this, (key, value) => {
       if (key === 'xmlCfg' || key.endsWith('ARR')) {

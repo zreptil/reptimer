@@ -1,46 +1,54 @@
 <div class="header">
   <div class="daytypes">
-    <button mat-flat-button [class]="typeClass(entry.id)" *ngFor="let entry of dayTypeList" (click)="clickDayType(entry.id)">{{entry.label}}</button>
+    <button mat-flat-button [class]="typeClass(entry.id)" *ngFor="let entry of dayTypeList"
+            (click)="clickDayType(entry.id)">{{entry.label}}</button>
   </div>
 </div>
-<div class="header">
-  <div class="week" *ngIf="false">
-    <button [disabled]="ss.session.day.day === 1 && ss.session.day.month === 1" mat-flat-button class="weekctrl" (click)="clickPrevWeek()">
-      <mat-icon>arrow_left</mat-icon>
-    </button>
-    <button mat-flat-button [class]="weekClass(day)" *ngFor="let day of ss.session.week"
-            (click)="clickWeekDay(day)">
-      <ng-container *ngIf="day.times.length > 0">[</ng-container>
-      {{ss.calendar.weekDayNameShort(day)}} {{day.day}}
-      <ng-container *ngIf="day.times.length > 0">]</ng-container>
-    </button>
-    <button mat-flat-button class="weekctrl" (click)="clickNextWeek()">
-      <mat-icon>arrow_right</mat-icon>
-    </button>
+<div class="calendar">
+  <div class="header">
+    <div class="week" *ngIf="false">
+      <button [disabled]="ss.session.day.day === 1 && ss.session.day.month === 1" mat-flat-button class="weekctrl"
+              (click)="clickPrevWeek()">
+        <mat-icon>arrow_left</mat-icon>
+      </button>
+      <button mat-flat-button [class]="weekClass(day)" *ngFor="let day of ss.session.week"
+              (click)="clickWeekDay(day)">
+        <ng-container *ngIf="day.times.length > 0">[</ng-container>
+        {{ss.calendar.weekDayNameShort(day)}} {{day.day}}
+        <ng-container *ngIf="day.times.length > 0">]</ng-container>
+      </button>
+      <button mat-flat-button class="weekctrl" (click)="clickNextWeek()">
+        <mat-icon>arrow_right</mat-icon>
+      </button>
+    </div>
+    <cal-month [navigation]="true" [update]="triggerUpdate" [month]="ss.session.day.month"
+               [year]="ss.session.day.year"></cal-month>
   </div>
-  <cal-month [navigation]="true" [update]="triggerUpdate" [month]="ss.session.day.month" [year]="ss.session.day.year"></cal-month>
+  <div class="times">
+    <mat-card [class]="timeClass(idx)" *ngFor="let time of ss.session.day.times; let idx = index"
+              (click)="toggleTime(idx)">
+      <mat-card-header>
+        <mat-card-title>{{time.typeForDisplay}}</mat-card-title>
+        <button *ngIf="idx===dataIdx" mat-icon-button (click)="deleteTime($event, idx)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button *ngIf="idx!==dataIdx" mat-icon-button></button>
+      </mat-card-header>
+      <div class="content">
+        <input type="time" [(ngModel)]="time.fromValue" (ngModelChange)="ss.saveSession()">
+        <div i18n>bis</div>
+        <input type="time" [(ngModel)]="time.toValue" (ngModelChange)="ss.saveSession()">
+      </div>
+    </mat-card>
+  </div>
   <div class="ctrls">
     <button mat-flat-button (click)="clickRefresh()">
       <mat-icon>refresh</mat-icon>
     </button>
+    <button mat-flat-button (click)="clickExport()">
+      <mat-icon>save</mat-icon>
+    </button>
   </div>
-</div>
-<div class="times">
-  <mat-card [class]="timeClass(idx)" *ngFor="let time of ss.session.day.times; let idx = index"
-            (click)="toggleTime(idx)">
-    <mat-card-header>
-      <mat-card-title>{{time.typeForDisplay}}</mat-card-title>
-      <button *ngIf="idx===dataIdx" mat-icon-button (click)="deleteTime($event, idx)">
-        <mat-icon>delete</mat-icon>
-      </button>
-      <button *ngIf="idx!==dataIdx" mat-icon-button></button>
-    </mat-card-header>
-    <div class="content">
-      <input type="time" [(ngModel)]="time.fromValue" (ngModelChange)="ss.saveSession()">
-      <div i18n>bis</div>
-      <input type="time" [(ngModel)]="time.toValue" (ngModelChange)="ss.saveSession()">
-    </div>
-  </mat-card>
 </div>
 <div class="controls">
   <button mat-flat-button (click)="clickPlay($event)" [class]="weekClass(ss.session.day)">

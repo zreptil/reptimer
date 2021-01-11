@@ -10,6 +10,17 @@
   padding: 10px;
 }
 
+.calendar {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+
+  .ctrls {
+    display: flex;
+    flex-flow: column;
+  }
+}
+
 .header {
   display: flex;
   flex-flow: row;
@@ -111,6 +122,7 @@
   mat-card {
     cursor: pointer;
     margin: 2px;
+    height: max-content;
 
     .mat-card-header .mat-card-title {
       margin-bottom: 0;
@@ -143,7 +155,7 @@
     margin: 0 !important;
   }
 
-  mat-card.tnull {
+  mat-card.active.tnull {
     background: #a0a0ff;
   }
 }

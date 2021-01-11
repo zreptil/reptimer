@@ -1,3 +1,4 @@
+import {saveAs} from 'file-saver';
 import {Component} from '@angular/core';
 import {SessionService} from '@/_services/session.service';
 import {TimeData, TimeType} from '@/_models/time-data';
@@ -18,16 +19,7 @@ export class DashboardComponent {
   constructor(public ss: SessionService,
               private router: Router) {
     this.updateTitle();
-    ss.afterSave.subscribe( _ => this.updateSession());
-  }
-
-  updateTitle(): void {
-    this.ss.titleToolbar = `${this.ss.session.day.dateString}`;
-  }
-
-  updateSession(): void {
-    this.triggerUpdate = !this.triggerUpdate;
-    this.updateTitle();
+    ss.afterSave.subscribe(_ => this.updateSession());
   }
 
   public get dayTypeList(): any[] {
@@ -39,16 +31,25 @@ export class DashboardComponent {
   }
 
   get playData(): { text: string, icon: string } {
-    const ret = {text: $localize`Kommen`, icon: 'domain'};
+    const ret = {text: $localize`Kommen`, icon: 'play_arrow'};
     if (this.data != null) {
       switch (this.data.type) {
         case TimeType.Arbeitszeit:
           return {text: $localize`Pause`, icon: 'pause'};
         case TimeType.Pause:
-          return {text: $localize`Pause beenden`, icon: 'domain'};
+          return {text: $localize`Pause beenden`, icon: 'play_arrow'};
       }
     }
     return ret;
+  }
+
+  updateTitle(): void {
+    this.ss.titleToolbar = `${this.ss.session.day.dateString}`;
+  }
+
+  updateSession(): void {
+    this.triggerUpdate = !this.triggerUpdate;
+    this.updateTitle();
   }
 
   clickPlay($event: MouseEvent): void {
@@ -158,5 +159,13 @@ export class DashboardComponent {
           break;
       }
     });
+  }
+
+  clickExport(): void {
+    const blob = new Blob([this.ss.session.year.asString], {type: 'application/json'});
+    const date = new Date();
+    const timestamp = date.getTime();
+    const fileName = 'reptimer-' + timestamp + '.json';
+    saveAs(blob, fileName);
   }
 }
