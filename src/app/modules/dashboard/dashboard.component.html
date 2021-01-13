@@ -51,6 +51,10 @@
     <button mat-flat-button (click)="clickExport()">
       <mat-icon>save</mat-icon>
     </button>
+    <button mat-flat-button (click)="clickImport()">
+      <mat-icon>text_snippet</mat-icon>
+    </button>
+    <input type="file" id="importData" accept="text/json" (change)="handleImport($event)">
   </div>
 </div>
 <div class="controls">

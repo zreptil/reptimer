@@ -5,6 +5,7 @@ import {TimeData, TimeType} from '@/_models/time-data';
 import {DialogResult, DialogResultButton} from '@/_models/dialog-data';
 import {DayData, DayType} from '@/_models/day-data';
 import {Router} from '@angular/router';
+import {CEM} from '@/_models/cem';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ export class DashboardComponent {
 
   public dataIdx: number = null;
   triggerUpdate = false;
+  importFile: string;
 
   constructor(public ss: SessionService,
               private router: Router) {
@@ -166,5 +168,25 @@ export class DashboardComponent {
     const timestamp = date.getTime();
     const fileName = 'reptimer-' + timestamp + '.json';
     saveAs(blob, fileName);
+  }
+
+  clickImport(): void {
+    const elem = (document.querySelector('#importData') as HTMLInputElement);
+    elem.value = '';
+    elem.click();
+  }
+
+  async handleImport($event): Promise<void> {
+    const blob = $event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsText(blob);
+    reader.onloadend = (e) => {
+      const text = reader.result;
+      if (typeof text === 'string') {
+        this.ss.session.year = CEM.YearStorage.classify(JSON.parse(text));
+        console.log('year', this.ss.session.year);
+        this.ss.saveSession();
+      }
+    };
   }
 }
