@@ -30,10 +30,12 @@ import { SelectGroupComponent } from './components/select-group/select-group.com
 import { MarginComponent } from './components/margin/margin.component';
 import { CurrencyComponent } from './components/currency/currency.component';
 import { PercentComponent } from './components/percent/percent.component';
+import {AutocompleteComponent} from '@/visuals/components/autocomplete/autocomplete.component';
 
 
 @NgModule({
   declarations: [
+    AutocompleteComponent,
     InputTextComponent,
     DividerComponent,
     NewlineComponent,
@@ -62,33 +64,34 @@ import { PercentComponent } from './components/percent/percent.component';
     CurrencyComponent,
     PercentComponent
   ],
-    exports: [
-        InputTextComponent,
-        DividerComponent,
-        NewlineComponent,
-        SelectComponent,
-        RadioGroupComponent,
-        CheckboxComponent,
-        NumberComponent,
-        DateComponent,
-        PasswordComponent,
-        TextareaComponent,
-        ColorComponent,
-        DateTimeLocalComponent,
-        EmailComponent,
-        MonthComponent,
-        SearchComponent,
-        TelephoneComponent,
-        TimeComponent,
-        UrlComponent,
-        WeekComponent,
-        LiteralComponent,
-        TableComponent,
-        SelectGroupComponent,
-        MarginComponent,
-        CurrencyComponent,
-        PercentComponent
-    ],
+  exports: [
+    InputTextComponent,
+    DividerComponent,
+    NewlineComponent,
+    SelectComponent,
+    RadioGroupComponent,
+    CheckboxComponent,
+    NumberComponent,
+    DateComponent,
+    PasswordComponent,
+    TextareaComponent,
+    ColorComponent,
+    DateTimeLocalComponent,
+    EmailComponent,
+    MonthComponent,
+    SearchComponent,
+    TelephoneComponent,
+    TimeComponent,
+    UrlComponent,
+    WeekComponent,
+    LiteralComponent,
+    TableComponent,
+    SelectGroupComponent,
+    MarginComponent,
+    CurrencyComponent,
+    PercentComponent,
+    AutocompleteComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,

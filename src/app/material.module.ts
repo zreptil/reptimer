@@ -29,7 +29,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   exports: [
@@ -76,6 +76,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     PortalModule,
     ScrollingModule,
     MatFormFieldModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModule {

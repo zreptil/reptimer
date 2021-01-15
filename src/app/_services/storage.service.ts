@@ -75,9 +75,7 @@ export class StorageService {
     }
     let ret = null;
     try {
-      console.log('read src', StorageService.decrypt(src));
       ret = type.classify(JSON.parse(StorageService.decrypt(src)));
-      console.log('read ret', ret);
     } catch (ex) {
       console.error(src, ex.message);
     }

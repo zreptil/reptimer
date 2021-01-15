@@ -1,0 +1,17 @@
+<div mat-dialog-title i18n>Projekt</div>
+<div mat-dialog-content>
+  <form [formGroup]="form" #formDirective="ngForm">
+    <div class="content">
+      <app-autocomplete [innerWidth]="2"
+                        i18n-label label="Projekt"
+                        formName="project"
+                        [items]="projectList"
+                        [formGroup]="form" autofocus></app-autocomplete>
+    </div>
+    <mat-error *ngIf="txtError!=null">{{txtError}}</mat-error>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="saveClick()" i18n>Speichern</button>
+  <button mat-button (click)="cancelClick()" i18n>Abbrechen</button>
+</div>

@@ -6,6 +6,8 @@ import {DialogResult, DialogResultButton} from '@/_models/dialog-data';
 import {DayData, DayType} from '@/_models/day-data';
 import {Router} from '@angular/router';
 import {CEM} from '@/_models/cem';
+import {MatDialog} from '@angular/material/dialog';
+import {ProjectDialogComponent} from '@/modules/calendar/project-dialog/project-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +21,7 @@ export class DashboardComponent {
   importFile: string;
 
   constructor(public ss: SessionService,
+              public dialog: MatDialog,
               private router: Router) {
     this.updateTitle();
     ss.afterSave.subscribe(_ => this.updateSession());
@@ -89,6 +92,13 @@ export class DashboardComponent {
             break;
         }
       });
+  }
+
+  distributeTime($event, time: TimeData): void {
+    $event.stopPropagation();
+    const dialogRef = this.dialog.open(ProjectDialogComponent).afterClosed();
+    dialogRef.subscribe(result => {
+    });
   }
 
   toggleTime(idx: number): void {

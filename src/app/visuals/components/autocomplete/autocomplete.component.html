@@ -1,0 +1,14 @@
+<ng-template #cpuInput>
+  <mat-form-field>
+    <mat-label>{{formData.label}}</mat-label>
+    <input matInput [formControl]="formGroup.controls[formName]" type="text"
+           [matAutocomplete]="auto" [required]="formData.isRequired">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option.label}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</ng-template>
+
+<app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>

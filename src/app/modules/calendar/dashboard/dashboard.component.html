@@ -41,6 +41,11 @@
           <div i18n>bis</div>
           <input type="time" [(ngModel)]="time.toValue" (ngModelChange)="ss.saveSession()">
         </div>
+        <div class="content">
+          <button *ngIf="time.type === 0 && idx===dataIdx && time.end != null" mat-icon-button (click)="distributeTime($event, time)">
+            <mat-icon>fingerprint</mat-icon>
+          </button>
+        </div>
       </mat-card>
     </div>
   </div>
