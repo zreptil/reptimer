@@ -31,6 +31,7 @@ import { MarginComponent } from './components/margin/margin.component';
 import { CurrencyComponent } from './components/currency/currency.component';
 import { PercentComponent } from './components/percent/percent.component';
 import {AutocompleteComponent} from '@/visuals/components/autocomplete/autocomplete.component';
+import {SliderComponent} from '@/visuals/components/slider/slider.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import {AutocompleteComponent} from '@/visuals/components/autocomplete/autocompl
     SelectGroupComponent,
     MarginComponent,
     CurrencyComponent,
-    PercentComponent
+    PercentComponent,
+    SliderComponent
   ],
   exports: [
     InputTextComponent,
@@ -90,7 +92,8 @@ import {AutocompleteComponent} from '@/visuals/components/autocomplete/autocompl
     MarginComponent,
     CurrencyComponent,
     PercentComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    SliderComponent
   ],
   imports: [
     CommonModule,

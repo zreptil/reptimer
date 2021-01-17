@@ -1,12 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {LoginData} from '@/_models/login-data';
-import {DataService} from '@/_services/data.service';
 import {MatDialogRef} from '@angular/material/dialog';
-import {UserData} from '@/_models/user-data';
 import {SessionService} from '@/_services/session.service';
-import {CEM} from '@/_models/cem';
-import {Md5} from 'ts-md5';
 import {ISelectItem} from '@/visuals/model/iselectitem';
 
 @Component({
@@ -19,27 +14,52 @@ export class ProjectDialogComponent implements OnInit {
   public form: FormGroup;
 
   public data = {
-    project: [null, Validators.required],
+    name: ['', Validators.required],
+    info: [],
+    duration: []
   };
 
   txtError: string;
+  maxDuration: number;
 
   projectList = new Array<ISelectItem>();
 
   constructor(private ss: SessionService,
               private fb: FormBuilder,
               public dialogRef: MatDialogRef<ProjectDialogComponent>) {
-    this.projectList = [{label: 'Testprojekt', value: '0'},
-      {label: 'Kommunikation', value: '1'},
-      {label: 'Woscht', value: '2'}];
+    this.projectList = [];
   }
 
   ngOnInit(): void {
+    const names = {};
+    for (const entry of this.ss.session.year.days) {
+      for (const time of entry.times) {
+        if (time.projects) {
+          for (const proj of time.projects) {
+            names[proj.name] = '';
+          }
+        }
+      }
+    }
+    this.projectList = [];
+    let idx = 0;
+    Object.keys(names).forEach(key => {
+      this.projectList.push({label: key, value: `${idx++}`});
+    });
+
+    this.data.duration[0] = this.ss.session.editProject.duration;
+    this.data.info[0] = this.ss.session.editProject.info;
+    this.data.name[0] = this.ss.session.editProject.name;
+
+    this.maxDuration = this.ss.session.editTime.end - this.ss.session.editTime.start;
+    console.log(this.ss.session.editTime, this.maxDuration);
     this.form = this.fb.group(this.data);
   }
 
   saveClick(): void {
-    this.data.project = this.form.get('project').value;
+    this.data.name = this.form.get('name').value;
+    this.data.info = this.form.get('info').value;
+    this.data.duration = this.form.get('duration').value;
   }
 
   loginDone(): void {

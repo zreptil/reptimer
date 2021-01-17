@@ -7,9 +7,11 @@ import {TimeData} from '@/_models/time-data';
 import {UserData} from '@/_models/user-data';
 import {AdminUserData} from '@/_models/admin-user-data';
 import {ConfigData} from '@/_models/config-data';
+import {ProjectData} from '@/_models/project-data';
 
 export const CEM = {
   Time: TimeData.CEM,
+  Project: ProjectData.CEM,
   Day: DayData.CEM,
   Config: new ClassEPMap<ConfigData>('cfg', ConfigData.factory),
   Year: new ClassEPMap<any>('db.php'),

@@ -41,6 +41,12 @@
           <div i18n>bis</div>
           <input type="time" [(ngModel)]="time.toValue" (ngModelChange)="ss.saveSession()">
         </div>
+        <ng-container *ngIf="time.projects?.length > 0">
+          <div class="content project" *ngFor="let proj of time.projects">
+            <div>{{proj.name}}</div>
+            <div>{{proj.info}}</div>
+          </div>
+        </ng-container>
         <div class="content">
           <button *ngIf="time.type === 0 && idx===dataIdx && time.end != null" mat-icon-button (click)="distributeTime($event, time)">
             <mat-icon>fingerprint</mat-icon>

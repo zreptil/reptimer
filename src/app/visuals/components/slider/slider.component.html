@@ -1,0 +1,13 @@
+<ng-template #cpuInput>
+  Oleole
+  <mat-slider
+    thumbLabel
+    [displayWith]="formData.label"
+    tickInterval="1000"
+    [min]="min"
+    [max]="max"
+    [formControl]="formGroup.controls[formName]"
+  ></mat-slider>
+</ng-template>
+
+<app-base [componentsTemplate]="cpuInput" [childContext]="ctx" ></app-base>

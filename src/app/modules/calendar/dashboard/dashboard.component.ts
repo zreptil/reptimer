@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {CEM} from '@/_models/cem';
 import {MatDialog} from '@angular/material/dialog';
 import {ProjectDialogComponent} from '@/modules/calendar/project-dialog/project-dialog.component';
+import {ProjectData} from '@/_models/project-data';
 
 @Component({
   selector: 'app-dashboard',
@@ -96,6 +97,8 @@ export class DashboardComponent {
 
   distributeTime($event, time: TimeData): void {
     $event.stopPropagation();
+    this.ss.session.editTime = time;
+    this.ss.session.editProject = new ProjectData();
     const dialogRef = this.dialog.open(ProjectDialogComponent).afterClosed();
     dialogRef.subscribe(result => {
     });

@@ -2,11 +2,19 @@
 <div mat-dialog-content>
   <form [formGroup]="form" #formDirective="ngForm">
     <div class="content">
-      <app-autocomplete [innerWidth]="2"
+      <app-autocomplete [outerWidth]="2"
+                        [innerWidth]="2"
                         i18n-label label="Projekt"
-                        formName="project"
+                        formName="name"
                         [items]="projectList"
                         [formGroup]="form" autofocus></app-autocomplete>
+      <app-newline></app-newline>
+      <app-input-text [outerWidth]="2"
+                      [innerWidth]="2"
+                      formName="info"
+                      [formGroup]="form"></app-input-text>
+      <app-newline></app-newline>
+      <app-slider [max]="maxDuration" [formGroup]="form" formName="duration"></app-slider>
     </div>
     <mat-error *ngIf="txtError!=null">{{txtError}}</mat-error>
   </form>

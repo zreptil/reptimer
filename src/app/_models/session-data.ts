@@ -2,12 +2,15 @@ import {YearData} from '@/_models/year-data';
 import {ConfigData} from '@/_models/config-data';
 import {UserData} from '@/_models/user-data';
 import {DayData} from '@/_models/day-data';
-import {CEM} from '@/_models/cem';
+import {TimeData} from '@/_models/time-data';
+import {ProjectData} from '@/_models/project-data';
 
 export class SessionData {
   year: YearData = YearData.factory();
   cfg: ConfigData = null;
   user: UserData = null;
+  editTime: TimeData = null;
+  editProject: ProjectData = null;
 
   get dayIdx(): number {
     return this.cfg._dayIdx;
@@ -40,16 +43,5 @@ export class SessionData {
     return this.year.days.filter(day => {
       return day.week === this.day.week;
     });
-  }
-
-
-  addMonth(diff: number): void {
-    const date = new Date(this.day.year, this.day.month + diff - 1, this.day.day);
-    const dayIdx = this.year.days.findIndex(entry => {
-      return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
-    });
-    if (dayIdx >= 0) {
-      this.dayIdx = dayIdx;
-    }
   }
 }

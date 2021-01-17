@@ -1,5 +1,6 @@
 import {BaseDBData} from '@/_models/base-data';
 import {ClassEPMap} from '@/_models/class-epmap';
+import {ProjectData} from '@/_models/project-data';
 
 export enum TimeType {
   Arbeitszeit,
@@ -16,6 +17,8 @@ export class TimeData extends BaseDBData {
   end: number = null;
   info: string = null;
   type: TimeType = null;
+  projects?: Array<ProjectData> = null;
+  projectsARR = ProjectData.CEM;
 
   static get now(): number {
     return TimeData.timeFromDate(new Date(Date.now()));

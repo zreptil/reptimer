@@ -111,13 +111,13 @@ export class MonthComponent {
   }
 
   prevMonth(): void {
-    this.ss.session.addMonth(-1);
+    this.ss.addMonth(-1);
     this.ss.saveSession();
     this.fillData();
   }
 
   nextMonth(): void {
-    this.ss.session.addMonth(1);
+    this.ss.addMonth(1);
     this.ss.saveSession();
     this.fillData();
   }

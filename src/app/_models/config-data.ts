@@ -1,10 +1,9 @@
-import {UserData} from '@/_models/user-data';
 import {BaseDBData} from '@/_models/base-data';
-import {DayData} from '@/_models/day-data';
 
 export class ConfigData extends BaseDBData {
   authorization = '';
   isDebug = false;
+  year: number = null;
   xmlCfg = {
     className: 'ConfigData'
   };
@@ -16,6 +15,7 @@ export class ConfigData extends BaseDBData {
     ret.authorization = '';
     ret.isDebug = false;
     ret._dayIdx = 0;
+    ret.year = new Date(Date.now()).getFullYear();
     return ret;
   }
 

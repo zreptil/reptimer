@@ -17,6 +17,7 @@ import {YearData} from '@/_models/year-data';
 import {StorageService} from '@/_services/storage.service';
 import {ConfigData} from '@/_models/config-data';
 import {UserData} from '@/_models/user-data';
+import {catchError, map} from 'rxjs/operators';
 
 export declare type ServiceBarFn<T> = (self: AppBaseComponent) => T;
 
@@ -122,7 +123,50 @@ export class SessionService {
     return this.session.cfg.isDebug && (this.session.user?.may.debug || false);
   }
 
+  addMonth(diff: number): void {
+    const date = new Date(this.session.day.year, this.session.day.month + diff - 1, this.session.day.day);
+    let dayIdx = this.session.year.days.findIndex(entry => {
+      return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
+    });
+    if (dayIdx >= 0) {
+      this.session.dayIdx = dayIdx;
+    } else if (date.getFullYear() !== this.session.cfg.year) {
+      this.loadYear(date).subscribe(_ => {
+        /*
+        dayIdx = this.session.year.days.findIndex(entry => {
+                return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
+        });
+        if (dayIdx >= 0) {
+          this.session.dayIdx = dayIdx;
+        }
+        */
+      });
+    }
+  }
+
   public initDBData(data: BaseDBData): void {
+  }
+
+  loadYear(date: Date): Observable<any> {
+    return this.ds.get(CEM.Year, `year&year=${date.getFullYear()}`)
+      .pipe(
+        map(src => {
+          const session = new SessionData();
+          session.user = this.session.user;
+          session.cfg = new ConfigData();
+          session.cfg.authorization = this.session.cfg.authorization;
+          session.cfg.isDebug = this.session.cfg.isDebug;
+          session.cfg.year = date.getFullYear();
+          session.year = CEM.YearStorage.classify(src);
+          session.dayIdx = session.year.days.findIndex(entry => {
+            return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
+          });
+          this.session = session;
+          this.saveSession();
+        }),
+        catchError(err => {
+          throw new Error('error in source. Details: ' + err);
+        }));
   }
 
   setUser(user: UserData): void {
@@ -132,19 +176,8 @@ export class SessionService {
       this.session.cfg.authorization = null;
       this.saveSession();
     } else {
-      this.ds.get(CEM.Year, 'year&year=2021').subscribe(result => {
-        console.log('result', result);
-        // const ret = [];
-        // for (const day of result.days) {
-        //   ret.push(JSON.parse(day));
-        // }
-        // result.days = ret;
-        this.session.year = CEM.YearStorage.classify(result);
-        this.saveSession();
-      }, error => {
-        console.log(error);
-        this.debug(error);
-      });
+      const date = new Date(this.session.cfg.year, 0, this.session.dayIdx);
+      this.loadYear(date);
     }
   }
 
@@ -173,6 +206,7 @@ export class SessionService {
   }
 
   saveConfig(): void {
+    this.session.cfg.year = this.session.year.year;
     this.storage.write(CEM.Config, this.session.cfg, false);
   }
 

@@ -50,7 +50,7 @@ export class AutocompleteComponent extends BaseControl implements OnInit, ICompo
   // Inject parent
 
   displayFn(entry: any): string {
-    return entry && entry.label ? entry.label : '???';
+    return entry && entry.label ? entry.label : '';
   }
 
   ngOnInit(): void {
