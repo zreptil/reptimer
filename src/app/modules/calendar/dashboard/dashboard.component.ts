@@ -196,7 +196,7 @@ export class DashboardComponent {
     reader.onloadend = (e) => {
       const text = reader.result;
       if (typeof text === 'string') {
-        this.ss.session.year = CEM.YearStorage.classify(JSON.parse(text));
+        this.ss.session.year.data = this.ss.session.CEM.classify(JSON.parse(text));
         console.log('year', this.ss.session.year);
         this.ss.saveSession();
       }

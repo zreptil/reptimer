@@ -14,7 +14,9 @@
                       formName="info"
                       [formGroup]="form"></app-input-text>
       <app-newline></app-newline>
-      <app-slider [max]="maxDuration" [formGroup]="form" formName="duration"></app-slider>
+      <app-slider [max]="maxDuration"
+                  [formGroup]="form"
+                  formName="duration"></app-slider>
     </div>
     <mat-error *ngIf="txtError!=null">{{txtError}}</mat-error>
   </form>

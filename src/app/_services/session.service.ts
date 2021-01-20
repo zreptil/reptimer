@@ -18,6 +18,7 @@ import {StorageService} from '@/_services/storage.service';
 import {ConfigData} from '@/_models/config-data';
 import {UserData} from '@/_models/user-data';
 import {catchError, map} from 'rxjs/operators';
+import {EditData} from '@/_models/edit-data';
 
 export declare type ServiceBarFn<T> = (self: AppBaseComponent) => T;
 
@@ -102,7 +103,18 @@ export class SessionService {
   }
 
   public get calendar(): YearData {
-    return this.session.year;
+    return this.session.year.data;
+  }
+
+  public set calendar(value) {
+    const edit = this.session.year?.edit;
+    this.session.year = new EditData(null, null, null, null);
+    this.session.year.data = value;
+    if (edit != null) {
+      this.session.year.edit = edit;
+      this.session.year.refresh();
+    }
+    this.saveSession();
   }
 
   get hasServicebar(): boolean {
@@ -125,7 +137,7 @@ export class SessionService {
 
   addMonth(diff: number): void {
     const date = new Date(this.session.day.year, this.session.day.month + diff - 1, this.session.day.day);
-    let dayIdx = this.session.year.days.findIndex(entry => {
+    const dayIdx = this.calendar.days.findIndex(entry => {
       return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
     });
     if (dayIdx >= 0) {
@@ -133,7 +145,7 @@ export class SessionService {
     } else if (date.getFullYear() !== this.session.cfg.year) {
       this.loadYear(date).subscribe(_ => {
         /*
-        dayIdx = this.session.year.days.findIndex(entry => {
+        dayIdx = this.calendar.days.findIndex(entry => {
                 return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
         });
         if (dayIdx >= 0) {
@@ -147,18 +159,59 @@ export class SessionService {
   public initDBData(data: BaseDBData): void {
   }
 
+  getEditData(path: string): any | null {
+    const ret = this.session.year?.get(path);
+    return ret?.data;
+  }
+
+  setEditData(path: string, key: string, id: number, data?: any): any {
+    const ret = this.session.year?.add(path, key, id, data);
+    this.storage.write(EditData.CEM, this.session.year, false);
+    return ret;
+  }
+
+  /**
+   * Remove data from editData.
+   * @param keys list of keys that are removed from editData. If this parameter is null
+   *             then all editData is cleared.
+   */
+  clearEditData(keys?: string | string[]): void {
+    if (keys == null) {
+      this.session.year = null;
+    } else {
+      this.session.year?.clear(keys);
+    }
+  }
+
   loadYear(date: Date): Observable<any> {
     return this.ds.get(CEM.Year, `year&year=${date.getFullYear()}`)
       .pipe(
         map(src => {
+          if (!src || src === '') {
+            this.calendar.year = date.getFullYear();
+            this.saveConfig();
+            this.loadSession();
+            this.session.dayIdx = this.session.year.data.days.findIndex(entry => {
+              return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
+            });
+            return;
+          }
+          console.log('loadYear', src);
+          let year = YearData.factory();
+          year.year = date.getFullYear();
+          year.fillHolidays();
+          if (src !== '') {
+            year = this.session.CEM.classify(src);
+          }
           const session = new SessionData();
           session.user = this.session.user;
           session.cfg = new ConfigData();
           session.cfg.authorization = this.session.cfg.authorization;
           session.cfg.isDebug = this.session.cfg.isDebug;
           session.cfg.year = date.getFullYear();
-          session.year = CEM.YearStorage.classify(src);
-          session.dayIdx = session.year.days.findIndex(entry => {
+          session.year = new EditData(null, null, null, null);
+          session.year.data = year;
+          session.dayIdx = session.year.data.days.findIndex(entry => {
             return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
           });
           this.session = session;
@@ -177,7 +230,9 @@ export class SessionService {
       this.saveSession();
     } else {
       const date = new Date(this.session.cfg.year, 0, this.session.dayIdx);
-      this.loadYear(date);
+      this.loadYear(date).subscribe(year => {
+
+      });
     }
   }
 
@@ -191,11 +246,11 @@ export class SessionService {
       this.session.cfg = ConfigData.factory();
       this.session.cfg.authorization = '';
     }
-    this.session.year = this.storage.read(CEM.YearStorage);
-    console.log('year', this.session.year);
-    if (this.session.year?.days == null) {
+    this.calendar = this.storage.read(this.session.CEM);
+    console.log(this.session.CEM, this.session.year);
+    if (this.calendar?.days == null) {
       this.titleInfo = $localize`Lade Daten...`;
-      this.session.year = YearData.factory();
+      this.session.year.data = YearData.factory();
       this.saveSession();
     }
     let dst = 'calendar';
@@ -206,13 +261,14 @@ export class SessionService {
   }
 
   saveConfig(): void {
-    this.session.cfg.year = this.session.year.year;
+    this.session.cfg.year = this.calendar?.year;
     this.storage.write(CEM.Config, this.session.cfg, false);
   }
 
   saveSession(): void {
     this.saveConfig();
-    this.storage.write(CEM.YearStorage, this.session.year, false);
+    console.log('saveSession', this.session.year);
+    this.storage.write(this.session.CEM, this.calendar, false);
     if (this.session.user.isAuthorized) {
       const list = [];
       for (const day of this.calendar.days) {
@@ -220,7 +276,7 @@ export class SessionService {
       }
       const data = {year: this.calendar.year, days: list};
       this.ds.update(CEM.Year, data).subscribe(result => {
-        this.session.year = CEM.YearStorage.classify(result);
+        this.session.year.data = this.session.CEM.classify(result);
       }, error => {
         console.log(error);
         this.debug(error);

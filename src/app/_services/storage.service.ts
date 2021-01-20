@@ -89,6 +89,9 @@ export class StorageService {
    * @param encrypt if true, the value is encrypted before written to sessionStorage
    */
   write<T>(type: ClassEPMap<T>, value: BaseDBData, encrypt: boolean = true): void {
+    if (value == null) {
+      return;
+    }
     let data = value.asString;
     if (encrypt) {
       data = StorageService.encrypt(data);

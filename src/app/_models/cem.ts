@@ -15,7 +15,6 @@ export const CEM = {
   Day: DayData.CEM,
   Config: new ClassEPMap<ConfigData>('cfg', ConfigData.factory),
   Year: new ClassEPMap<any>('db.php'),
-  YearStorage: new ClassEPMap<YearData>('year', YearData.factory),
   User: new ClassEPMap<UserData>('db.php', UserData.factory),
   AdminUser: new ClassEPMap<AdminUserData>('admin.php'),
   Login: new ClassEPMap<any>('login.php'),

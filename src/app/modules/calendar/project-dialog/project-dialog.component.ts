@@ -32,7 +32,7 @@ export class ProjectDialogComponent implements OnInit {
 
   ngOnInit(): void {
     const names = {};
-    for (const entry of this.ss.session.year.days) {
+    for (const entry of this.ss.calendar.days) {
       for (const time of entry.times) {
         if (time.projects) {
           for (const proj of time.projects) {
