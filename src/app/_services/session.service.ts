@@ -18,7 +18,7 @@ import {StorageService} from '@/_services/storage.service';
 import {ConfigData} from '@/_models/config-data';
 import {UserData} from '@/_models/user-data';
 import {catchError, map} from 'rxjs/operators';
-import {EditData} from '@/_models/edit-data';
+import {EditChangeFn, EditData} from '@/_models/edit-data';
 
 export declare type ServiceBarFn<T> = (self: AppBaseComponent) => T;
 
@@ -31,12 +31,11 @@ export class ServiceBarControl {
   disabled?: boolean | ServiceBarFn<boolean>;
   hidden?: boolean | ServiceBarFn<boolean>;
 
-  method?: ServiceBarFn<any>;
-//  method?(self: any): any;
+  method?: ServiceBarFn<void>;
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SessionService {
 
@@ -46,32 +45,32 @@ export class SessionService {
   public haveFun = false;
   // Vorgang Methods
   servicebar = [];
+  servicebarInfo: string;
   // **********************************************************************
   servicebarSave: any;
   servicebarComponent: any;
-  currentComponent: AppBaseComponent;
   languageCode: string;
   /**
    * Die vordefinierten Inhalte der Servicebar.
    * Wenn die Servicebar in der Komponente definiert wird, muss diese
    * als static angelegt werden:
    * z.B.
-   * static servicebar: ServiceBarControl[] = [{defKey: 'next'}];
+   * servicebarDef: ServiceBarControl[] = [{defKey: 'next'}];
    */
-  servicebarDefs = new Map<string, Array<ServiceBarControl>>([
-    ['save', [{
+  servicebarDefs: { [name: string]: ServiceBarControl[] } = {
+    save: [{
       label: $localize`Speichern`,
       icon: 'save',
       position: 'center',
-      method: (self: any) => {
+      method: (self: AppBaseComponent) => {
         self.cs.writeSessionData(self);
       }
-    }]],
-    ['reset', [{
+    }],
+    reset: [{
       label: $localize`Reset`,
       icon: 'refresh',
       position: 'center',
-      method: (self: any) => {
+      method: (self: AppBaseComponent) => {
         self.sessionService.confirm($localize`Sollen alle Eingaben zurückgesetzt werden?`).subscribe(result => {
           if (result.btn === DialogResultButton.yes) {
             self.formDirective.resetForm();
@@ -80,9 +79,10 @@ export class SessionService {
           }
         });
       }
-    }]],
-    ['navigation', [{defKey: 'prev'}, {defKey: 'next'}]],
-  ]);
+    }],
+    navigation: [{defKey: 'prev'}, {defKey: 'next'}],
+    workflow: [{defKey: 'prev'}, {defKey: 'save'}, {defKey: 'next'}]
+  };
   public session: SessionData = new SessionData();
   titleToolbar: string;
 
@@ -90,6 +90,7 @@ export class SessionService {
   public afterSaveSubject: BehaviorSubject<void>;
 
   constructor(private dialog: MatDialog,
+//              public ws: WorkflowService,
               private as: AuthenticationService,
               private ds: DataService,
               private storage: StorageService,
@@ -108,7 +109,7 @@ export class SessionService {
 
   public set calendar(value) {
     const edit = this.session.year?.edit;
-    this.session.year = new EditData(null, null, null, null);
+    this.session.year = EditData.factory();
     this.session.year.data = value;
     if (edit != null) {
       this.session.year.edit = edit;
@@ -119,6 +120,10 @@ export class SessionService {
 
   get hasServicebar(): boolean {
     return this.servicebar.length > 0;
+  }
+
+  get edit(): EditData {
+    return this.session.year;
   }
 
   _titleInfo: string;
@@ -157,6 +162,14 @@ export class SessionService {
   }
 
   public initDBData(data: BaseDBData): void {
+  }
+
+  fireEditChange(): void {
+    this.session.year.fireChange('');
+  }
+
+  watchEditData(method: EditChangeFn): void {
+    this.session.year?.onChange('', method);
   }
 
   getEditData(path: string): any | null {
@@ -209,7 +222,7 @@ export class SessionService {
           session.cfg.authorization = this.session.cfg.authorization;
           session.cfg.isDebug = this.session.cfg.isDebug;
           session.cfg.year = date.getFullYear();
-          session.year = new EditData(null, null, null, null);
+          session.year = EditData.factory();
           session.year.data = year;
           session.dayIdx = session.year.data.days.findIndex(entry => {
             return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
@@ -298,7 +311,7 @@ export class SessionService {
     this.servicebarSave = servicebar;
     for (const entry of servicebar) {
       if (entry.defKey) {
-        this.extractServicebar(this.servicebarDefs.get(entry.defKey), entry.method);
+        this.extractServicebar(this.servicebarDefs[entry.defKey], entry.method);
       } else {
         const text = entry.label;
         const ctrl = {
@@ -372,6 +385,5 @@ export class SessionService {
   }
 
   onOutletAction($event: any): any {
-    this.servicebarComponent = $event;
   }
 }

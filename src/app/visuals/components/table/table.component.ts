@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {InitElementService} from '@/visuals/services/init-element.service';
 import {IComponentData} from '@/visuals/model/icomponent-data';
-import {CPUFormGroup, FormControl, ITableRowData} from '@/core/classes/ibase-component';
+import {CPUFormGroup, CPUFormControl, ITableRowData} from '@/core/classes/ibase-component';
 import {ITableColumnDescription} from '@/visuals/components/table/itable-column-description';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -198,7 +198,7 @@ export class TableComponent implements OnInit, IComponentData, AfterViewInit {
     if (this.formGroup.data &&
       this.formGroup.data[this.formName] &&
       this.formGroup.data[this.formName].hasOwnProperty('tableRowData')) {
-      this.data = (this.formGroup.data[this.formName] as FormControl).tableRowData() as Iterable<ITableRowData>;
+      this.data = (this.formGroup.data[this.formName] as CPUFormControl).tableRowData() as Iterable<ITableRowData>;
     }
 
     this.displayedColumns = this.columnDescriptions.map(value => value.id);

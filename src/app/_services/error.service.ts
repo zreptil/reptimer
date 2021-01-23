@@ -123,6 +123,9 @@ export class ErrorService {
         }
         msg = $localize`${name} muss dem Format "${pattern}" entsprechen`;
         break;
+      case 'unknownItem':
+        msg = $localize`Der Wert kommt nicht in den Einträgen des Feldes ${name} vor`;
+        break;
     }
     return msg.trim();
   }
@@ -147,7 +150,6 @@ export class ErrorService {
    */
   private validateControls(base: IBaseComponent): void {
     this.controlForm = base;
-
     base.form.updateValueAndValidity();
     Object.keys(base.form.controls).forEach(ctrlKey => {
       const ctrl = base.form.get(ctrlKey); // controls[ctrlKey];

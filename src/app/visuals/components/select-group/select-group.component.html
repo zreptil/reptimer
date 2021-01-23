@@ -5,16 +5,14 @@
         <mat-selection-list
           [attr.aria-label]="formData.label"
           [formControl]="formGroup.controls[formName]"
-          [required]="formData.isRequired"
-          (selectionChange)="selectionChanged">
+          [required]="formData.isRequired">
           <ng-container *ngFor="let item of items">
             <mat-list-option
               *ngIf="item.value!='-'"
               checkboxPosition="before"
               [value]="item.value"
-              [selected]="item.checked"
-              [disabled]="item.disabled"
-            >{{item.label}}</mat-list-option>
+              [class]="item.invalid?'invalid':''"
+              [selected]="item.checked">{{item.label}}</mat-list-option>
             <mat-option *ngIf="item.value=='-'" disabled>
               <ng-container *ngIf="item.label!=null">{{item.label}}</ng-container>
               <mat-divider [inset]="false"></mat-divider>

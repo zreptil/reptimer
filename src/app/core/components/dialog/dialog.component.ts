@@ -1,9 +1,10 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {DialogData, IDialogButton} from '@/_models/dialog-data';
 import {ComponentService} from '@/_services/component.service';
 import {ControlObject, CPUFormGroup, FormConfig, IBaseComponent} from '@/core/classes/ibase-component';
 import {ValidatorFn} from '@angular/forms';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-dialog',
@@ -35,7 +36,11 @@ export class DialogComponent implements IBaseComponent, OnInit {
     this.dialogRef.close(btn.result);
   }
 
-  async writeToSession(data: any): Promise<boolean> {
+  writeVorgangToBackend(): Observable<boolean> {
+    return of(true);
+  }
+
+  writeToSession(data: any): boolean {
     this.cs.setValuesToFormData(this);
     return true;
   }
@@ -49,9 +54,6 @@ export class DialogComponent implements IBaseComponent, OnInit {
   }
 
   saveSession(): void {
-  }
-
-  setSessionComponent(): void {
   }
 
   transferServicebarControls(): any {

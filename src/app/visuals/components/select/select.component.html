@@ -4,9 +4,14 @@
     <mat-select
       [formControl]="formGroup.controls[formName]"
       [(value)]="value"
-      [required]="formData.isRequired">
+      [required]="formData.isRequired"
+      (focus)="onFocus()"
+      (focusout)="onBlur()">
       <ng-container *ngFor="let item of items">
-        <mat-option *ngIf="item.value!='-'" [value]="item.value">
+        <mat-option *ngIf="item.value!='-'"
+                    [value]="item.value"
+                    [class]="item.invalid?'invalid':''"
+                    [disabled]="item.disabled">
           {{item.label}}
         </mat-option>
         <mat-option *ngIf="item.value=='-'" disabled>

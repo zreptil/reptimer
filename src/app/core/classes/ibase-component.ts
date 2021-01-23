@@ -1,6 +1,7 @@
 import {FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {ISelectItem} from '@/visuals/model/iselectitem';
 import {ItemProviderFn} from '@/_services/item-provider.service';
+import {ServiceBarControl} from '@/_services/session.service';
 
 export declare type GetTableRowDataFn = () => Iterable<ITableRowData>;
 
@@ -18,14 +19,11 @@ export interface IBaseComponent {
   controls: ControlObject;
   readData: any;
   formValidators?: ValidatorFn | ValidatorFn[];
-
-  setSessionComponent(): void;
+  servicebarDef?: ServiceBarControl[];
 
   readFromSession(): any;
 
-  writeToSession(data: any): Promise<boolean>;
-
-  // writeToSession(data: any): void;
+  writeToSession(data: any): boolean;
 
   transferServicebarControls(): any;
 
@@ -56,9 +54,10 @@ export interface IFormControl {
   key?: string;
 }
 
-export class FormControl implements IFormControl {
+export class CPUFormControl implements IFormControl {
   label: string;
   items: ISelectItem[];
+  orgItems: ISelectItem[];
   itemProvider: ItemProviderFn;
   itemProviderArg: any;
   noEmptyItem: boolean;
@@ -88,8 +87,8 @@ export class FormControl implements IFormControl {
     return check === Validators.required;
   }
 
-  static create(src?: IFormControl): FormControl {
-    const ret = new FormControl();
+  static create(src?: IFormControl): CPUFormControl {
+    const ret = new CPUFormControl();
     if (src) {
       ret.label = src.label;
       ret.items = src.items;
@@ -102,13 +101,19 @@ export class FormControl implements IFormControl {
       ret.tableRowData = src.tableRowData;
       ret.min = src.min;
       ret.max = src.max;
+      if (ret.items) {
+        ret.orgItems = [];
+        ret.items.forEach((item: ISelectItem) => {
+          ret.orgItems.push(item);
+        });
+      }
     }
     return ret;
   }
 }
 
 export class CPUFormGroup extends FormGroup {
-  data: { [key: string]: FormControl } = {};
+  data: { [key: string]: CPUFormControl } = {};
 }
 
 // tslint:disable-next-line:no-empty-interface

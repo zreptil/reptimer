@@ -8,13 +8,19 @@ import {ISelectItem} from '@/visuals/model/iselectitem';
 import {ErrorService} from '@/_services/error.service';
 import {ItemProviderService} from '@/_services/item-provider.service';
 import {ErrorDisplayComponent} from '@/core/components/error-display/error-display.component';
-import {CPUFormGroup, FormControl, IBaseComponent} from '@/core/classes/ibase-component';
+import {CPUFormControl, CPUFormGroup, IBaseComponent} from '@/core/classes/ibase-component';
 import {DataService} from '@/_services/data.service';
+import {CPUValidators} from '@/core/classes/validators';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComponentService {
+
+  public showOverlay = false;
+
+  // Mapping of fields from DTO to presentation with interface ISelectItem
 
   constructor(public svService: SVService,
               private validator: ValidationService,
@@ -25,7 +31,7 @@ export class ComponentService {
               private ips: ItemProviderService) {
   }
 
-  // Mapping of fields from DTO to presentation with interface ISelectItem
+  // Mapping of fields from Presentation to DTO with interface ISelectItem
 
   // TODO: i18n
   toPresentation(item: SVItem): SVItem {
@@ -34,7 +40,6 @@ export class ComponentService {
     return item;
   }
 
-  // Mapping of fields from Presentation to DTO with interface ISelectItem
   // TODO: i18n
   toDTO(item: SVItem): SVItem {
     item.text = item.label;
@@ -47,23 +52,41 @@ export class ComponentService {
    * @param base The dialog to be initialized
    */
   public init(base: IBaseComponent): void {
-    setTimeout(() => base.setSessionComponent(), 100);
-    base.transferServicebarControls();
+    setTimeout(() => base.transferServicebarControls(), 1);
     this.errorService.clear();
     base.cfg.fbData = {};
-    // TODO: Warum in 2 loops?
+    const data = {};
     Object.keys(base.controls).forEach(key => {
-      const ctrl = {
-        value: base.controls[key].value,
-        disabled: base.controls[key].disabled
-      };
-      base.cfg.fbData[key] = [ctrl, base.controls[key].validators];
+      const src = base.controls[key];
+      const ctrl = CPUFormControl.create(src);
+      let list = src.validators;
+      if (!Array.isArray(list)) {
+        list = [list];
+      }
+      let validators = [];
+      for (const item of list) {
+        if (item === CPUValidators.errorOnUnknownItem) {
+          validators.push(CPUValidators._errorOnUnknownItem(ctrl));
+        } else {
+          validators.push(item);
+        }
+      }
+      switch (validators.length) {
+        case 0:
+          validators = null;
+          break;
+        case 1:
+          validators = validators[0];
+          break;
+      }
+      base.cfg.fbData[key] = [{
+        value: src.value,
+        disabled: src.disabled
+      }, validators];
+      data[key] = ctrl;
     });
     base.form = this.fb.group(base.cfg.fbData, {validators: base.formValidators}) as CPUFormGroup;
-    base.form.data = {};
-    Object.keys(base.controls).forEach(key => {
-      base.form.data[key] = FormControl.create(base.controls[key]);
-    });
+    base.form.data = data;
   }
 
   updateFormData(values: any, base: IBaseComponent): any {
@@ -99,7 +122,7 @@ export class ComponentService {
 
   /**
    * Fill all fields with data from selected Vorgang in sessionService.
-   * @param base
+   * @param base Intance of Component
    */
   public readSessionData(base: IBaseComponent): any {
     const ret = this.updateFormData(base.readFromSession(), base);
@@ -116,42 +139,8 @@ export class ComponentService {
     return ret;
   }
 
-  /**
-   * Write input to session AFTER validation
-   * @param base
-   */
-  // public writeSessionData(base: IBaseComponent): void {
-  //   if (!this.errorService.validate(base)) {
-  //     const cfg = new MatBottomSheetConfig();
-  //     cfg.hasBackdrop = false;
-  //     cfg.data = {type: 'controls'};
-  //     this.bottomSheet.open(ErrorDisplayComponent, cfg)
-  //       .afterDismissed().subscribe((dummy) => {
-  //       }
-  //     );
-  //     return;
-  //   }
-  //   this.bottomSheet.dismiss();
-  //   this.setValuesToFormData(base);
-  //   base.writeToSession(base.readData);
-  //   base.writeVorgangToBackend();
-  //   base.saveSession();
-  // }
-
-  showError(base: IBaseComponent, msg: { class?: string, label: string }): void {
-    console.log(msg);
-    this.errorService.validate(base);
-    this.errorService.info.push(msg);
-    const cfg = new MatBottomSheetConfig();
-    cfg.hasBackdrop = false;
-    cfg.data = {type: 'controls'};
-    this.bottomSheet.open(ErrorDisplayComponent, cfg)
-      .afterDismissed().subscribe((dummy) => {
-      }
-    );
-  }
-
-  async writeSessionData(base: IBaseComponent): Promise<boolean> {
+  writeSessionData(base: IBaseComponent): boolean {
+    this.showOverlay = false;
     if (!this.errorService.validate(base)) {
       const cfg = new MatBottomSheetConfig();
       cfg.hasBackdrop = false;
@@ -160,18 +149,18 @@ export class ComponentService {
         .afterDismissed().subscribe((dummy) => {
         }
       );
+      this.showOverlay = false;
       return false;
     }
     this.bottomSheet.dismiss();
     this.setValuesToFormData(base);
-    return base.writeToSession(base.readData).then(success => {
-      if (success) {
-        base.saveSession();
-      }
-      return success;
-    });
+    const ret = base.writeToSession(base.readData);
+    if (ret) {
+      base.saveSession();
+    }
+    this.showOverlay = false;
+    return ret;
   }
-
 
   public setValuesToFormData(base: IBaseComponent): void {
     Object.keys(base.cfg.fbData).forEach(key => {
@@ -190,15 +179,11 @@ export class ComponentService {
     base.debug('setValueToFormData', key, value);
   }
 
-  /**
-   * Initialisiert alle Listenfelder im Dialog
-   * @private
-   */
   private initLists(base: IBaseComponent): void {
     Object.keys(base.form.data).forEach(key => {
       const value = base.form.get(key).value;
       const dataCtrl = base.form.data[key];
-      if (!dataCtrl.items && dataCtrl.itemProvider) {
+      if (!dataCtrl.orgItems && dataCtrl.itemProvider) {
         dataCtrl.items = [];
         if (!dataCtrl.isRequired && !dataCtrl.noEmptyItem) {
           dataCtrl.items.unshift({value: null, label: $localize`Keine Auswahl`});
@@ -208,35 +193,45 @@ export class ComponentService {
       base.debug('initLists', key, value, dataCtrl);
       if (dataCtrl.itemProvider) {
         dataCtrl.itemProvider(this.ips, dataCtrl.itemProviderArg).subscribe((list: ISelectItem[]) => {
-          const items = dataCtrl.items;
+          let items = dataCtrl.orgItems || [];
           list.forEach((item: ISelectItem) => {
             items.push(item);
           });
           if (base.controls[key].onItemsFilled) {
-            dataCtrl.items = base.controls[key].onItemsFilled.bind(base)(items);
-          } else {
-            dataCtrl.items = items;
+            items = base.controls[key].onItemsFilled.bind(base)(items);
           }
-          dataCtrl.value = value;
-          // The value must be set to a string to change the value on the ui
-          if (typeof value === 'number') {
-            base.form.get(key).setValue(`${value}`);
-          }
+          this.setListValue(base, dataCtrl, items, key, value);
           if (base.controls[key].onValueChange) {
             base.controls[key].onValueChange.call(base, value);
           }
         });
-      } else if (dataCtrl.items) {
+      } else if (dataCtrl.orgItems) {
         base.debug('initLists2', key, typeof value, value);
-        let setValue = value;
-        // The value must be set to a string to change the value on the ui
-        if (typeof setValue === 'number') {
-          setValue = `${setValue}`;
-        }
-        dataCtrl.value = setValue;
-        base.form.get(key).setValue(setValue);
-        base.form.data[key].value = setValue;
+        const items = [];
+        dataCtrl.orgItems.forEach((item: ISelectItem) => {
+          items.push(item);
+        });
+        this.setListValue(base, dataCtrl, items, key, value);
       }
     });
+  }
+
+  // noinspection JSMethodCanBeStatic
+  private setListValue(base: IBaseComponent, dataCtrl: CPUFormControl, items: ISelectItem[],
+                       key: string, value: string | string[]): void {
+    const isArray = Array.isArray(value);
+    if (!isArray && value != null) {
+      value = `${value}`;
+    }
+    base.debug('setListValue', key, value, dataCtrl, base.form.get(key));
+    let found = value === '' || value === 'null' || value === 'undefined' || value == null;
+    found ||= items.find(item => item.value === value) !== undefined;
+    if (!found && !isArray) {
+      items.splice(0, 0, {value, label: $localize`Ungültiger Wert [${value}]`, invalid: true});
+    }
+    dataCtrl.items = items;
+    dataCtrl.value = value;
+    base.form.get(key).setValue(value);
+    base.form.data[key].value = value;
   }
 }

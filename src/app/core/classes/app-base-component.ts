@@ -3,7 +3,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ServiceBarControl, SessionService} from '@/_services/session.service';
 import {ComponentService} from '@/_services/component.service';
 import {ControlObject, CPUFormGroup, FormConfig, IBaseComponent} from '@/core/classes/ibase-component';
-import {CEM} from '@/_models/cem';
 
 /**
  * Basisklasse für die Komponenten, die den ComponentService verwenden sollen.
@@ -12,27 +11,25 @@ import {CEM} from '@/_models/cem';
 export abstract class AppBaseComponent implements IBaseComponent, OnInit {
 
   @ViewChild('formDirective') formDirective;
-  skipMissingControlMessage = false;
+  showMissingControlMessage = false;
   cfg = new FormConfig();
   form?: CPUFormGroup;
   abstract controls: ControlObject;
   readData: any;
   formValidators?: ValidatorFn | ValidatorFn[];
   servicebar: { [name: string]: ServiceBarControl } = {};
+  servicebarDef?: ServiceBarControl[];
+  noServicebar = true;
   protected debugKeys = [];
 
-  protected constructor(public ss: SessionService,
+  protected constructor(public sessionService: SessionService,
                         public cs: ComponentService) {
-  }
-
-  setSessionComponent(): void {
-    this.ss.currentComponent = this;
   }
 
   /**
    * Initiiert die Speicherung der Session Daten
    */
-  public writeSessionData(): Promise<boolean> {
+  public writeSessionData(): boolean {
     return this.cs.writeSessionData(this);
   }
 
@@ -53,17 +50,17 @@ export abstract class AppBaseComponent implements IBaseComponent, OnInit {
    * @param data Die mit den Formulardaten befüllten Daten, die bei [readFromSession]
    * zurückgegeben wurden
    */
-  async abstract writeToSession(data: any): Promise<boolean>;
+  abstract writeToSession(data: any): boolean;
 
   saveSession(): void {
-    this.ss.saveSession();
+    this.sessionService.saveSession();
   }
 
   ngOnInit(): void {
     this.cs.init(this);
     const msg = this.cs.readSessionData(this);
-    if (msg && !this.skipMissingControlMessage) {
-      this.ss.debug(msg);
+    if (msg && this.showMissingControlMessage) {
+      this.sessionService.debug(msg);
     }
   }
 
@@ -91,7 +88,28 @@ export abstract class AppBaseComponent implements IBaseComponent, OnInit {
   }
 
   transferServicebarControls(): any {
-    for (const ctrl of this.ss.servicebar) {
+    if (this.noServicebar) {
+      return;
+    }
+    this.sessionService.servicebar = [];
+    this.sessionService.servicebarInfo = null;
+
+    // this.sessionService.ws.activate();
+    // const key = this.sessionService.ws.current.servicebar;
+    let servicebar = null;
+    // if (key) {
+    //   this.sessionService.servicebarInfo = `${this.constructor.name}[${key}]`;
+    //   servicebar = this.sessionService.servicebarDefs[key];
+    // }
+    if ((this.servicebarDef || []).length > 0) {
+      this.sessionService.servicebarInfo = this.constructor.name;
+      servicebar = this.servicebarDef;
+    }
+    if (servicebar != null) {
+      this.sessionService.servicebarComponent = this;
+      this.sessionService.extractServicebar(servicebar);
+    }
+    for (const ctrl of this.sessionService.servicebar) {
       if (ctrl.name) {
         this.servicebar[ctrl.name] = ctrl;
       }

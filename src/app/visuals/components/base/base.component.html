@@ -11,6 +11,11 @@
   </div>
 </ng-template>
 
+<ng-template #simpleContent>
+  <ng-container *ngTemplateOutlet="componentsTemplate ? componentsTemplate : defaultContent;context:childContext"></ng-container>
+  <p [ngClass]="{'debug': showDebug(), 'debug--false': !showDebug(), 'formcontrolvalue': showDebug()}">{{formattedMessage}}</p>
+</ng-template>
+
 <!-- default placeholder for derived CPU visual elements to be displayed in CPUs CustomComponent -->
 <ng-template #defaultContent>
   <div class="debug--warning">
@@ -20,4 +25,10 @@
 </ng-template>
 
 <!-- display CPU visual component -->
-<ng-container *ngTemplateOutlet="content;context:childContext"></ng-container>
+<ng-container *ngIf="!childContext.skipOuterInner">
+  <ng-container *ngTemplateOutlet="content;context:childContext"></ng-container>
+</ng-container>
+
+<ng-container *ngIf="childContext.skipOuterInner">
+  <ng-container *ngTemplateOutlet="simpleContent;context:childContext"></ng-container>
+</ng-container>

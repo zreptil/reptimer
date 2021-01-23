@@ -23,7 +23,7 @@ export class SplashScreenComponent extends AppBaseComponent {
   readFromSession(): any {
   }
 
-  async writeToSession(data: any): Promise<boolean> {
-    return Promise.resolve(false);
+  writeToSession(data: any): boolean {
+    return false;
   }
 }

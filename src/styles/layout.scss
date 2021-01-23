@@ -12,6 +12,7 @@ $outer-padding-medium: 0.5em;
 $border-radius-small: 0.25em;
 $border-radius-medium: 0.5em;
 $border-width-thin: 1px;
+$border-width-medium: 2px;
 $line-height-default: 1.5em;
 /*$inner-width-default: 15em;*/
 $inner-width-short: 10em;
@@ -231,10 +232,6 @@ app-textarea .outer--width-4-col {
   margin-left: -$outer-margin-medium;
 }
 
-.mat-tab-list {
-  bottom: -$outer-margin-medium;
-}
-
 .mat-tab-list a {
   border-style: solid;
   border-width: $border-width-thin;
@@ -403,6 +400,75 @@ app-select-group {
     margin-bottom: $outer-margin-small;
   }
 }
+
+app-checkbox {
+  .cpu-focus {
+    border: solid $border-width-medium;
+    border-radius: $border-radius-small;
+  }
+}
+
+.inner {
+  position: relative; /* wg. .cpu-frame-* */
+}
+
+.cpu-frame-top,
+.cpu-frame-right,
+.cpu-frame-left,
+.cpu-frame-bottom {
+  border: solid $border-width-medium;
+  border-radius: $border-radius-medium;
+  position: absolute;
+  height: #{$border-radius-medium*2};
+  width: #{$border-radius-medium*2};
+  top: 0px;
+  left: 0px;
+}
+
+.cpu-frame-top {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.cpu-frame-bottom {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.cpu-frame-right {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.cpu-frame-left {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+
+app-select-group {
+
+  .mat-list-item-ripple {
+    opacity: 0.0 !important;
+  }
+
+
+  .mat-form-field-wrapper {
+    padding: 0 !important;
+  }
+}
+
+app-radio-group {
+
+   .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    opacity: 0.0 !important;
+  }
+
+  .mat-form-field-wrapper {
+    padding: 0 !important;
+  }
+}
+
 
 /* TODO(LyMe): warum funktioniert dieser app-navigation-tree block nicht in navigation-tree.component.scss? */
 /* TODO(LyMe): absolute Werte durch Variable ersetzen */

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2} from '@angular/core';
 import {ISelectItem} from '@/visuals/model/iselectitem';
 import {InitElementService} from '@/visuals/services/init-element.service';
 import {IComponentData} from '@/visuals/model/icomponent-data';
@@ -30,6 +30,18 @@ export class SelectComponent extends BaseControl implements OnInit, IComponentDa
   @Output() valueChange: EventEmitter<string>;
   @Input() items: Iterable<ISelectItem>;
 
+  private cssClassInvalid = 'cpu-select-invalid-focus';
+
+  constructor(private initElementService: InitElementService,
+              private widget: ElementRef,
+              private renderer: Renderer2) {
+    super();
+    this.initElementService.setDefaultContext(this);
+    this.value = '';
+    this.valueChange = new EventEmitter<string>();
+    this.items = [];
+  }
+
   get ctx(): any {
     const ctrl = this.formGroup.data[this.formName];
     if (ctrl.items) {
@@ -47,14 +59,18 @@ export class SelectComponent extends BaseControl implements OnInit, IComponentDa
     this.initElementService.mergeContext(value, this);
   }
 
-  constructor(private initElementService: InitElementService) {
-    super();
-    this.initElementService.setDefaultContext(this);
-    this.value = '';
-    this.valueChange = new EventEmitter<string>();
-    this.items = [];
+  ngOnInit(): void {
   }
 
-  ngOnInit(): void {
+  getInvalidFocusRoot(): any {
+    return this.widget.nativeElement.querySelector('.mat-form-field-flex');
+  }
+
+  onFocus(): void {
+    this.renderer.addClass(this.getInvalidFocusRoot(), this.cssClassInvalid);
+  }
+
+  onBlur(): void {
+    this.renderer.removeClass(this.getInvalidFocusRoot(), this.cssClassInvalid);
   }
 }

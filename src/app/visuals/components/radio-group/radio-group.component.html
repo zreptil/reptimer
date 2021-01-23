@@ -1,6 +1,4 @@
 <ng-template #cpuInput>
-  <!--  <fieldset>
-      <legend id="{{id}}">{{label}}</legend>-->
   <mat-card>
     <mat-card-title *ngIf="formData.label?.length>0">{{formData.label}} {{formData.isRequired ? '*' : ''}}</mat-card-title>
     <mat-card-content>
@@ -12,7 +10,8 @@
         <ng-container *ngFor="let item of formData.items">
           <mat-radio-button [checked]="item.checked"
                             [value]="item.value"
-                            [disabled]="item.disabled">
+                            [disabled]="item.disabled"
+                            [class]="item.invalid?'invalid':''">
             {{item.label}}
           </mat-radio-button>
         </ng-container>
@@ -20,7 +19,6 @@
     </mat-card-content>
     <app-error [formName]="formName" [formGroup]="formGroup"></app-error>
   </mat-card>
-  <!--  </fieldset>-->
 </ng-template>
 
 <app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>

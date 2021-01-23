@@ -32,20 +32,19 @@ export class InputTextComponent extends BaseControl implements OnInit, IComponen
   // Will show debug info even if in ProdMode or otherwise disabled (by ShowDebugInfoService)
   @Input() alwaysShowDebugInfo: boolean;
 
-  // constructor( @Inject(forwardRef(() => AppComponent)) private _parent:AppComponent)
-  constructor(private initElementService: InitElementService) {
-    super();
-    this.initElementService.setDefaultContext(this);
-  }
-
   get ctx(): any {
     return this.initElementService.initContext(this);
   }
 
-  // Inject parent
-
   set ctx(value: any) {
     this.initElementService.mergeContext(value, this);
+  }
+
+  // Inject parent
+  // constructor( @Inject(forwardRef(() => AppComponent)) private _parent:AppComponent)
+  constructor(private initElementService: InitElementService) {
+    super();
+    this.initElementService.setDefaultContext(this);
   }
 
   ngOnInit(): void {

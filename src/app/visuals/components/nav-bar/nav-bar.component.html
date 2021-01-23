@@ -1,0 +1,43 @@
+<ng-template #cpuInput>
+  <nav mat-tab-nav-bar class="stepper" *ngIf="sessionService.haveFun">
+    <mat-horizontal-stepper #stepper
+                            (selectionChange)="stepChanged($event.selectedIndex)">
+      <mat-step *ngFor="let item of items"
+                [completed]="false"
+                [label]="item.label"
+                [state]="item.icon">
+        <mat-icon>subject</mat-icon>
+      </mat-step>
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="person">
+        <mat-icon>face</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="account">
+        <mat-icon>account_balance</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="condition">
+        <mat-icon>gavel</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="page">
+        <mat-icon>coronavirus</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="add">
+        <mat-icon>note_add</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="refresh">
+        <mat-icon>refresh</mat-icon>
+      </ng-template>
+    </mat-horizontal-stepper>
+  </nav>
+  <nav mat-tab-nav-bar *ngIf="!sessionService.haveFun">
+    <a mat-tab-link *ngFor="let item of items; let idx = index"
+       (click)="stepChanged(idx)"
+       disableRipple
+       [active]="navIdx===idx"
+       [disabled]="item.disabled">
+      {{item.label}}
+    </a>
+  </nav>
+</ng-template>
+
+<app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>

@@ -34,7 +34,8 @@ export class InitElementService {
         label: from.label,
         formName: from.formName,
         formGroup: from.formGroup,
-        alwaysShowDebugInfo: from.alwaysShowDebugInfo
+        alwaysShowDebugInfo: from.alwaysShowDebugInfo,
+        control: from
       };
     }
     return ret;

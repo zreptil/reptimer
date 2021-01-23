@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {InitElementService} from '@/visuals/services/init-element.service';
 import {IComponentData} from '@/visuals/model/icomponent-data';
 import {BaseControl} from '@/visuals/classes/base-control';
@@ -9,7 +9,7 @@ import {CPUFormGroup} from '@/core/classes/ibase-component';
   templateUrl: './date.component.html',
   styleUrls: ['./date.component.scss']
 })
-export class DateComponent extends BaseControl implements AfterViewInit, OnInit, IComponentData {
+export class DateComponent extends BaseControl implements AfterViewInit, IComponentData {
 
   @Input() outerWidth: number;
   @Input() innerWidth: number;
@@ -23,6 +23,11 @@ export class DateComponent extends BaseControl implements AfterViewInit, OnInit,
 
   @ViewChild('widget') widget: any;
 
+  constructor(private initElementService: InitElementService) {
+    super();
+    this.initElementService.setDefaultContext(this);
+  }
+
   get ctx(): any {
     return this.initElementService.initContext(this);
   }
@@ -31,14 +36,18 @@ export class DateComponent extends BaseControl implements AfterViewInit, OnInit,
     this.initElementService.mergeContext(value, this);
   }
 
-  constructor(private initElementService: InitElementService) {
-    super();
-    this.initElementService.setDefaultContext(this);
+  onValueChanges(value: any): void {
+    if (this.widget) {
+      value = this.dateModelToView(value);
+      if (value != null) {
+        this.widget.nativeElement.value = value;
+      }
+    }
   }
 
   dateModelToView(date: number): string {
     let ret: string = null;
-    const match = ('' + date).match(/([0-9]{4})([0-9]{2})([0-9]{2})/);
+    const match = ('' + date).match(/([0-9]{4}).?([0-9]{2}).?([0-9]{2})/);
     if (match && 4 === match.length) {
       ret = `${match[1]}-${match[2]}-${match[3]}`;
     }
@@ -53,28 +62,9 @@ export class DateComponent extends BaseControl implements AfterViewInit, OnInit,
     return ret;
   }
 
-  ngOnInit(): void {
-
-    if (this.widget) {
-      this.widget.nativeElement.value = this.dateModelToView(this.formGroup?.value[this.formName]);
-    }
-/*
-    this.formGroup.valueChanges.subscribe(value => {
-      if (value[this.formName]) {
-        if (typeof (value[this.formName]) === 'string') {
-          const stringValue = value[this.formName];
-          const numberValue = this.dateViewToModel(stringValue);
-          this.formGroup.get(this.formName).setValue(numberValue);
-          this.widget.nativeElement.value = stringValue;
-          }
-        }
-     });
-     */
-  }
-
   onFocusOut(e: any): void {
     if (this.formGroup?.get(this.formName).value) {
-      if (typeof(this.formGroup?.get(this.formName).value) === 'string'){
+      if (typeof (this.formGroup?.get(this.formName).value) === 'string') {
         const stringValue = this.formGroup?.get(this.formName).value;
         const numberValue = this.dateViewToModel(stringValue);
         this.formGroup.get(this.formName).setValue(numberValue);
@@ -84,9 +74,7 @@ export class DateComponent extends BaseControl implements AfterViewInit, OnInit,
   }
 
   ngAfterViewInit(): void {
-    if (this.widget) {
-      this.widget.nativeElement.value = this.dateModelToView(this.formGroup?.value[this.formName]);
-    }
+    this.onValueChanges(this.formGroup?.value[this.formName]);
   }
 
 }

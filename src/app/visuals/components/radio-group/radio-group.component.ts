@@ -1,16 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
 import {InitElementService} from '@/visuals/services/init-element.service';
 import {IComponentData} from '@/visuals/model/icomponent-data';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 import {BaseControl} from '@/visuals/classes/base-control';
 import {ISelectItem} from '@/visuals/model/iselectitem';
+import {CPUInvalidAndFocusSetter} from '@/visuals/classes/cpuinvalid-and-focus-setter';
 
 @Component({
   selector: 'app-radio-group',
   templateUrl: './radio-group.component.html',
   styleUrls: ['./radio-group.component.scss']
 })
-export class RadioGroupComponent extends BaseControl implements OnInit, IComponentData {
+export class RadioGroupComponent extends BaseControl implements OnInit, AfterViewInit, IComponentData {
   @Input() outerWidth: number;
   @Input() innerWidth: number;
   @Input() innerClass: string;
@@ -23,6 +24,8 @@ export class RadioGroupComponent extends BaseControl implements OnInit, ICompone
 
   @Input() items: Iterable<ISelectItem>; // bei vorhandenen items & formGroup/formName wird der Wert von formGroup genommen
   // @Input()  id: string;
+
+  private focusHandler = new CPUInvalidAndFocusSetter(() => this.widget.nativeElement, () => this.isValid(), () => this.renderer);
 
   get ctx(): any {
     // TODO(LyMe): versuch wg. validatoren und select-group
@@ -41,7 +44,9 @@ export class RadioGroupComponent extends BaseControl implements OnInit, ICompone
     this.initElementService.mergeContext(value, this);
   }
 
-  constructor(private initElementService: InitElementService) {
+  constructor(private initElementService: InitElementService,
+              private widget: ElementRef,
+              private renderer: Renderer2) {
     super();
     this.initElementService.setDefaultContext(this);
     this.items = [];
@@ -50,6 +55,16 @@ export class RadioGroupComponent extends BaseControl implements OnInit, ICompone
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    this.focusHandler.afterViewInit();
+  }
+
+  private isValid(): boolean {
+    // TODO(LyMe): beachte, es kann auch invalid value ausgewählt sein. Impelment This!
+    const widget = this.widget.nativeElement;
+    return !widget.querySelector('[ng-reflect-required="true"]') || widget.querySelector('mat-radio-button.mat-radio-checked');
   }
 
   public groupName(): string {

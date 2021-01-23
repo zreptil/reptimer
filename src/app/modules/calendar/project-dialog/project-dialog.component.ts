@@ -97,7 +97,7 @@ export class ProjectDialogComponent extends AppBaseComponent implements OnInit {
     };
   }
 
-  async writeToSession(data: any): Promise<boolean> {
-    return Promise.resolve(false);
+  writeToSession(data: any): boolean {
+    return false;
   }
 }

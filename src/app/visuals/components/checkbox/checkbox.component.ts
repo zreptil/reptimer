@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
 import {InitElementService} from '@/visuals/services/init-element.service';
 import {IComponentData} from '@/visuals/model/icomponent-data';
 import {BaseControl} from '@/visuals/classes/base-control';
@@ -23,13 +23,29 @@ export class CheckboxComponent extends BaseControl implements OnInit, IComponent
 
   @Input() labelPosition: string;
 
-  constructor(private initElementService: InitElementService) {
+  private cssClassInFocus = 'cpu-focus';
+
+  constructor(private initElementService: InitElementService,
+              private widget: ElementRef,
+              private renderer: Renderer2) {
     super();
     this.initElementService.setDefaultContext(this);
     this.labelPosition = 'after';
   }
 
   ngOnInit(): void {
+  }
+
+  getFocusRoot(): any {
+    return this.widget.nativeElement.querySelector('.inner');
+  }
+
+  onFocus(): void {
+    this.renderer.addClass(this.getFocusRoot(), this.cssClassInFocus);
+  }
+
+  onBlur(): void {
+    this.renderer.removeClass(this.getFocusRoot(), this.cssClassInFocus);
   }
 
   get ctx(): any {

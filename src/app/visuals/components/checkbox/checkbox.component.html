@@ -1,6 +1,9 @@
 <ng-template #cpuInput>
   <mat-checkbox [formControl]="formGroup.controls[formName]"
-                [labelPosition]="labelPosition">
+                [labelPosition]="labelPosition"
+                [disableRipple]="true"
+                (focusout)="onBlur()"
+                (focusin)="onFocus()">
     {{formData.label}}
     <app-error [formName]="formName" [formGroup]="formGroup"></app-error>
   </mat-checkbox>
