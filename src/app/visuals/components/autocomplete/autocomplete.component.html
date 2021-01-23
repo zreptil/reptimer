@@ -3,7 +3,7 @@
     <mat-label>{{formData.label}}</mat-label>
     <input matInput
            type="text"
-           [formControl]="formGroup?.controls[formName]"
+           [formControl]="formGroup.controls[formName]"
            [matAutocomplete]="auto"
            [required]="formData.isRequired">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">

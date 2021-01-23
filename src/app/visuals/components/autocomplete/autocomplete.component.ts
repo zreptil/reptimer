@@ -67,7 +67,6 @@ export class AutocompleteComponent extends BaseControl implements OnInit, ICompo
       .pipe(
         startWith(''),
         map(value => {
-          console.log('items', this.items);
           return typeof value === 'string' ? value : (value as any).label;
         }),
         map(label => label ? this._filter(label) : this.items.slice())

@@ -196,18 +196,22 @@ export class SessionService {
     }
   }
 
+  createYear(date: Date): void {
+    this.calendar.year = date.getFullYear();
+    this.saveConfig();
+    this.loadSession();
+    this.session.dayIdx = this.session.year.data.days.findIndex(entry => {
+      return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
+    });
+    return;
+  }
+
   loadYear(date: Date): Observable<any> {
     return this.ds.get(CEM.Year, `year&year=${date.getFullYear()}`)
       .pipe(
         map(src => {
           if (!src || src === '') {
-            this.calendar.year = date.getFullYear();
-            this.saveConfig();
-            this.loadSession();
-            this.session.dayIdx = this.session.year.data.days.findIndex(entry => {
-              return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
-            });
-            return;
+            this.createYear(date);
           }
           console.log('loadYear', src);
           let year = YearData.factory();
@@ -231,6 +235,7 @@ export class SessionService {
           this.saveSession();
         }),
         catchError(err => {
+          this.createYear(date);
           throw new Error('error in source. Details: ' + err);
         }));
   }

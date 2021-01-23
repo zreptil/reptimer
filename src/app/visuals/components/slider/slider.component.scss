@@ -1,0 +1,16 @@
+:host {
+  .slider {
+    display: flex;
+    flex-flow: row;
+    .label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.2em;
+    }
+    mat-slider {
+      display: flex;
+      flex: 1;
+    }
+  }
+}

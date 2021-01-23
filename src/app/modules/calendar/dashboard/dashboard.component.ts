@@ -94,6 +94,20 @@ export class DashboardComponent {
       });
   }
 
+  deleteProject($event: MouseEvent, time: TimeData, projIdx: number): void {
+    $event.stopPropagation();
+    this.ss.confirm($localize`Soll die Zeit für Projekt ${time.projects[projIdx].name} gelöscht werden?`).subscribe(result => {
+      if (result.btn === DialogResultButton.yes) {
+        time.projects.splice(projIdx, 1);
+        this.ss.saveSession();
+      }
+    });
+  }
+
+  editProject($event: MouseEvent, time: TimeData, projIdx: number): void {
+    $event.stopPropagation();
+  }
+
   distributeTime($event, time: TimeData): void {
     $event.stopPropagation();
     this.ss.session.editTime = time;

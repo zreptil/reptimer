@@ -41,11 +41,27 @@
           <div i18n>bis</div>
           <input type="time" [(ngModel)]="time.toValue" (ngModelChange)="ss.saveSession()">
         </div>
+        <app-divider></app-divider>
         <ng-container *ngIf="time.projects?.length > 0">
-          <div class="content project" *ngFor="let proj of time.projects">
-            <div>{{proj.name}}</div>
-            <div>{{proj.info}}</div>
-          </div>
+          <table class="project" cellspacing="0" cellpadding="0">
+            <tr *ngFor="let proj of time.projects; let projIdx = index">
+              <td>{{proj.name}}</td>
+              <td>
+                {{proj.durationDisplay}}
+              </td>
+              <td>{{proj.info}}</td>
+              <ng-container *ngIf="idx===dataIdx">
+                <td>
+                  <button mat-icon-button (click)="editProject($event, time, projIdx)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="deleteProject($event, time, projIdx)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+            </tr>
+          </table>
         </ng-container>
         <div class="content">
           <button *ngIf="time.type === 0 && idx===dataIdx && time.end != null" mat-icon-button (click)="distributeTime($event, time)">

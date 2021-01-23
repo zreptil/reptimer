@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {SessionService} from '@/_services/session.service';
-import {ISelectItem} from '@/visuals/model/iselectitem';
 import {TimeData} from '@/_models/time-data';
-import {ControlObject, CPUFormGroup} from '@/core/classes/ibase-component';
 import {ComponentService} from '@/_services/component.service';
 import {AppBaseComponent} from '@/core/classes/app-base-component';
+import {ProjectData} from '@/_models/project-data';
 
 @Component({
   selector: 'app-project-dialog',
@@ -15,38 +13,34 @@ import {AppBaseComponent} from '@/core/classes/app-base-component';
     './project-dialog.component.scss']
 })
 export class ProjectDialogComponent extends AppBaseComponent implements OnInit {
+  txtError: string;
+  maxDuration: number;
+
   controls = {
     name: {
       label: $localize`Name`,
-      items: [{label: 'oleole', value: 'hurz'}]
+      items: null
     },
     info: {
       label: $localize`Info`
     },
     duration: {
-      label: $localize`Dauer`,
-      max: 0
+      label: $localize`Dauer`
     }
   };
-
-  txtError: string;
-  maxDuration: number;
-
-  projectList = new Array<ISelectItem>();
 
   constructor(public ss: SessionService,
               public cs: ComponentService,
               public dialogRef: MatDialogRef<ProjectDialogComponent>) {
     super(ss, cs);
-    this.projectList = [];
+    this.fillControls();
   }
 
   durationDisplay(value: any): string {
-    return TimeData.timeForDisplay(value);
+    return TimeData.timeForDisplay(+value);
   }
 
-  ngOnInit(): void {
-    super.ngOnInit();
+  fillControls(): void {
     const names = {};
     for (const entry of this.ss.calendar.days) {
       for (const time of entry.times) {
@@ -57,31 +51,20 @@ export class ProjectDialogComponent extends AppBaseComponent implements OnInit {
         }
       }
     }
-    this.projectList = [];
-    let idx = 0;
+    const list = [];
     Object.keys(names).forEach(key => {
-      this.projectList.push({label: key, value: `${idx++}`});
+      list.push({label: key, value: key});
     });
-
-
-
-    // this.data.duration[0] = this.ss.session.editProject.duration;
-    // this.data.info[0] = this.ss.session.editProject.info;
-    // this.data.name[0] = this.ss.session.editProject.name;
-    // this.data.name[0] = 'Oleole';
-
+    this.controls.name.items = list;
     this.maxDuration = this.ss.session.editTime.end - this.ss.session.editTime.start;
-    console.log(this.ss.session.editTime, this.maxDuration);
-//    this.form = this.fb.group(this.data) as CPUFormGroup;
+  }
+
+  ngOnInit(): void {
+    super.ngOnInit();
   }
 
   saveClick(): void {
-    // this.data.name = this.form.get('name').value;
-    // this.data.info = this.form.get('info').value;
-    // this.data.duration = this.form.get('duration').value;
-  }
-
-  loginDone(): void {
+    this.cs.writeSessionData(this);
     this.dialogRef.close();
   }
 
@@ -91,13 +74,20 @@ export class ProjectDialogComponent extends AppBaseComponent implements OnInit {
 
   readFromSession(): any {
     return {
-      name: 'Namenstestinhalt',
-      info: 'Infotestinhalt',
-      duration: 10
+      name: this.controls.name.items?.[0],
+      info: '',
+      duration: this.maxDuration
     };
   }
 
   writeToSession(data: any): boolean {
-    return false;
+    if (data.name?.value) {
+      data.name = data.name.value;
+    }
+    if (!this.ss.session.editTime.projects) {
+      this.ss.session.editTime.projects = [];
+    }
+    this.ss.session.editTime.projects.push(ProjectData.CEM.classify(data));
+    return true;
   }
 }

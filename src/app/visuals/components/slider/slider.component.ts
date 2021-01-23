@@ -3,6 +3,7 @@ import {InitElementService} from '@/visuals/services/init-element.service';
 import {IComponentData} from '@/visuals/model/icomponent-data';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 import {BaseControl} from '@/visuals/classes/base-control';
+import {MatSliderChange} from '@angular/material/slider';
 
 /**
  * CPU-eigenes Custom Form Control, der die Darstellung von Zeichenketten / Literalen kapselt.
@@ -39,6 +40,7 @@ export class SliderComponent extends BaseControl implements OnInit, IComponentDa
   @Input() labelFunc: LabelFn;
   // Will show debug info even if in ProdMode or otherwise disabled (by ShowDebugInfoService)
   @Input() alwaysShowDebugInfo: boolean;
+  display: string;
 
   // constructor( @Inject(forwardRef(() => AppComponent)) private _parent:AppComponent)
   constructor(private initElementService: InitElementService) {
@@ -50,24 +52,39 @@ export class SliderComponent extends BaseControl implements OnInit, IComponentDa
     return this.initElementService.initContext(this);
   }
 
+  // Inject parent
+
   set ctx(value: any) {
     this.initElementService.mergeContext(value, this);
   }
 
-  // Inject parent
+  // get display(): string {
+  //   if (this.labelFunc) {
+  //     return this.labelFunc(this.formGroup?.controls[this.formName].value);
+  //   }
+  //   return this.formData?.label;
+  // }
 
-  display(value: number): string {
-    if (this.formGroup) {
-      console.log('habs');
-    } else {
-      console.log('fehlt');
-    }
+  get displayLabel(): any {
     if (this.labelFunc) {
-      return this.labelFunc(value);
+      return this.labelFunc;
     }
-    return this.formData?.label;
+    return (value) => this.formData?.label;
   }
 
   ngOnInit(): void {
+    this.showValue(this.formData?.value);
+  }
+
+  showValue(value: number): void {
+    if (this.labelFunc) {
+      this.display = this.labelFunc(+value);
+      return;
+    }
+    this.display = value + '';
+  }
+
+  onSliderMove($event: MatSliderChange): void {
+    this.showValue($event.value);
   }
 }
