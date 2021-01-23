@@ -19,6 +19,8 @@ import {BaseControl} from '@/visuals/classes/base-control';
  * <app-literal label="" i18n-value value="Some value to be processed and {{rep.laced}} if needed"></app-literal>
  *
  */
+export declare type LabelFn = (value: any) => string;
+
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
@@ -30,15 +32,19 @@ export class SliderComponent extends BaseControl implements OnInit, IComponentDa
   @Input() innerClass: string;
   @Input() outerClass: string;
   @Input() label: string;
-  @Input() max: number;
-  @Input() min: number;
+  @Input() max = 100;
+  @Input() min = 0;
   @Input() formName: string;
   @Input() formGroup: CPUFormGroup;
+  @Input() labelFunc: LabelFn;
   // Will show debug info even if in ProdMode or otherwise disabled (by ShowDebugInfoService)
   @Input() alwaysShowDebugInfo: boolean;
 
-  // Wenn sowohl value als auch formGroup/formName existieren, wird value genommen
-  @Input() value: string;
+  // constructor( @Inject(forwardRef(() => AppComponent)) private _parent:AppComponent)
+  constructor(private initElementService: InitElementService) {
+    super();
+    this.initElementService.setDefaultContext(this);
+  }
 
   get ctx(): any {
     return this.initElementService.initContext(this);
@@ -49,12 +55,17 @@ export class SliderComponent extends BaseControl implements OnInit, IComponentDa
   }
 
   // Inject parent
-  // constructor( @Inject(forwardRef(() => AppComponent)) private _parent:AppComponent)
-  constructor(private initElementService: InitElementService) {
-    super();
-    this.min = 0;
-    this.max = 100;
-    this.initElementService.setDefaultContext(this);
+
+  display(value: number): string {
+    if (this.formGroup) {
+      console.log('habs');
+    } else {
+      console.log('fehlt');
+    }
+    if (this.labelFunc) {
+      return this.labelFunc(value);
+    }
+    return this.formData?.label;
   }
 
   ngOnInit(): void {

@@ -33,14 +33,23 @@ export class AutocompleteComponent extends BaseControl implements OnInit, ICompo
   // constructor( @Inject(forwardRef(() => AppComponent)) private _parent:AppComponent)
   constructor(private initElementService: InitElementService) {
     super();
-    this.initElementService.setDefaultContext(this);
     this.value = '';
     this.valueChange = new EventEmitter<string>();
     this.items = [];
+    this.initElementService.setDefaultContext(this);
   }
 
   get ctx(): any {
-    return this.initElementService.initContext(this);
+    const ctrl = this.formGroup.data[this.formName];
+    if (ctrl.items) {
+      this.value = ctrl.value;
+      this.items = ctrl.items;
+    }
+    return {
+      ...this.initElementService.initContext(this),
+      value: this.value,
+      items: this.items
+    };
   }
 
   set ctx(value: any) {
@@ -57,7 +66,10 @@ export class AutocompleteComponent extends BaseControl implements OnInit, ICompo
     this.filteredOptions = this.formGroup.controls[this.formName].valueChanges
       .pipe(
         startWith(''),
-        map(value => typeof value === 'string' ? value : (value as any).label),
+        map(value => {
+          console.log('items', this.items);
+          return typeof value === 'string' ? value : (value as any).label;
+        }),
         map(label => label ? this._filter(label) : this.items.slice())
       );
   }

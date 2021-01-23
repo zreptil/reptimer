@@ -1,22 +1,26 @@
+<script src="../../../visuals/components/slider/slider.component.ts"></script>
 <div mat-dialog-title i18n>Projekt</div>
 <div mat-dialog-content>
   <form [formGroup]="form" #formDirective="ngForm">
     <div class="content">
       <app-autocomplete [outerWidth]="2"
                         [innerWidth]="2"
-                        i18n-label label="Projekt"
                         formName="name"
                         [items]="projectList"
-                        [formGroup]="form" autofocus></app-autocomplete>
+                        [formGroup]="form"></app-autocomplete>
       <app-newline></app-newline>
       <app-input-text [outerWidth]="2"
                       [innerWidth]="2"
                       formName="info"
                       [formGroup]="form"></app-input-text>
       <app-newline></app-newline>
-      <app-slider [max]="maxDuration"
-                  [formGroup]="form"
-                  formName="duration"></app-slider>
+      <app-slider [outerWidth]="2"
+                  [innerWidth]="2"
+                  [min]="0"
+                  [max]="maxDuration"
+                  [labelFunc]="durationDisplay"
+                  formName="duration"
+                  [formGroup]="form"></app-slider>
     </div>
     <mat-error *ngIf="txtError!=null">{{txtError}}</mat-error>
   </form>

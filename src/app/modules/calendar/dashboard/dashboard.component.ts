@@ -5,7 +5,6 @@ import {TimeData, TimeType} from '@/_models/time-data';
 import {DialogResult, DialogResultButton} from '@/_models/dialog-data';
 import {DayData, DayType} from '@/_models/day-data';
 import {Router} from '@angular/router';
-import {CEM} from '@/_models/cem';
 import {MatDialog} from '@angular/material/dialog';
 import {ProjectDialogComponent} from '@/modules/calendar/project-dialog/project-dialog.component';
 import {ProjectData} from '@/_models/project-data';
@@ -99,6 +98,7 @@ export class DashboardComponent {
     $event.stopPropagation();
     this.ss.session.editTime = time;
     this.ss.session.editProject = new ProjectData();
+    this.ss.session.editProject.duration = 10;
     const dialogRef = this.dialog.open(ProjectDialogComponent).afterClosed();
     dialogRef.subscribe(result => {
     });

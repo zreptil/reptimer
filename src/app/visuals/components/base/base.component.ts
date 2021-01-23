@@ -40,9 +40,9 @@ export class BaseComponent implements OnInit {
       this.childContext.formName !== undefined) {
       const ctrl = this.childContext.formGroup.get(this.childContext.formName);
       if (ctrl != null) {
-        ctrl.valueChanges.subscribe(val => {
-          this.formattedMessage = `My name is ${val}.`;
-        });
+        // ctrl.valueChanges.subscribe(val => {
+        //   this.formattedMessage = `My name is ${val}.`;
+        // });
       } else {
         console.error(`${this.childContext.formName} wurde nicht gefunden`);
       }

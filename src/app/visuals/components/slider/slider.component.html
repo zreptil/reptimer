@@ -1,12 +1,11 @@
 <ng-template #cpuInput>
   <mat-slider
-    thumbLabel
-    [displayWith]="formData.label"
-    tickInterval="1000"
+    [displayWith]="display"
     [min]="min"
     [max]="max"
+    [thumbLabel]="true"
     [formControl]="formGroup.controls[formName]"
-  ></mat-slider>
+  ></mat-slider>{{display(formGroup.controls[formName].value)}}
 </ng-template>
 
 <app-base [componentsTemplate]="cpuInput" [childContext]="ctx" ></app-base>

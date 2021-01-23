@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import {InputTextComponent} from './components/input-text/input-text.component';
 import {MaterialModule} from '@/material.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DividerComponent } from './components/divider/divider.component';
 import { NewlineComponent } from './components/newline/newline.component';
 import { SelectComponent } from './components/select/select.component';
@@ -98,7 +98,8 @@ import {SliderComponent} from '@/visuals/components/slider/slider.component';
   imports: [
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class VisualsModule { }
