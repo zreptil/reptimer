@@ -16,7 +16,7 @@ export abstract class BaseControl implements IBaseControl {
   }
 
   get formData(): CPUFormControl {
-    this.formDataInternal = this.formGroup?.data[this.formName];
+    this.formDataInternal = this.formGroup?.data?.[this.formName];
     if (this.formDataInternal == null) {
       this.formDataInternal = {label: this.label};
     }

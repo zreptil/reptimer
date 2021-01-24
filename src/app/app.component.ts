@@ -7,6 +7,7 @@ import {PermissionInfos, UserData} from '@/_models/user-data';
 import {LoginDialogComponent} from '@/modules/users/login-dialog/login-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {DataService} from '@/_services/data.service';
+import {EnvironmentService} from '@/_services/environment.service';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,21 @@ export class AppComponent {
   constructor(public ss: SessionService,
               public dialog: MatDialog,
               public ds: DataService,
+              public env: EnvironmentService,
               private router: Router) {
     ds.get(CEM.User, 'userinfo').subscribe((data: UserData) => {
       ss.setUser(data);
+    }, err => {
+      this.ss.confirm($localize`Beim Zugriff auf den Server ist ein Fehler aufgetreten.
+Das liegt vermutlich daran, dass das Zertifikat des Servers nicht käuflich erworben wurde.
+Wenn Du die Speicherung der Daten auf dem Server zur Verfügung haben möchtest, dann
+kannst Du das tun, indem Du im Browser auf der Webseite des Servers die Berechtigung
+zum Zugriff erteilst. Soll die Webseite des Servers aufgerufen werden, damit Du dort die
+Berechtigung erteilen kannst?`).subscribe(result => {
+        if (result.btn === DialogResultButton.yes) {
+          window.open(`${env.apiUrl}`, '_blank');
+        }
+      });
     });
     // Here we subscribe to the event for the routing, that always
     // fires, when the route changes. We need an event,

@@ -217,7 +217,6 @@ export class DataService {
    */
   private handleError<T>(operation: string = 'operation', result?: T): (error: any) => Observable<T> {
     return (error: any): Observable<T> => {
-
       // TODO: send the error to remote logging infrastructure
       // TODO: better job of transforming error for user consumption
       console.error(`${operation} failed: ${error.message}`, error);

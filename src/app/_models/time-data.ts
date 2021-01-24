@@ -1,13 +1,13 @@
-import {BaseDBData} from '@/_models/base-data';
 import {ClassEPMap} from '@/_models/class-epmap';
 import {ProjectData} from '@/_models/project-data';
+import {TimeUtils} from '@/_models/time-utils';
 
 export enum TimeType {
   Arbeitszeit,
   Pause
 }
 
-export class TimeData extends BaseDBData {
+export class TimeData extends TimeUtils {
   static CEM = new ClassEPMap<TimeData>('day', TimeData.factory);
   xmlCfg = {
     className: 'TimeData'
@@ -62,19 +62,6 @@ export class TimeData extends BaseDBData {
 
   get to(): string {
     return TimeData.timeForDisplay(this.end);
-  }
-
-  static timeFromDate(value: Date): number {
-    return value.getHours() * 60 + value.getMinutes();
-  }
-
-  static timeForDisplay(value: number): string {
-    if (value == null) {
-      return '';
-    }
-    const h = Math.floor(value / 60);
-    const m = value % 60;
-    return `${h < 10 ? '0' : ''}${h}:${m < 10 ? '0' : ''}${m}`;
   }
 
   static factory(): TimeData {
