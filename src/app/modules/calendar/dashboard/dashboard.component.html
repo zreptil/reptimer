@@ -41,7 +41,11 @@
           <div i18n>bis</div>
           <input type="time" [(ngModel)]="time.toValue" (ngModelChange)="ss.saveSession()">
         </div>
-        <app-divider></app-divider>
+        <div class="projhead" *ngIf="idx===dataIdx || (time.projects?.length > 0)">
+          <div class="line1">&nbsp;</div>
+          <div class="text">Projekte</div>
+          <div class="line2">&nbsp;</div>
+        </div>
         <ng-container *ngIf="time.projects?.length > 0">
           <table class="project" cellspacing="0" cellpadding="0">
             <tr *ngFor="let proj of time.projects; let projIdx = index">
@@ -65,7 +69,7 @@
         </ng-container>
         <div class="content">
           <button *ngIf="time.type === 0 && idx===dataIdx && time.end != null" mat-icon-button (click)="distributeTime($event, time)">
-            <mat-icon>fingerprint</mat-icon>
+            <mat-icon>add</mat-icon>
           </button>
         </div>
       </mat-card>
