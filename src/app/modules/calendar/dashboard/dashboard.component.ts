@@ -190,7 +190,7 @@ export class DashboardComponent {
   }
 
   clickExport(): void {
-    const blob = new Blob([this.ss.session.year.asString], {type: 'application/json'});
+    const blob = new Blob([this.ss.session.year.data.asString], {type: 'application/json'});
     const date = new Date();
     const timestamp = date.getTime();
     const fileName = 'reptimer-' + timestamp + '.json';
