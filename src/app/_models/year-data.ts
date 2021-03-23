@@ -109,7 +109,7 @@ export class YearData extends BaseDBData {
       }
       this.days.push(data);
       day.setDate(day.getDate() + 1);
-    } while (day.getFullYear() === this.year);
+    } while (day.getFullYear() === +this.year);
 
     // add information to days
     const hd = new Date(this.year, 10, 27);
@@ -156,16 +156,20 @@ export class YearData extends BaseDBData {
     this.addHoliday(new Date(this.year, 11, 25), `1. Weih&shy;nachts&shy;feier&shy;tag`);
     this.addHoliday(new Date(this.year, 11, 26), `2. Weih&shy;nachts&shy;feier&shy;tag`);
 
+    console.log('adding times', times);
     for (const time of times) {
       this.addTime(time.date, time.time);
     }
 
+    console.log('adding daytypes', saved);
     for (const s of saved) {
       const d = this.days.find((entry) => entry.date === s.date);
       if (d != null) {
         d.type = s.type;
       }
     }
+
+    console.log(this.days);
   }
 
   private addTime(date: number, time: any): void {

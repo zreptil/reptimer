@@ -1,9 +1,3 @@
-<div class="header">
-  <div class="daytypes">
-    <button mat-flat-button [class]="typeClass(entry.id)" *ngFor="let entry of dayTypeList"
-            (click)="clickDayType(entry.id)">{{entry.label}}</button>
-  </div>
-</div>
 <div class="calendarpanel">
   <div class="calendar">
     <div class="week" *ngIf="false">
@@ -25,9 +19,26 @@
                [year]="ss.session.day.year"></cal-month>
   </div>
   <div class="timepanel">
-    <div class="title" i18n>Zeiten für {{ss.session.day.dateString}}</div>
+    <div class="title" i18n>
+      <div>Zeiten für {{ss.session.day.dateString}}</div>
+      <button mat-flat-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Tagesart"
+              i18n-aria-label
+              [class]="classForDaytype">
+        {{ss.session.day.nameForType(ss.session.day.type)}}
+      </button>
+    </div>
+    <mat-menu #menu="matMenu" class="daytype-menu">
+      <ng-container *ngFor="let entry of dayTypeList">
+        <button *ngIf="entry.id !== ss.session.day.type"
+                mat-flat-button
+                [class]="typeClass(entry.id)"
+                (click)="clickDayType(entry.id)">{{entry.label}}</button>
+      </ng-container>
+    </mat-menu>
     <div class="times">
-      <mat-card [class]="timeClass(idx)" *ngFor="let time of ss.session.day.times; let idx = index"
+      <mat-card [class]="timeClass(idx, time)" *ngFor="let time of ss.session.day.times; let idx = index"
                 (click)="toggleTime(idx)">
         <mat-card-header>
           <mat-card-title>{{time.typeForDisplay}}</mat-card-title>
@@ -41,7 +52,7 @@
           <div i18n>bis</div>
           <input type="time" [(ngModel)]="time.toValue" (ngModelChange)="ss.saveSession()">
         </div>
-        <div class="projhead" *ngIf="idx===dataIdx || (time.projects?.length > 0)">
+        <div class="projhead" *ngIf="time.type === 0 && (idx===dataIdx || (time.projects?.length > 0))">
           <div class="line1">&nbsp;</div>
           <div class="text">Projekte</div>
           <div class="line2">&nbsp;</div>
@@ -85,7 +96,7 @@
     <button mat-flat-button (click)="clickImport()">
       <mat-icon>text_snippet</mat-icon>
     </button>
-    <input type="file" id="importData" accept="text/json" (change)="handleImport($event)">
+     <input type="file" id="importData" accept="text/json" (change)="handleImport($event)">
   </div>
 </div>
 <div class="controls">

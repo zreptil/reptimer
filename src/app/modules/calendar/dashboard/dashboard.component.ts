@@ -48,6 +48,10 @@ export class DashboardComponent {
     return ret;
   }
 
+  get classForDaytype(): string[] {
+    return this.typeClass(this.ss.session.day.type);
+  }
+
   updateTitle(): void {
   }
 
@@ -106,6 +110,12 @@ export class DashboardComponent {
 
   editProject($event: MouseEvent, time: TimeData, projIdx: number): void {
     $event.stopPropagation();
+    this.ss.session.editTime = time;
+    this.ss.session.editProject = time.projects[projIdx];
+    this.ss.session.editProject.idx = projIdx;
+    const dialogRef = this.dialog.open(ProjectDialogComponent).afterClosed();
+    dialogRef.subscribe(result => {
+    });
   }
 
   distributeTime($event, time: TimeData): void {
@@ -126,10 +136,11 @@ export class DashboardComponent {
     }
   }
 
-  timeClass(idx: number): string[] {
+  timeClass(idx: number, time: TimeData): string[] {
     const ret = ['t' + this.ss.session.day.type];
     if (this.dataIdx === idx) {
       ret.push('active');
+      ret.push('time' + time?.type);
     }
     return ret;
   }

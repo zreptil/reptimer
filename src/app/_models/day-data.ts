@@ -35,11 +35,7 @@ export class DayData extends BaseDBData {
   timesARR = TimeData.CEM;
 
   get display(): string {
-    let ret = `${this.day}`;
-    if (this.times.length > 0) {
-      ret = `[ ${ret} ]`;
-    }
-    return ret;
+    return `${this.day}`;
   }
 
   get isValid(): boolean {
@@ -92,6 +88,10 @@ export class DayData extends BaseDBData {
   static isToday(day: DayData): boolean {
     const today = new Date(Date.now());
     return today.getDate() === day.day && today.getMonth() === day.month - 1 && today.getFullYear() === day.year;
+  }
+
+  nameForType(type: DayType): string {
+    return DayData.typeList.find(entry => entry.id === type)?.label || '???';
   }
 
   isSameDay(check: DayData): boolean {

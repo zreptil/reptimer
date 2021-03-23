@@ -90,7 +90,7 @@ export class SessionService {
   public afterSaveSubject: BehaviorSubject<void>;
 
   constructor(private dialog: MatDialog,
-//              public ws: WorkflowService,
+              //              public ws: WorkflowService,
               private as: AuthenticationService,
               private ds: DataService,
               private storage: StorageService,
@@ -269,18 +269,28 @@ export class SessionService {
     if (this.calendar?.days == null) {
       this.titleInfo = $localize`Lade Daten...`;
       this.session.year.data = YearData.factory();
-      this.saveSession();
+      // this.saveSession();
     }
     let dst = 'calendar';
     if (this.session.day != null) {
       dst = 'dashboard';
+      let date = new Date();
+      date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      if (+this.session.year.data.year === date.getFullYear()) {
+        const day = this.session.year.data.days.find((entry) => entry.date === date.getTime());
+        if (day) {
+          this.session.day = day;
+        }
+      }
     }
     this.router.navigate([dst]);
   }
 
   saveConfig(): void {
-    this.session.cfg.year = this.calendar?.year;
-    this.storage.write(CEM.Config, this.session.cfg, false);
+    if (this.calendar?.year) {
+      this.session.cfg.year = this.calendar?.year;
+      this.storage.write(CEM.Config, this.session.cfg, false);
+    }
   }
 
   saveSession(): void {

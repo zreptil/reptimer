@@ -11,6 +11,7 @@ export class ProjectData extends BaseDBData {
   name: string = null;
   duration: number = null;
   info: string = null;
+  idx = -1;
 
   get durationDisplay(): string {
     return TimeUtils.timeForDisplay(this.duration);

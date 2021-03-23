@@ -19,13 +19,16 @@ export class ProjectDialogComponent extends AppBaseComponent implements OnInit {
   controls = {
     name: {
       label: $localize`Name`,
-      items: null
+      items: null,
+      value: ''
     },
     info: {
-      label: $localize`Info`
+      label: $localize`Info`,
+      value: ''
     },
     duration: {
-      label: $localize`Dauer`
+      label: $localize`Dauer`,
+      value: 0
     }
   };
 
@@ -74,9 +77,9 @@ export class ProjectDialogComponent extends AppBaseComponent implements OnInit {
 
   readFromSession(): any {
     return {
-      name: this.controls.name.items?.[0],
-      info: '',
-      duration: this.maxDuration
+      name: this.ss.session.editProject.name,
+      info: this.ss.session.editProject.info,
+      duration: this.ss.session.editProject.duration === 0 ? this.maxDuration : this.ss.session.editProject.duration
     };
   }
 
@@ -87,7 +90,12 @@ export class ProjectDialogComponent extends AppBaseComponent implements OnInit {
     if (!this.ss.session.editTime.projects) {
       this.ss.session.editTime.projects = [];
     }
-    this.ss.session.editTime.projects.push(ProjectData.CEM.classify(data));
+    const idx = this.ss.session.editProject.idx;
+    if (idx < 0) {
+      this.ss.session.editTime.projects.push(ProjectData.CEM.classify(data));
+    } else {
+      this.ss.session.editTime.projects[idx] = ProjectData.CEM.classify(data);
+    }
     return true;
   }
 }

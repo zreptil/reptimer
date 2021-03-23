@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DayData} from '@/_models/day-data';
 import {SessionService} from '@/_services/session.service';
-import {Observable} from 'rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -17,6 +16,14 @@ export class DayComponent implements OnInit {
   clickEvent = new EventEmitter<DayData>();
 
   constructor(private ss: SessionService) {
+  }
+
+  get classForStartBracket(): string[] {
+    const ret = ['start'];
+    if (this.day.times == null || this.day.times[this.day.times.length - 1]?.end == null) {
+      ret.push('noend');
+    }
+    return ret;
   }
 
   dayClass(day: DayData): any {

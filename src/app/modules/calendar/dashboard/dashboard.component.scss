@@ -8,6 +8,53 @@
   height: 100%;
   width: 100%;
   padding: 10px;
+
+  --color-null: #a0a0ff;
+}
+
+::ng-deep.mat-menu-content {
+  display: flex;
+  flex-flow: column;
+  padding: 0 !important;
+}
+
+.tnull {
+  background: $color-current;
+}
+
+.time0 {
+}
+
+.tnull.time1 {
+  background: rgba($color-current, 0.5) !important;
+}
+
+.t1.time1 {
+  background: rgba($color-urlaub, 0.5) !important;
+}
+
+.t2.time1 {
+  background: rgba($color-urlaubhalb, 0.5) !important;
+}
+
+.t3.time1 {
+  background: rgba($color-teilzeitfrei, 0.5) !important;
+}
+
+.t4.time1 {
+  background: rgba($color-feiertag, 0.5) !important;
+}
+
+.t5.time1 {
+  background: rgba($color-krank, 0.5) !important;
+}
+
+.t6.time1 {
+  background: rgba($color-info, 0.5) !important;
+}
+
+.t7.time1 {
+  background: rgba($color-frei, 0.5) !important;
 }
 
 .header {
@@ -48,10 +95,6 @@
 
     button:not(:last-child) {
       margin-right: 5px;
-    }
-
-    .tnull {
-      background: #a0a0ff;
     }
   }
 
@@ -122,7 +165,7 @@
     .title {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       border-bottom: 1px solid #ccc;
       font-size: 2em;
       padding: 0.4em;
