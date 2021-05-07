@@ -148,7 +148,7 @@ export class SessionService {
     if (dayIdx >= 0) {
       this.session.dayIdx = dayIdx;
     } else if (date.getFullYear() !== this.session.cfg.year) {
-      this.loadYear(date).subscribe(_ => {
+      this.loadYear(date).subscribe(year => {
         /*
         dayIdx = this.calendar.days.findIndex(entry => {
                 return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
@@ -200,20 +200,18 @@ export class SessionService {
     this.calendar.year = date.getFullYear();
     this.saveConfig();
     this.loadSession();
-    this.session.dayIdx = this.session.year.data.days.findIndex(entry => {
-      return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
-    });
+    this.session.selectDate(date);
     return;
   }
 
-  loadYear(date: Date): Observable<any> {
+  loadYear(date: Date): Observable<YearData> {
     return this.ds.get(CEM.Year, `year&year=${date.getFullYear()}`)
       .pipe(
         map(src => {
           if (!src || src === '') {
             this.createYear(date);
           }
-          console.log('loadYear', src);
+          // console.log('loadYear', src);
           let year = YearData.factory();
           year.year = date.getFullYear();
           year.fillHolidays();
@@ -228,11 +226,10 @@ export class SessionService {
           session.cfg.year = date.getFullYear();
           session.year = EditData.factory();
           session.year.data = year;
-          session.dayIdx = session.year.data.days.findIndex(entry => {
-            return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
-          });
+          session.selectDate(date);
           this.session = session;
           this.saveSession();
+          return year;
         }),
         catchError(err => {
           this.createYear(date);
@@ -242,14 +239,14 @@ export class SessionService {
 
   setUser(user: UserData): void {
     this.session.user = user ?? UserData.factory();
-    console.log('user', this.session.user);
+    // console.log('user', this.session.user);
     if (!this.session.user.isAuthorized) {
       this.session.cfg.authorization = null;
       this.saveSession();
     } else {
       const date = new Date(this.session.cfg.year, 0, this.session.dayIdx);
       this.loadYear(date).subscribe(year => {
-
+        this.session.selectDate(new Date());
       });
     }
   }
@@ -265,7 +262,7 @@ export class SessionService {
       this.session.cfg.authorization = '';
     }
     this.calendar = this.storage.read(this.session.CEM);
-    console.log(this.session.CEM, this.session.year);
+    // console.log(this.session.CEM, this.session.year);
     if (this.calendar?.days == null) {
       this.titleInfo = $localize`Lade Daten...`;
       this.session.year.data = YearData.factory();
@@ -277,10 +274,7 @@ export class SessionService {
       let date = new Date();
       date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
       if (+this.session.year.data.year === date.getFullYear()) {
-        const day = this.session.year.data.days.find((entry) => entry.date === date.getTime());
-        if (day) {
-          this.session.day = day;
-        }
+        this.session.selectDate(date);
       }
     }
     this.router.navigate([dst]);
@@ -295,7 +289,7 @@ export class SessionService {
 
   saveSession(): void {
     this.saveConfig();
-    console.log('saveSession', this.session.year);
+    // console.log('saveSession', this.session.year);
     this.storage.write(this.session.CEM, this.calendar, false);
     if (this.session.user.isAuthorized) {
       const list = [];

@@ -6,56 +6,60 @@
         <source>Arbeitstag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4353401914624818217" datatype="html">
         <source>Frei</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7606216724451613048" datatype="html">
         <source>Urlaub</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6515529043985612244" datatype="html">
         <source>Urlaub 1/2</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8723816733457318156" datatype="html">
         <source>Teilzeitfrei</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6184292966501253839" datatype="html">
         <source>Feiertag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7572713683663013879" datatype="html">
         <source>Krank</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="314315645942131479" datatype="html">
         <source>Info</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/day-data.js</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/project-dialog/project-dialog.component.js</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5037437391296624618" datatype="html">
@@ -91,7 +95,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/app.component.js</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5982204146953564471" datatype="html">
@@ -102,7 +106,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/app.component.js</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">141</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8807722618432376624" datatype="html">
@@ -113,21 +117,25 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/app.component.js</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">141</context>
         </context-group>
       </trans-unit>
       <trans-unit id="57563521806966673" datatype="html">
         <source>Arbeitszeit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/time-data.js</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9042260521669277115" datatype="html">
         <source>Pause</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/time-data.js</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">257</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
@@ -138,7 +146,7 @@
         <source>unbekannt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_models/time-data.js</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4679918173552317922" datatype="html">
@@ -481,7 +489,14 @@
         <source>Keine Auswahl</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_services/component.service.js</context>
-          <context context-type="linenumber">189</context>
+          <context context-type="linenumber">173</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4636844880644405201" datatype="html">
+        <source>Ungültiger Wert [<x id="PH" equiv-text="value"/>]</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/_services/component.service.js</context>
+          <context context-type="linenumber">212</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4606720270859939216" datatype="html">
@@ -561,46 +576,53 @@
           <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5090636327698245709" datatype="html">
+        <source>Der Wert kommt nicht in den Einträgen des Feldes <x id="PH" equiv-text="name"/> vor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/_services/error.service.js</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2854123663314832793" datatype="html">
         <source>Speichern</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_services/session.service.js</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7808756054397155068" datatype="html">
         <source>Reset</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_services/session.service.js</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3688273410243280516" datatype="html">
         <source>Sollen alle Eingaben zurückgesetzt werden?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_services/session.service.js</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2533863549800508837" datatype="html">
         <source>Lade Daten...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_services/session.service.js</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">226</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8277325146847525187" datatype="html">
         <source>Albernes Herumgehüpfe im Workflow wird es hier nicht geben!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_services/session.service.js</context>
-          <context context-type="linenumber">179</context>
+          <context context-type="linenumber">299</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5002690415778630546" datatype="html">
         <source>Der Workflow Schritt konnte nicht gefunden werden.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/_services/session.service.js</context>
-          <context context-type="linenumber">180</context>
+          <context context-type="linenumber">300</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1698125201013891908" datatype="html">
@@ -645,36 +667,52 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2585156510197659633" datatype="html">
+        <source>Beim Zugriff auf den Server ist ein Fehler aufgetreten.
+Das liegt vermutlich daran, dass das Zertifikat des Servers nicht käuflich erworben wurde.
+Wenn Du die Speicherung der Daten auf dem Server zur Verfügung haben möchtest, dann
+kannst Du das tun, indem Du im Browser auf der Webseite des Servers die Berechtigung
+zum Zugriff erteilst. Soll die Webseite des Servers aufgerufen werden, damit Du dort die
+Berechtigung erteilen kannst?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/app.component.js</context>
+          <context context-type="linenumber">62,67</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="9032757086603482237" datatype="html">
         <source>Willst Du Dich abmelden?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/app.component.js</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="linenumber">142</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5041354590769758251" datatype="html">
         <source>Admin</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/app.component.js</context>
-          <context context-type="linenumber">136</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6979190473765197505" datatype="html">
         <source> Du kannst auch die Administration aufrufen.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/app.component.js</context>
-          <context context-type="linenumber">137</context>
+          <context context-type="linenumber">145</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b07ae9817b6dfa29a02c9f4cbac52430dc9a267d" datatype="html">
         <source>DB Admin</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/app.component.js</context>
-          <context context-type="linenumber">172</context>
+          <context context-type="linenumber">175</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3178308865421534169" datatype="html">
         <source>Kommen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">253</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
           <context context-type="linenumber">121</context>
@@ -683,6 +721,10 @@
       <trans-unit id="8379866940554229637" datatype="html">
         <source>Pause beenden</source>
         <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">259</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
           <context context-type="linenumber">127</context>
         </context-group>
@@ -690,19 +732,52 @@
       <trans-unit id="4054029360531153137" datatype="html">
         <source><x id="PH" equiv-text="this.ss.session.day.times[idx].typeForDisplay"/> wirklich löschen?</source>
         <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">299</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
           <context context-type="linenumber">161</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2311129073801068134" datatype="html">
+        <source>Soll die Zeit für Projekt <x id="PH" equiv-text="time.projects[projIdx].name"/> gelöscht werden?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">310</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4816909486251478319" datatype="html">
         <source>Hiermit werden die Feiertage und Wochenenden des Jahres erneut befüllt. Die Zeiten bleiben erhalten, aber die Arten der Tage, die nicht als Urlaub, Krank oder Teilzeitfrei definiert wurden, werden zurückgesetzt. Soll das ausgeführt werden?</source>
         <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">389</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
           <context context-type="linenumber">223</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="dce59cc3ed28d2e2084690e3e642f7a9155e0421" datatype="html">
+        <source>Tagesart</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">432</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73665e43fb057cc6f5d029e7dcdc52f79e1d300a" datatype="html">
+        <source><x id="START_TAG_DIV" ctype="x-div" equiv-text="&quot;\uFFFD#7\uFFFD&quot;"/>Zeiten für <x id="INTERPOLATION" equiv-text="&quot;\uFFFD0\uFFFD&quot;"/><x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&quot;\uFFFD/#7\uFFFD&quot;"/><x id="START_TAG_BUTTON" ctype="x-button" equiv-text="&quot;\uFFFD#8\uFFFD&quot;"/> <x id="INTERPOLATION_1" equiv-text="&quot;\uFFFD1\uFFFD&quot;"/> <x id="CLOSE_TAG_BUTTON" ctype="x-button" equiv-text="&quot;\uFFFD/#8\uFFFD&quot;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">438</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="84dcbbe5b0ac8fd75036dba42f78ff3505822554" datatype="html">
         <source>Gehen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">444</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
           <context context-type="linenumber">239</context>
@@ -711,8 +786,47 @@
       <trans-unit id="b4f775784d8a3164b133fb8634a38051154c945e" datatype="html">
         <source>bis</source>
         <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/dashboard/dashboard.component.js</context>
+          <context context-type="linenumber">450</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/dashboard/dashboard.component.js</context>
           <context context-type="linenumber">245</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8953033926734869941" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/project-dialog/project-dialog.component.js</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3759195998025361753" datatype="html">
+        <source>Dauer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/project-dialog/project-dialog.component.js</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8d0b5693c84245017844b0398ed04c1dc4495dc3" datatype="html">
+        <source>Projekt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/project-dialog/project-dialog.component.js</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="05d6def11b80c405276ad18c4fc5183e8cea4f75" datatype="html">
+        <source>Speichern</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/project-dialog/project-dialog.component.js</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1b24932d0f2269e4b41d0f936fdb5de1b94da401" datatype="html">
+        <source>Abbrechen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../dist/out-locl/app/modules/calendar/project-dialog/project-dialog.component.js</context>
+          <context context-type="linenumber">123</context>
         </context-group>
       </trans-unit>
       <trans-unit id="013793d5922288b1c512ca0791728038ccdae8eb" datatype="html">
@@ -744,7 +858,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">334</context>
+          <context context-type="linenumber">333</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b30b5126de585a6308499aa9b34277c35339239c" datatype="html">
@@ -762,11 +876,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">292</context>
+          <context context-type="linenumber">291</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">328</context>
+          <context context-type="linenumber">327</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c5c1e17f86475f87716f04736e7956e15d27c42f" datatype="html">
@@ -801,88 +915,88 @@
         <source>Anmeldung</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">286</context>
+          <context context-type="linenumber">285</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2070ebb54f893c60114f49f46d7e1a6f27b66610" datatype="html">
         <source>Passwort</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">298</context>
+          <context context-type="linenumber">297</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">340</context>
+          <context context-type="linenumber">339</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ef7a0bb5c9e8f83db1a5b4818bb5ec4e2d7c9b8e" datatype="html">
         <source>Two Factor Code</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">304</context>
+          <context context-type="linenumber">303</context>
         </context-group>
       </trans-unit>
       <trans-unit id="df0f8a49440c7127bd20461526dd1b39f2011e20" datatype="html">
         <source>Anmelden</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">310</context>
+          <context context-type="linenumber">309</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8ccca1d1a99365172f8efc3843a39d532a95925a" datatype="html">
         <source>Ich habe noch keine Anmeldedaten</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">316</context>
+          <context context-type="linenumber">315</context>
         </context-group>
       </trans-unit>
       <trans-unit id="def96c6a5d7fc151bc3ff5165bbfee9fba0652a7" datatype="html">
         <source>Registrierung</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">322</context>
+          <context context-type="linenumber">321</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9adf7f973ff81475f3622c2a38a1e69a7dd433af" datatype="html">
         <source>Registrieren</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">346</context>
+          <context context-type="linenumber">345</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c92091a372c4143b1f78306a0dda859cb3e2637d" datatype="html">
         <source>Ich bin schon bekannt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">352</context>
+          <context context-type="linenumber">351</context>
         </context-group>
       </trans-unit>
       <trans-unit id="667fc1eb287c3dabdc8b31ab0b73dc79859dad69" datatype="html">
         <source>Zwei Faktor Autorisierung</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">358</context>
+          <context context-type="linenumber">357</context>
         </context-group>
       </trans-unit>
       <trans-unit id="214bd1abe1f510f1995276bc10485161ce176dd8" datatype="html">
         <source>Bitte diesen Code mit einer TFA App einscannen, den Code, den die App generiert eingeben und mit dem Button bestätigen.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">364</context>
+          <context context-type="linenumber">363</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e6237deb75bba0513ee0a83c6edd4344c2573068" datatype="html">
         <source>Erzeugter Code</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">370</context>
+          <context context-type="linenumber">369</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fef679e0f9fde1d1ddd4839140fb3d22d1008c19" datatype="html">
         <source>Code bestätigen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../dist/out-locl/app/modules/users/login-dialog/login-dialog.component.js</context>
-          <context context-type="linenumber">376</context>
+          <context context-type="linenumber">375</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4973528606869406386" datatype="html">

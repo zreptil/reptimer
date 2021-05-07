@@ -114,9 +114,14 @@ $size: calc(8 * #{$cal-size});
   border: 3px solid rgba(127, 127, 0, 0.7) !important;
   background: rgba(255, 255, 0, 0.5);
   border-radius: 50%;
+
   div {
     font-size: 90%;
   }
+}
+
+.today, .active {
+  z-index: 1;
 }
 
 .hastimes {

@@ -18,6 +18,11 @@ export class SessionData {
     return new ClassEPMap<YearData>(`year${this.cfg.year}`, YearData.factory);
   }
 
+  selectDate(date): void {
+    this.dayIdx = this.year.data.days.findIndex(entry => {
+      return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
+    });
+  }
 
   get dayIdx(): number {
     return this.cfg._dayIdx;

@@ -77,8 +77,10 @@ export class MonthComponent {
 
   fillData(): void {
     this.weeks = [];
+    const beg = new Date(this.year, this.month - 1, 1).getTime();
+    const end = new Date(this.year, this.month, 0).getTime();
     this.days = this.ss.calendar.days.filter((value) => {
-      return value.month === this.month && value.year === this.year;
+      return value.date >= beg && value.date <= end;
     });
     if (this.days.length === 0) {
       return;
