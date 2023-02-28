@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {LoginData} from '@/_models/login-data';
 import {DataService} from '@/_services/data.service';
 import {MatDialogRef} from '@angular/material/dialog';
@@ -15,9 +15,9 @@ import {Md5} from 'ts-md5';
     './login-dialog.component.scss']
 })
 export class LoginDialogComponent implements OnInit {
-  public loginForm: FormGroup;
-  public registerForm: FormGroup;
-  public tfaForm: FormGroup;
+  public loginForm: UntypedFormGroup;
+  public registerForm: UntypedFormGroup;
+  public tfaForm: UntypedFormGroup;
 
   public loginData = {
     username: [null, Validators.required],
@@ -42,7 +42,7 @@ export class LoginDialogComponent implements OnInit {
   txtError: string;
 
   constructor(private ss: SessionService,
-              private fb: FormBuilder,
+              private fb: UntypedFormBuilder,
               private ds: DataService,
               public dialogRef: MatDialogRef<LoginDialogComponent>) {
     this.type = 'login';
@@ -79,7 +79,7 @@ export class LoginDialogComponent implements OnInit {
       this.tfaurl = null;
       this.ss.session.user = data;
       this.loginDone();
-    }, error => {
+    }, _error => {
       this.txtError = $localize`Der Code ist nicht korrekt`;
     });
   }

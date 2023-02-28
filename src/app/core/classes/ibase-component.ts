@@ -1,4 +1,4 @@
-import {FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {UntypedFormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {ISelectItem} from '@/visuals/model/iselectitem';
 import {ItemProviderFn} from '@/_services/item-provider.service';
 import {ServiceBarControl} from '@/_services/session.service';
@@ -112,7 +112,7 @@ export class CPUFormControl implements IFormControl {
   }
 }
 
-export class CPUFormGroup extends FormGroup {
+export class CPUFormGroup extends UntypedFormGroup {
   data: { [key: string]: CPUFormControl } = {};
 }
 

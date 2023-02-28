@@ -1,6 +1,6 @@
 import {SVItem} from '@/_models/sv-item';
 import {SVService} from '@/_services/sv.service';
-import {FormBuilder} from '@angular/forms';
+import {UntypedFormBuilder} from '@angular/forms';
 import {Injectable} from '@angular/core';
 import {ValidationService} from '@/_services/validation.service';
 import {MatBottomSheet, MatBottomSheetConfig} from '@angular/material/bottom-sheet';
@@ -11,8 +11,6 @@ import {ErrorDisplayComponent} from '@/core/components/error-display/error-displ
 import {CPUFormControl, CPUFormGroup, IBaseComponent} from '@/core/classes/ibase-component';
 import {DataService} from '@/_services/data.service';
 import {CPUValidators} from '@/core/classes/validators';
-import {Observable, of} from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +23,7 @@ export class ComponentService {
   constructor(public svService: SVService,
               private validator: ValidationService,
               public ds: DataService,
-              private fb: FormBuilder,
+              private fb: UntypedFormBuilder,
               private bottomSheet: MatBottomSheet,
               private errorService: ErrorService,
               private ips: ItemProviderService) {
@@ -146,7 +144,7 @@ export class ComponentService {
       cfg.hasBackdrop = false;
       cfg.data = {type: 'controls'};
       this.bottomSheet.open(ErrorDisplayComponent, cfg)
-        .afterDismissed().subscribe((dummy) => {
+        .afterDismissed().subscribe((_dummy) => {
         }
       );
       this.showOverlay = false;

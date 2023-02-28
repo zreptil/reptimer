@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {UntypedFormBuilder} from '@angular/forms';
 import {DataService} from '@/_services/data.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AdminUserData} from '@/_models/admin-user-data';
@@ -15,7 +15,7 @@ import {UserDialogComponent} from '@/modules/users/admin-page/user-dialog/user-d
 export class AdminPageComponent implements OnInit {
   public userList: Array<AdminUserData>;
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
               private ss: SessionService,
               public dialog: MatDialog,
               private dataService: DataService) {
@@ -64,7 +64,7 @@ export class AdminPageComponent implements OnInit {
           });
           break;
         case 'delete':
-          this.dataService.delete(CEM.AdminUser, user).subscribe(response => {
+          this.dataService.delete(CEM.AdminUser, user).subscribe(_response => {
           });
           break;
         default:

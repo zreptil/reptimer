@@ -1,4 +1,4 @@
-import {FormGroup} from '@angular/forms';
+import {UntypedFormGroup} from '@angular/forms';
 
 export interface IComponentData {
   outerWidth: number;
@@ -7,7 +7,7 @@ export interface IComponentData {
   innerClass: string;
   label: string;
   formName: string;
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
   // Will show debug info even if in ProdMode or otherwise disabled (by ShowDebugInfoService)
   alwaysShowDebugInfo: boolean;
 }

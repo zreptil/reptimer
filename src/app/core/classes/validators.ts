@@ -1,4 +1,4 @@
-import {AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, UntypedFormControl, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {CPUFormControl, CPUFormGroup} from '@/core/classes/ibase-component';
 
 export class CPUValidators {
@@ -7,12 +7,12 @@ export class CPUValidators {
     password: [Validators.required, Validators.minLength(6)]
   };
 
-  static errorOnUnknownItem(c: FormControl): any {
+  static errorOnUnknownItem(_c: UntypedFormControl): any {
     return null;
   }
 
   static _errorOnUnknownItem(ctrl: CPUFormControl): ValidatorFn {
-    return (c: FormControl): ValidationErrors | null => {
+    return (c: UntypedFormControl): ValidationErrors | null => {
       if (ctrl == null || !ctrl.items) {
         return null;
       }
@@ -24,7 +24,7 @@ export class CPUValidators {
     };
   }
 
-  static email(c: FormControl): ValidationErrors | null {
+  static email(c: UntypedFormControl): ValidationErrors | null {
     const EMAIL_REGEXP = /[^@]*@[^.]*\..*/;
 
     return EMAIL_REGEXP.test(c.value) ? null : {
@@ -85,7 +85,7 @@ export class CPUValidators {
         amexcard: /3[47][0-9]{13}/,
         mastercard: /(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))/,
         visacard: /4[0-9]{12}(?:[0-9]{3})?/,
-        visamastercard: /(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})/,
+        // visamastercard: /(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})/,
         dinersclubcard: /3(?:0[0-5]|[68][0-9])[0-9]{11}/
       };
       if (reglist[key]) {
@@ -100,7 +100,7 @@ export class CPUValidators {
       return ret;
     }
 
-    return (c: FormControl): ValidationErrors | null => {
+    return (c: UntypedFormControl): ValidationErrors | null => {
       const ret = checkRegExp(type, c.value);
       return ret ? null : {
         creditcard: {

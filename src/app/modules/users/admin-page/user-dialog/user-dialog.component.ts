@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {DialogResultButton} from '@/_models/dialog-data';
 import {SessionService} from '@/_services/session.service';
@@ -14,13 +14,13 @@ import {PermissionInfos} from '@/_models/user-data';
     './user-dialog.component.scss']
 })
 export class UserDialogComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   permissionList: any;
   data: { [k: string]: any };
 
   permissions = new PermissionInfos();
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
               public dialogRef: MatDialogRef<DialogComponent>,
               @Inject(MAT_DIALOG_DATA)
               public user: AdminUserData,
