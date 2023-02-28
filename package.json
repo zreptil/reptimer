@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "prebuild": "node tools/version.js",
-    "start": "npm run prebuild && ng serve --port 4201",
+    "start": "npm run prebuild && ng serve --port 4201 --open",
     "build": "ng build",
     "deployment": "npm run prebuild && ng build --prod",
     "test": "ng test",
