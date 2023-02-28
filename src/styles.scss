@@ -1,13 +1,14 @@
 // import our custom theme
+@use '~@angular/material' as mat;
 @import './styles/theme.scss';
 
 // always include only once per project
-@include mat-core();
+@include mat.core();
 
 // specify theme class eg: <body class="my-theme"> ... </body>
 .cpu-theme {
   // use our theme with angular-material-theme mixin
-  @include angular-material-theme($cpu-theme);
+  @include mat.all-component-themes($cpu-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */
