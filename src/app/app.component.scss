@@ -59,6 +59,12 @@ mat-toolbar {
     line-height: 1em;
     margin: 0;
   }
+
+  div[row] {
+    display: flex;
+    flex-flow: row;
+    gap: 0.1em;
+  }
 }
 
 .loggedin {

@@ -137,7 +137,11 @@ export class SessionService {
   }
 
   public get mayDebug(): boolean {
-    return this.session.cfg.isDebug && (this.session.user?.may.debug || false);
+    return this.session.user?.may.debug ?? false;
+  }
+
+  public get isDebug(): boolean {
+    return this.session.cfg.isDebug && (this.session.user?.may.debug ?? false);
   }
 
   addMonth(diff: number): void {
@@ -148,7 +152,7 @@ export class SessionService {
     if (dayIdx >= 0) {
       this.session.dayIdx = dayIdx;
     } else if (date.getFullYear() !== this.session.cfg.year) {
-      this.loadYear(date).subscribe(year => {
+      this.loadYear(date).subscribe(_year => {
         /*
         dayIdx = this.calendar.days.findIndex(entry => {
                 return entry.day === date.getDate() && entry.month - 1 === date.getMonth() && entry.year === date.getFullYear();
@@ -161,7 +165,7 @@ export class SessionService {
     }
   }
 
-  public initDBData(data: BaseDBData): void {
+  public initDBData(_data: BaseDBData): void {
   }
 
   fireEditChange(): void {
@@ -215,7 +219,7 @@ export class SessionService {
           let year = YearData.factory();
           year.year = date.getFullYear();
           year.fillHolidays();
-          if (src !== '') {
+          if (src.days?.length > 0) {
             year = this.session.CEM.classify(src);
           }
           const session = new SessionData();
@@ -245,7 +249,7 @@ export class SessionService {
       this.saveSession();
     } else {
       const date = new Date(this.session.cfg.year, 0, this.session.dayIdx);
-      this.loadYear(date).subscribe(year => {
+      this.loadYear(date).subscribe(_year => {
         this.session.selectDate(new Date());
       });
     }
@@ -378,7 +382,7 @@ export class SessionService {
         dlgRef.close({btn: DialogResultButton.abort});
       }
     });
-    dlgRef.backdropClick().subscribe(event => {
+    dlgRef.backdropClick().subscribe(_event => {
       dlgRef.close({btn: DialogResultButton.abort});
     });
     return dlgRef.afterClosed();
@@ -393,6 +397,6 @@ export class SessionService {
       : 'de';
   }
 
-  onOutletAction($event: any): any {
+  onOutletAction(_$event: any): any {
   }
 }

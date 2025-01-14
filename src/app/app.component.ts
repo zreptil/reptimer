@@ -24,7 +24,7 @@ export class AppComponent {
               private router: Router) {
     ds.get(CEM.User, 'userinfo').subscribe((data: UserData) => {
       ss.setUser(data);
-    }, err => {
+    }, _err => {
       this.ss.confirm($localize`Beim Zugriff auf den Server ist ein Fehler aufgetreten.
 Das liegt vermutlich daran, dass das Zertifikat des Servers nicht käuflich erworben wurde.
 Wenn Du die Speicherung der Daten auf dem Server zur Verfügung haben möchtest, dann
@@ -45,7 +45,7 @@ Berechtigung erteilen kannst?`).subscribe(result => {
         if (!event.shouldActivate) {
           return;
         }
-        const url = event.urlAfterRedirects.replace(/\//, '');
+        // const url = event.urlAfterRedirects.replace(/\//, '');
         // Since it is not really possible to get information about the
         // current route beyond the url, we have to implement a somewhat
         // hacky solution to access the private member _loadedConfig.
@@ -104,6 +104,11 @@ Berechtigung erteilen kannst?`).subscribe(result => {
     return ret;
   }
 
+  debugClick(): void {
+    this.ss.session.cfg.isDebug = !this.ss.session.cfg.isDebug;
+    this.ss.saveSession();
+  }
+
   accountClick(): void {
     if (this.ss.session.user.isAuthorized) {
       const btnList = new Array<IDialogButton>(
@@ -133,7 +138,7 @@ Berechtigung erteilen kannst?`).subscribe(result => {
       return;
     }
     const dialogRef = this.dialog.open(LoginDialogComponent).afterClosed();
-    dialogRef.subscribe(result => {
+    dialogRef.subscribe(_result => {
     });
   }
 }

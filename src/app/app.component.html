@@ -1,29 +1,36 @@
 <mat-toolbar>
   <div class="title">
-    <button mat-flat-button  [routerLink]="logoLink">
-      <img src="assets/png/logo.png">
+    <button [routerLink]="logoLink" mat-flat-button>
+      <img alt="Logo" src="assets/png/logo.png">
     </button>
     <div>
-      {{ss.titleInfo}}
-      <pre class="versioninfo">{{ss.env.buildInfo}}</pre>
+      {{ ss.titleInfo }}
+      <pre class="versioninfo">{{ ss.env.buildInfo }}</pre>
     </div>
   </div>
   <div>
-    {{ss.titleToolbar}}
+    {{ ss.titleToolbar }}
   </div>
-  <div class="debug-outer" *ngIf="ss.mayDebug">
-    <a mat-button class="debug" href="{{ss.env.dbAdminUrl}}" target="_blank" i18n>DB Admin</a>
+  <div *ngIf="ss.isDebug" class="debug-outer">
+    <a class="debug" href="{{ss.env.dbAdminUrl}}" i18n mat-button target="_blank">DB Admin</a>
     <div class="debug">
       <ng-container *ngFor="let perm of permissionList">
-        <mat-icon *ngIf="perm.may">{{perm.icon}}</mat-icon>
+        <mat-icon *ngIf="perm.may">{{ perm.icon }}</mat-icon>
       </ng-container>
     </div>
   </div>
-  <button mat-flat-button logo (click)="accountClick()">
-    <mat-icon [class]="ss.session.user?.isAuthorized||false?'loggedin':'loggedout'">
-      {{ss.session.user?.isAuthorized ? 'how_to_reg' : 'login'}}
-    </mat-icon>
-  </button>
+  <div row>
+    <button (click)="debugClick()" *ngIf="ss.mayDebug" logo mat-flat-button>
+      <mat-icon>
+        {{ ss.isDebug ? 'pest_control' : 'bug_report' }}
+      </mat-icon>
+    </button>
+    <button (click)="accountClick()" logo mat-flat-button>
+      <mat-icon [class]="ss.session.user?.isAuthorized||false?'loggedin':'loggedout'">
+        {{ ss.session.user?.isAuthorized ? 'how_to_reg' : 'login' }}
+      </mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
 <div class="content">
   <router-outlet></router-outlet>
