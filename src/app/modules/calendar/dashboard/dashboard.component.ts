@@ -12,7 +12,8 @@ import {ProjectData} from '@/_models/project-data';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.css'],
+  standalone: false
 })
 export class DashboardComponent {
 
@@ -154,7 +155,7 @@ export class DashboardComponent {
   }
 
   weekClass(day: DayData): string[] {
-    const ret = ['t' + day.type];
+    const ret = ['t' + day.type, 'time1'];
     if (this.ss.session.day.dayOfWeek === day.dayOfWeek) {
       ret.push('active');
     }
@@ -228,3 +229,4 @@ export class DashboardComponent {
     };
   }
 }
+

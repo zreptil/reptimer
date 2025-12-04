@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-month',
-  templateUrl: './month.component.html',
-  styleUrls: ['./month.component.scss']
+    selector: 'app-month',
+    templateUrl: './month.component.html',
+    styleUrls: ['./month.component.css'],
+    standalone: false
 })
 export class MonthComponent extends BaseControl implements OnInit, IComponentData {
 
@@ -40,3 +41,4 @@ export class MonthComponent extends BaseControl implements OnInit, IComponentDat
   }
 
 }
+

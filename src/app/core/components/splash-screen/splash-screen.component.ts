@@ -7,9 +7,10 @@ import {YearData} from '@/_models/year-data';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-splash-screen',
-  templateUrl: './splash-screen.component.html',
-  styleUrls: ['./splash-screen.component.scss']
+    selector: 'app-splash-screen',
+    templateUrl: './splash-screen.component.html',
+    styleUrls: ['./splash-screen.component.css'],
+    standalone: false
 })
 export class SplashScreenComponent extends AppBaseComponent {
   controls: ControlObject = {};
@@ -27,3 +28,4 @@ export class SplashScreenComponent extends AppBaseComponent {
     return false;
   }
 }
+

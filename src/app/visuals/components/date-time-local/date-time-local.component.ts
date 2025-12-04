@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-date-time-local',
-  templateUrl: './date-time-local.component.html',
-  styleUrls: ['./date-time-local.component.scss']
+    selector: 'app-date-time-local',
+    templateUrl: './date-time-local.component.html',
+    styleUrls: ['./date-time-local.component.css'],
+    standalone: false
 })
 export class DateTimeLocalComponent extends BaseControl implements OnInit, IComponentData {
   @Input() outerWidth: number;
@@ -36,3 +37,4 @@ export class DateTimeLocalComponent extends BaseControl implements OnInit, IComp
   ngOnInit(): void {
   }
 }
+

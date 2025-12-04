@@ -7,7 +7,10 @@ import {ControlObject, CPUFormGroup, FormConfig, IBaseComponent} from '@/core/cl
 /**
  * Basisklasse für die Komponenten, die den ComponentService verwenden sollen.
  */
-@Component({template: ''})
+@Component({
+    template: '',
+    standalone: false
+})
 export abstract class AppBaseComponent implements IBaseComponent, OnInit {
 
   @ViewChild('formDirective') formDirective;

@@ -9,10 +9,11 @@ import {CEM} from '@/_models/cem';
 import {Md5} from 'ts-md5';
 
 @Component({
-  selector: 'app-login-dialog',
-  templateUrl: './login-dialog.component.html',
-  styleUrls: ['../../../core/components/dialog/dialog.component.scss',
-    './login-dialog.component.scss']
+    selector: 'app-login-dialog',
+    templateUrl: './login-dialog.component.html',
+    styleUrls: ['../../../core/components/dialog/dialog.component.css',
+        './login-dialog.component.css'],
+    standalone: false
 })
 export class LoginDialogComponent implements OnInit {
   public loginForm: UntypedFormGroup;
@@ -120,3 +121,4 @@ export class LoginDialogComponent implements OnInit {
     }
   }
 }
+

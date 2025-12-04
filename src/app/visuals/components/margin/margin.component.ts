@@ -7,9 +7,10 @@ export enum MarginSizes {
 }
 
 @Component({
-  selector: 'app-margin',
-  templateUrl: './margin.component.html',
-  styleUrls: ['./margin.component.scss']
+    selector: 'app-margin',
+    templateUrl: './margin.component.html',
+    styleUrls: ['./margin.component.css'],
+    standalone: false
 })
 export class MarginComponent implements OnInit {
 
@@ -30,3 +31,4 @@ export class MarginComponent implements OnInit {
   }
 
 }
+

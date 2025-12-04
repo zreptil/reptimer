@@ -1,0 +1,79 @@
+:host {
+  display: flex;
+  flex-flow: row;
+}
+
+.year {
+  _width: calc(7 * 9 * var(--calSize));
+  height: calc(45 * var(--calSize));
+}
+
+mat-card {
+  max-width: fit-content;
+  width: fit-content;
+  margin: 1em;
+
+  mat-card-title {
+    display: flex;
+    width: 100%;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  mat-card-content {
+    display: flex;
+    flex-flow: column;
+
+    .week {
+      display: flex;
+      flex-flow: row;
+
+      .num {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: calc(4 * var(--calSize));
+      }
+
+      .day {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0.5em;
+        margin: 1px;
+      }
+    }
+  }
+}
+
+
+.month {
+  display: flex;
+  flex-flow: column;
+  border: 2px solid black;
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+  }
+
+}
+
+button[navigation] {
+  height: 100%;
+
+  mat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em;
+    width: 1em;
+    height: 1em;
+  }
+}

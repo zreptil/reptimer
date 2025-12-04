@@ -1,10 +1,18 @@
-<div [class]="dayClass(day)" *ngIf="day.isValid" (click)="clickEvent.emit(day)">
-  <div class="number">
-    <div *ngIf="day.times?.length>0" [class]="classForStartBracket">[</div>
-    <div>{{day.display}}</div>
-    <div *ngIf="day.times != null && day.times[day.times.length-1]?.end != null" class="end">]</div>
+@if (day.isValid) {
+  <div [class]="dayClass(day)" (click)="clickEvent.emit(day)">
+    <div class="number">
+      @if (day.times?.length>0) {
+        <div [class]="classForStartBracket">[</div>
+      }
+      <div>{{day.display}}</div>
+      @if (day.times != null && day.times[day.times.length-1]?.end != null) {
+        <div class="end">]</div>
+      }
+    </div>
+    <div class="info" [innerHTML]="day.info"></div>
   </div>
-  <div class="info" [innerHTML]="day.info"></div>
-</div>
-<div class="empty" *ngIf="!day.isValid">
-</div>
+}
+@if (!day.isValid) {
+  <div class="empty">
+  </div>
+}

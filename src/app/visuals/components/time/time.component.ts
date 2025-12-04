@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-time',
-  templateUrl: './time.component.html',
-  styleUrls: ['./time.component.scss']
+    selector: 'app-time',
+    templateUrl: './time.component.html',
+    styleUrls: ['./time.component.css'],
+    standalone: false
 })
 export class TimeComponent extends BaseControl implements OnInit, IComponentData {
 
@@ -38,3 +39,4 @@ export class TimeComponent extends BaseControl implements OnInit, IComponentData
   }
 
 }
+

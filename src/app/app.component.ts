@@ -12,7 +12,8 @@ import {EnvironmentService} from '@/_services/environment.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css'],
+  standalone: false
 })
 export class AppComponent {
   title = 'reptimer';
@@ -117,7 +118,7 @@ Berechtigung erteilen kannst?`).subscribe(result => {
       );
       let title = $localize`Willst Du Dich abmelden?`;
       if (this.ss.session.user.may.admin) {
-        btnList.splice(0, 0, {title: $localize`Admin`, result: {btn: -1, data: 'admin'}});
+        btnList.splice(0, 0, {title: $localize`Admin`, result: {btn: DialogResultButton.none, data: 'admin'}});
         title += $localize` Du kannst auch die Administration aufrufen.`;
       }
       this.ss.showDialog({title: $localize`Bestätigung`, buttons: btnList}, title).subscribe(result => {
@@ -142,3 +143,4 @@ Berechtigung erteilen kannst?`).subscribe(result => {
     });
   }
 }
+

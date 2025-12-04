@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-telephone',
-  templateUrl: './telephone.component.html',
-  styleUrls: ['./telephone.component.scss']
+    selector: 'app-telephone',
+    templateUrl: './telephone.component.html',
+    styleUrls: ['./telephone.component.css'],
+    standalone: false
 })
 export class TelephoneComponent extends BaseControl implements OnInit, IComponentData {
 
@@ -38,3 +39,4 @@ export class TelephoneComponent extends BaseControl implements OnInit, IComponen
   }
 
 }
+

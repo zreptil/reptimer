@@ -1,27 +1,37 @@
-<div mat-dialog-title class="type{{data?.type}}">{{data.title}}</div>
+<div class="type{{data?.type}}" mat-dialog-title>{{ data.title }}</div>
 <div mat-dialog-content>
-  <div *ngFor="let text of data.display">{{text}}</div>
-  <ng-container *ngFor="let ctrl of data.controlList; let idx = index">
-    <app-select-group *ngIf="ctrl.type === 'selectgroup'"
-                      [formName]="ctrl.key"
-                      [formGroup]="form"
-                      innerWidth="2"
-                      outerWidth="2"></app-select-group>
-    <app-radio-group *ngIf="ctrl.type === 'radiogroup'"
-                      [formName]="ctrl.key"
-                      [formGroup]="form"
-                      innerWidth="2"
-                      outerWidth="2"></app-radio-group>
-  </ng-container>
+  @for (text of data.display; track $index) {
+    <div>{{ text }}</div>
+  }
+  @for (ctrl of data.controlList; track $index; let idx = $index) {
+    @if (ctrl.type === 'selectgroup') {
+      <app-select-group
+        [formGroup]="form"
+        [formName]="ctrl.key"
+        [innerWidth]="2"
+        [outerWidth]="2"></app-select-group>
+    }
+    @if (ctrl.type === 'radiogroup') {
+      <app-radio-group
+        [formGroup]="form"
+        [formName]="ctrl.key"
+        [innerWidth]="2"
+        [outerWidth]="2"></app-radio-group>
+    }
+  }
 </div>
-<div mat-dialog-actions class="type{{data?.type}}">
-  <ng-container *ngFor="let btn of data.buttons; let idx = index">
-    <button *ngIf="btn.focus" mat-button (click)="closeDialog(btn)" cdkFocusInitial>
-      {{btn.title}}
-    </button>
-    <button *ngIf="!btn.focus" mat-button (click)="closeDialog(btn)">
-      {{btn.title}}
-    </button>
-  </ng-container>
+<div class="type{{data?.type}}" mat-dialog-actions>
+  @for (btn of data.buttons; track $index; let idx = $index) {
+    @if (btn.focus) {
+      <button (click)="closeDialog(btn)" cdkFocusInitial mat-button>
+        {{ btn.title }}
+      </button>
+    }
+    @if (!btn.focus) {
+      <button (click)="closeDialog(btn)" mat-button>
+        {{ btn.title }}
+      </button>
+    }
+  }
 </div>
 

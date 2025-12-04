@@ -1,24 +1,26 @@
 <ng-template #cpuInput>
   <mat-card>
-    <mat-card-title *ngIf="formData.label?.length>0">{{formData.label}} {{formData.isRequired ? '*' : ''}}</mat-card-title>
+    @if (formData.label?.length > 0) {
+      <mat-card-title>{{ formData.label }} {{ formData.isRequired ? '*' : '' }}</mat-card-title>
+    }
     <mat-card-content>
       <mat-radio-group
-        [attr.name]="groupName()"
         [attr.aria-label]="formData.label"
+        [attr.name]="groupName()"
         [formControl]="formGroup.controls[formName]"
         [required]="formData.isRequired">
-        <ng-container *ngFor="let item of formData.items">
+        @for (item of formData.items; track $index) {
           <mat-radio-button [checked]="item.checked"
-                            [value]="item.value"
+                            [class]="item.invalid?'invalid':''"
                             [disabled]="item.disabled"
-                            [class]="item.invalid?'invalid':''">
-            {{item.label}}
+                            [value]="item.value">
+            {{ item.label }}
           </mat-radio-button>
-        </ng-container>
+        }
       </mat-radio-group>
     </mat-card-content>
-    <app-error [formName]="formName" [formGroup]="formGroup"></app-error>
+    <app-error [formGroup]="formGroup" [formName]="formName"></app-error>
   </mat-card>
 </ng-template>
 
-<app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>
+<app-base [childContext]="ctx" [componentsTemplate]="cpuInput"></app-base>

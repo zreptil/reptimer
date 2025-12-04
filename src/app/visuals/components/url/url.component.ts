@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-url',
-  templateUrl: './url.component.html',
-  styleUrls: ['./url.component.scss']
+    selector: 'app-url',
+    templateUrl: './url.component.html',
+    styleUrls: ['./url.component.css'],
+    standalone: false
 })
 export class UrlComponent extends BaseControl implements OnInit, IComponentData {
 
@@ -39,3 +40,4 @@ export class UrlComponent extends BaseControl implements OnInit, IComponentData 
   }
 
 }
+

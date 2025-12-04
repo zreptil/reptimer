@@ -9,7 +9,8 @@ import {Observable, of} from 'rxjs';
   // tslint:disable-next-line:component-selector
   selector: 'cal-month',
   templateUrl: './month.component.html',
-  styleUrls: ['./month.component.scss']
+  styleUrls: ['./month.component.css'],
+  standalone: false
 })
 export class MonthComponent {
   days: DayData[];
@@ -124,3 +125,4 @@ export class MonthComponent {
     this.fillData();
   }
 }
+

@@ -1,27 +1,34 @@
 <ng-template #cpuInput>
   <mat-card>
-    <mat-card-title *ngIf="formData.label?.length>0">{{formData.label}} {{formData.isRequired ? '*' : ''}}</mat-card-title>
+    @if (formData.label?.length > 0) {
+      <mat-card-title>{{ formData.label }} {{ formData.isRequired ? '*' : '' }}</mat-card-title>
+    }
     <mat-card-content>
-        <mat-selection-list
-          [attr.aria-label]="formData.label"
-          [formControl]="formGroup.controls[formName]"
-          [required]="formData.isRequired">
-          <ng-container *ngFor="let item of items">
+      <mat-selection-list
+        [attr.aria-label]="formData.label"
+        [formControl]="formGroup.controls[formName]"
+        [required]="formData.isRequired">
+        @for (item of items; track $index) {
+          @if (item.value != '-') {
             <mat-list-option
-              *ngIf="item.value!='-'"
-              checkboxPosition="before"
-              [value]="item.value"
               [class]="item.invalid?'invalid':''"
-              [selected]="item.checked">{{item.label}}</mat-list-option>
-            <mat-option *ngIf="item.value=='-'" disabled>
-              <ng-container *ngIf="item.label!=null">{{item.label}}</ng-container>
+              [selected]="item.checked"
+              [value]="item.value"
+              checkboxPosition="before">{{ item.label }}
+            </mat-list-option>
+          } @if (item.value == '-') {
+            <mat-option disabled>
+              @if (item.label != null) {
+                {{ item.label }}
+              }
               <mat-divider [inset]="false"></mat-divider>
             </mat-option>
-          </ng-container>
-        </mat-selection-list>
+          }
+        }
+      </mat-selection-list>
     </mat-card-content>
-    <app-error [formName]="formName" [formGroup]="formGroup"></app-error>
+    <app-error [formGroup]="formGroup" [formName]="formName"></app-error>
   </mat-card>
 </ng-template>
 
-<app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>
+<app-base [childContext]="ctx" [componentsTemplate]="cpuInput"></app-base>

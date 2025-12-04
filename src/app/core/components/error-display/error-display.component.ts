@@ -3,9 +3,10 @@ import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom
 import {ErrorService} from '@/_services/error.service';
 
 @Component({
-  selector: 'app-error-display',
-  templateUrl: './error-display.component.html',
-  styleUrls: ['./error-display.component.scss']
+    selector: 'app-error-display',
+    templateUrl: './error-display.component.html',
+    styleUrls: ['./error-display.component.css'],
+    standalone: false
 })
 export class ErrorDisplayComponent implements OnInit {
 
@@ -24,3 +25,4 @@ export class ErrorDisplayComponent implements OnInit {
     this.bottomSheetRef.dismiss();
   }
 }
+

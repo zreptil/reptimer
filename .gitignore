@@ -50,3 +50,4 @@ Thumbs.db
 
 /tools/dev-localizer.js
 /src/_php/apps/reptimer/config.php
+/package-lock.json

@@ -8,9 +8,10 @@ import {ISelectItem} from '@/visuals/model/iselectitem';
 import {map, startWith} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-autocomplete',
-  templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.scss'],
+    selector: 'app-autocomplete',
+    templateUrl: './autocomplete.component.html',
+    styleUrls: ['./autocomplete.component.css'],
+    standalone: false
 })
 export class AutocompleteComponent extends BaseControl implements OnInit, IComponentData {
 
@@ -78,3 +79,4 @@ export class AutocompleteComponent extends BaseControl implements OnInit, ICompo
     return this.items.filter(option => option.label.toLowerCase().indexOf(filterValue) === 0);
   }
 }
+

@@ -1,6 +1,7 @@
 import {ControlObject, IFormControl} from '@/core/classes/ibase-component';
 
 export enum DialogResultButton {
+  none = -1,
   ok,
   cancel,
   yes,

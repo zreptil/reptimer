@@ -1,9 +1,21 @@
 <div class="outer--divider">
-  <h1 *ngIf="level==1">{{formData.label}}</h1>
-  <h2 *ngIf="level==2">{{formData.label}}</h2>
-  <h3 *ngIf="level==3">{{formData.label}}</h3>
-  <h4 *ngIf="level==4">{{formData.label}}</h4>
-  <h5 *ngIf="level==5">{{formData.label}}</h5>
-  <h6 *ngIf="level==6">{{formData.label}}</h6>
+  @if (level==1) {
+    <h1>{{formData.label}}</h1>
+  }
+  @if (level==2) {
+    <h2>{{formData.label}}</h2>
+  }
+  @if (level==3) {
+    <h3>{{formData.label}}</h3>
+  }
+  @if (level==4) {
+    <h4>{{formData.label}}</h4>
+  }
+  @if (level==5) {
+    <h5>{{formData.label}}</h5>
+  }
+  @if (level==6) {
+    <h6>{{formData.label}}</h6>
+  }
   <mat-divider [inset]="false"></mat-divider>
 </div>

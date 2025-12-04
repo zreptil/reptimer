@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-email',
-  templateUrl: './email.component.html',
-  styleUrls: ['./email.component.scss']
+    selector: 'app-email',
+    templateUrl: './email.component.html',
+    styleUrls: ['./email.component.css'],
+    standalone: false
 })
 export class EmailComponent extends BaseControl implements OnInit, IComponentData {
   @Input() outerWidth: number;
@@ -37,3 +38,4 @@ export class EmailComponent extends BaseControl implements OnInit, IComponentDat
   }
 
 }
+

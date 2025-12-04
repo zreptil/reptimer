@@ -6,9 +6,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-color',
-  templateUrl: './color.component.html',
-  styleUrls: ['./color.component.scss']
+    selector: 'app-color',
+    templateUrl: './color.component.html',
+    styleUrls: ['./color.component.css'],
+    standalone: false
 })
 export class ColorComponent extends BaseControl implements OnInit, IComponentData {
   @Input() outerWidth: number;
@@ -38,3 +39,4 @@ export class ColorComponent extends BaseControl implements OnInit, IComponentDat
   }
 
 }
+

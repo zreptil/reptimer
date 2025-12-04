@@ -7,10 +7,11 @@ import {AppBaseComponent} from '@/core/classes/app-base-component';
 import {ProjectData} from '@/_models/project-data';
 
 @Component({
-  selector: 'app-project-dialog',
-  templateUrl: './project-dialog.component.html',
-  styleUrls: ['../../../core/components/dialog/dialog.component.scss',
-    './project-dialog.component.scss']
+    selector: 'app-project-dialog',
+    templateUrl: './project-dialog.component.html',
+    styleUrls: ['../../../core/components/dialog/dialog.component.css',
+        './project-dialog.component.css'],
+    standalone: false
 })
 export class ProjectDialogComponent extends AppBaseComponent implements OnInit {
   txtError: string;
@@ -99,3 +100,4 @@ export class ProjectDialogComponent extends AppBaseComponent implements OnInit {
     return true;
   }
 }
+

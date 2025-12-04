@@ -1,0 +1,124 @@
+:host {
+  --daySize: calc(var(--size) * 0.6);
+}
+
+.day, .empty {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1em;
+  width: var(--daySize);
+  height: var(--daySize);
+  padding: 0.2em;
+  margin: 1px;
+  border-radius: 1em;
+}
+
+.day {
+  cursor: pointer;
+  position: relative;
+
+  .number, .info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+  }
+
+  .number {
+    font-size: 100%;
+    font-weight: bold;
+
+    .noend {
+      color: #f00;
+    }
+
+    .start {
+      padding-right: 0.3em;
+    }
+
+    .end {
+      padding-left: 0.3em;
+    }
+  }
+
+  .info {
+    font-size: 0.5em;
+    display: none;
+    text-align: center;
+    color: black;
+  }
+}
+
+.day:hover {
+  opacity: 1;
+  background: var(--colCursor);
+}
+
+.day.info:hover .info {
+  display: flex;
+}
+
+.day.info:hover .number {
+  display: none;
+}
+
+.t1 {
+  background: var(--colUrlaub);
+}
+
+.t2 {
+  background: var(--colUrlaubHalb);
+}
+
+.t3 {
+  background: var(--colTeilzeitFrei);
+}
+
+.t4 {
+  background: var(--colFeiertag);
+}
+
+.t5 {
+  background: var(--colKrank);
+}
+
+.t6 {
+  background: var(--colInfo);
+}
+
+.w6 {
+  color: red;
+}
+
+.w6.t4 {
+  background: transparent;
+  border: 1px solid red;
+}
+
+.today {
+  box-shadow: 0 0 0 5px var(--colToday);
+}
+
+.active {
+  border: 3px solid rgba(127, 127, 0, 0.7) !important;
+  background: rgba(255, 255, 0, 0.5);
+  border-radius: 50%;
+
+  div {
+    font-size: 90%;
+  }
+}
+
+.today, .active {
+  z-index: 1;
+}
+
+.hastimes {
+}

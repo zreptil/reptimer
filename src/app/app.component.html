@@ -11,20 +11,26 @@
   <div>
     {{ ss.titleToolbar }}
   </div>
-  <div *ngIf="ss.isDebug" class="debug-outer">
-    <a class="debug" href="{{ss.env.dbAdminUrl}}" i18n mat-button target="_blank">DB Admin</a>
-    <div class="debug">
-      <ng-container *ngFor="let perm of permissionList">
-        <mat-icon *ngIf="perm.may">{{ perm.icon }}</mat-icon>
-      </ng-container>
+  @if (ss.isDebug) {
+    <div class="debug-outer">
+      <a class="debug" href="{{ss.env.dbAdminUrl}}" i18n mat-button target="_blank">DB Admin</a>
+      <div class="debug">
+        @for (perm of permissionList; track perm) {
+          @if (perm.may) {
+            <mat-icon>{{ perm.icon }}</mat-icon>
+          }
+        }
+      </div>
     </div>
-  </div>
+  }
   <div row>
-    <button (click)="debugClick()" *ngIf="ss.mayDebug" logo mat-flat-button>
-      <mat-icon>
-        {{ ss.isDebug ? 'pest_control' : 'bug_report' }}
-      </mat-icon>
-    </button>
+    @if (ss.mayDebug) {
+      <button (click)="debugClick()" logo mat-flat-button>
+        <mat-icon>
+          {{ ss.isDebug ? 'pest_control' : 'bug_report' }}
+        </mat-icon>
+      </button>
+    }
     <button (click)="accountClick()" logo mat-flat-button>
       <mat-icon [class]="ss.session.user?.isAuthorized||false?'loggedin':'loggedout'">
         {{ ss.session.user?.isAuthorized ? 'how_to_reg' : 'login' }}

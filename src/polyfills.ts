@@ -2,7 +2,12 @@
  * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
  */
 import '@angular/localize/init';
-import * as messages from 'src/locale/messages.json';
+import * as messages from 'src/assets/messages.json';
+/***************************************************************************************************
+ * Zone JS is required by default for Angular itself.
+ */
+import 'zone.js';
+import {loadTranslations} from '@angular/localize'; // Included with Angular CLI.
 
 const check = localStorage.getItem('language') || 'de-DE';
 let lng = (messages as any).default.find((lang) => lang.id === check);
@@ -53,13 +58,6 @@ loadTranslations(lng.data);
  *  (window as any).__Zone_enable_cross_context_check = true;
  *
  */
-
-/***************************************************************************************************
- * Zone JS is required by default for Angular itself.
- */
-import 'zone.js';
-import {loadTranslations} from '@angular/localize';  // Included with Angular CLI.
-
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

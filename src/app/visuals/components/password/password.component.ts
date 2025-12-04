@@ -5,9 +5,10 @@ import {CPUFormGroup} from '@/core/classes/ibase-component';
 import {BaseControl} from '@/visuals/classes/base-control';
 
 @Component({
-  selector: 'app-password',
-  templateUrl: './password.component.html',
-  styleUrls: ['./password.component.scss']
+    selector: 'app-password',
+    templateUrl: './password.component.html',
+    styleUrls: ['./password.component.css'],
+    standalone: false
 })
 export class PasswordComponent extends BaseControl implements OnInit, IComponentData {
 
@@ -38,3 +39,4 @@ export class PasswordComponent extends BaseControl implements OnInit, IComponent
   }
 
 }
+

@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-week',
-  templateUrl: './week.component.html',
-  styleUrls: ['./week.component.scss']
+    selector: 'app-week',
+    templateUrl: './week.component.html',
+    styleUrls: ['./week.component.css'],
+    standalone: false
 })
 export class WeekComponent extends BaseControl implements OnInit, IComponentData {
 
@@ -38,3 +39,4 @@ export class WeekComponent extends BaseControl implements OnInit, IComponentData
   }
 
 }
+

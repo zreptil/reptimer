@@ -10,9 +10,10 @@ import {CPUInvalidAndFocusSetter} from '@/visuals/classes/cpuinvalid-and-focus-s
 
 
 @Component({
-  selector: 'app-select-group',
-  templateUrl: './select-group.component.html',
-  styleUrls: ['./select-group.component.scss']
+    selector: 'app-select-group',
+    templateUrl: './select-group.component.html',
+    styleUrls: ['./select-group.component.css'],
+    standalone: false
 })
 export class SelectGroupComponent extends BaseControl implements OnInit, AfterViewInit, IComponentData {
   @Input() outerWidth: number;
@@ -86,3 +87,4 @@ export class SelectGroupComponent extends BaseControl implements OnInit, AfterVi
   }
 
 }
+

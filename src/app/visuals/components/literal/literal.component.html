@@ -1,6 +1,10 @@
 <ng-template #cpuInput >
-  <p *ngIf="value !== null && value !== undefined">{{value}}</p>
-  <p *ngIf="value === null || value === undefined">{{formGroup.controls[formName].value}}</p>
+  @if (value !== null && value !== undefined) {
+    <p>{{value}}</p>
+  }
+  @if (value === null || value === undefined) {
+    <p>{{formGroup.controls[formName].value}}</p>
+  }
 </ng-template>
 
 <app-base [componentsTemplate]="cpuInput" [childContext]="ctx" ></app-base>

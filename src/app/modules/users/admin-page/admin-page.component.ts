@@ -8,9 +8,10 @@ import {CEM} from '@/_models/cem';
 import {UserDialogComponent} from '@/modules/users/admin-page/user-dialog/user-dialog.component';
 
 @Component({
-  selector: 'app-admin-page',
-  templateUrl: './admin-page.component.html',
-  styleUrls: ['./admin-page.component.scss']
+    selector: 'app-admin-page',
+    templateUrl: './admin-page.component.html',
+    styleUrls: ['./admin-page.component.css'],
+    standalone: false
 })
 export class AdminPageComponent implements OnInit {
   public userList: Array<AdminUserData>;
@@ -73,3 +74,4 @@ export class AdminPageComponent implements OnInit {
     });
   }
 }
+

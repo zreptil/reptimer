@@ -134,9 +134,10 @@ import {ITableDescription} from '@/visuals/components/table/itable-description';
 
  */
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+    selector: 'app-table',
+    templateUrl: './table.component.html',
+    styleUrls: ['./table.component.css'],
+    standalone: false
 })
 export class TableComponent implements OnInit, IComponentData, AfterViewInit {
 
@@ -328,3 +329,4 @@ export class TableComponent implements OnInit, IComponentData, AfterViewInit {
   }
 
 }
+

@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-textarea',
-  templateUrl: './textarea.component.html',
-  styleUrls: ['./textarea.component.scss']
+    selector: 'app-textarea',
+    templateUrl: './textarea.component.html',
+    styleUrls: ['./textarea.component.css'],
+    standalone: false
 })
 export class TextareaComponent extends BaseControl implements OnInit, IComponentData {
   @Input() outerWidth: number;
@@ -38,3 +39,4 @@ export class TextareaComponent extends BaseControl implements OnInit, IComponent
   ngOnInit(): void {
   }
 }
+

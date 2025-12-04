@@ -1,4 +1,4 @@
-<ng-container *ngIf="type=='login'">
+@if (type=='login') {
   <div mat-dialog-title i18n>Anmeldung</div>
   <div mat-dialog-content>
     <form [formGroup]="loginForm" #formDirective="ngForm">
@@ -9,16 +9,18 @@
         <app-newline></app-newline>
         <app-input-text i18n-label label="Two Factor Code" formName="tfacode" [formGroup]="loginForm"></app-input-text>
       </div>
-      <mat-error *ngIf="txtError!=null">{{txtError}}</mat-error>
+      @if (txtError!=null) {
+        <mat-error>{{txtError}}</mat-error>
+      }
     </form>
   </div>
   <div mat-dialog-actions>
     <button mat-raised-button (click)="loginClick()" i18n>Anmelden</button>
     <button mat-button (click)="toggleTypeClick()" i18n>Ich habe noch keine Anmeldedaten</button>
   </div>
-</ng-container>
+}
 
-<ng-container *ngIf="type=='register'">
+@if (type=='register') {
   <div mat-dialog-title i18n>Registrierung</div>
   <form [formGroup]="registerForm" #formDirective="ngForm">
     <div class="content">
@@ -28,29 +30,41 @@
       <app-newline></app-newline>
       <app-password [innerWidth]="2" i18n-label label="Passwort" formName="password" [formGroup]="registerForm"></app-password>
     </div>
-    <mat-error *ngIf="!registerForm.pristine && registerForm.invalid">
-      <ul>
-        <li *ngIf="registerForm.get('username').value?.length < 4">Loginname ist zu kurz</li>
-        <li *ngIf="registerForm.get('password').value?.length < 4">Passwort ist zu kurz</li>
-      </ul>
-    </mat-error>
+    @if (!registerForm.pristine && registerForm.invalid) {
+      <mat-error>
+        <ul>
+          @if (registerForm.get('username').value?.length < 4) {
+            <li>Loginname ist zu kurz</li>
+          }
+          @if (registerForm.get('password').value?.length < 4) {
+            <li>Passwort ist zu kurz</li>
+          }
+        </ul>
+      </mat-error>
+    }
   </form>
   <div mat-dialog-actions>
     <button mat-raised-button (click)="registerClick()" i18n>Registrieren</button>
     <button mat-button (click)="toggleTypeClick()" i18n>Ich bin schon bekannt</button>
   </div>
-</ng-container>
+}
 
-<ng-container *ngIf="type=='qrcode'">
+@if (type=='qrcode') {
   <div mat-dialog-title i18n>Zwei Faktor Autorisierung</div>
   <form [formGroup]="tfaForm" #formDirective="ngForm">
-    <img *ngIf="tfaurl!=null" [src]="tfaurl" alt="2FA">
-    <mat-icon *ngIf="tfaurl==null">wait</mat-icon>
+    @if (tfaurl!=null) {
+      <img [src]="tfaurl" alt="2FA">
+    }
+    @if (tfaurl==null) {
+      <mat-icon>wait</mat-icon>
+    }
     <div lbl i18n>Bitte diesen Code mit einer TFA App einscannen, den Code, den die App generiert eingeben und mit dem Button bestätigen.</div>
     <app-input-text i18n-label label="Erzeugter Code" formName="tfacode" [formGroup]="tfaForm"></app-input-text>
-    <mat-error *ngIf="txtError!=null">{{txtError}}</mat-error>
+    @if (txtError!=null) {
+      <mat-error>{{txtError}}</mat-error>
+    }
   </form>
   <div mat-dialog-actions>
     <button mat-raised-button (click)="tfaClick()" i18n>Code bestätigen</button>
   </div>
-</ng-container>
+}

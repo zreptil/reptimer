@@ -3,7 +3,6 @@ import {InitElementService} from '@/visuals/services/init-element.service';
 import {IComponentData} from '@/visuals/model/icomponent-data';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 import {BaseControl} from '@/visuals/classes/base-control';
-import {MatSliderChange} from '@angular/material/slider';
 
 /**
  * CPU-eigenes Custom Form Control, der die Darstellung von Zeichenketten / Literalen kapselt.
@@ -25,7 +24,8 @@ export declare type LabelFn = (value: any) => string;
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss']
+  styleUrls: ['./slider.component.css'],
+  standalone: false
 })
 export class SliderComponent extends BaseControl implements OnInit, IComponentData {
   @Input() outerWidth: number;
@@ -84,7 +84,8 @@ export class SliderComponent extends BaseControl implements OnInit, IComponentDa
     this.display = value + '';
   }
 
-  onSliderMove($event: MatSliderChange): void {
+  onSliderMove($event): void {
     this.showValue($event.value);
   }
 }
+

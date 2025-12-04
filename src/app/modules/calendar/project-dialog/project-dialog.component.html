@@ -1,29 +1,32 @@
-<div mat-dialog-title i18n>Projekt</div>
+<div i18n mat-dialog-title>Projekt</div>
 <div mat-dialog-content>
-  <form [formGroup]="form" #formDirective="ngForm">
+  <form #formDirective="ngForm" [formGroup]="form">
     <div class="content">
-      <app-autocomplete [outerWidth]="2"
+      <app-autocomplete [formGroup]="form"
                         [innerWidth]="2"
-                        formName="name"
-                        [formGroup]="form"></app-autocomplete>
+                        [outerWidth]="2"
+                        formName="name"></app-autocomplete>
       <app-newline></app-newline>
-      <app-input-text [outerWidth]="2"
+      <app-input-text [formGroup]="form"
                       [innerWidth]="2"
-                      formName="info"
-                      [formGroup]="form"></app-input-text>
+                      [outerWidth]="2"
+                      formName="info"></app-input-text>
       <app-newline></app-newline>
-      <app-slider [outerWidth]="2"
-                  [innerWidth]="2"
-                  [min]="0"
-                  [max]="maxDuration"
-                  [labelFunc]="durationDisplay"
-                  formName="duration"
-                  [formGroup]="form"></app-slider>
+      <app-slider
+        [formGroup]="form"
+        [innerWidth]="2"
+        [labelFunc]="durationDisplay"
+        [max]="maxDuration"
+        [min]="0"
+        [outerWidth]="2"
+        formName="duration"></app-slider>
     </div>
-    <mat-error *ngIf="txtError!=null">{{txtError}}</mat-error>
+    @if (txtError != null) {
+      <mat-error>{{ txtError }}</mat-error>
+    }
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button (click)="saveClick()" i18n>Speichern</button>
-  <button mat-button (click)="cancelClick()" i18n>Abbrechen</button>
+  <button (click)="saveClick()" i18n mat-raised-button>Speichern</button>
+  <button (click)="cancelClick()" i18n mat-button>Abbrechen</button>
 </div>

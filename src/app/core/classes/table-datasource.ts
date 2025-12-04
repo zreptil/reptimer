@@ -1,8 +1,3 @@
-import {DataSource} from '@angular/cdk/table';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {map} from 'rxjs/operators';
-import {Observable, of as observableOf, merge} from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
 
 /**
@@ -27,16 +22,17 @@ export class TableDatasource<T> extends MatTableDataSource<T> {
   constructor() {
     super(new Array<T>());
   }
+
 // }
 
-/**
- * Generic Datasource class for mat-table
- * This class should encapsulate all logic for fetching and manipulating
- * the displayed data
- * (including sorting, pagination, and filtering).
- *
- * TODO: Verwendung der Klasse MatTableDataSource<T> als Basisklasse???
- */
+  /**
+   * Generic Datasource class for mat-table
+   * This class should encapsulate all logic for fetching and manipulating
+   * the displayed data
+   * (including sorting, pagination, and filtering).
+   *
+   * TODO: Verwendung der Klasse MatTableDataSource<T> als Basisklasse???
+   */
 // export class TableDatasource<T> extends DataSource<T> {
 //   private owndata: T[] = new Array<T>();
 //

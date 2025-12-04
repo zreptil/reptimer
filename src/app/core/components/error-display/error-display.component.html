@@ -1,30 +1,34 @@
-<div class="error-display" *ngIf="es.errors.length>0">
-  <button class="error" mat-flat-button
-          (click)="es.controlForm?.activateControl(es.controlError.formName)"
-          aria-label="{{es.controlError.text}}">
-    <mat-error>
-      {{es.controlError.text}}
-      <mat-icon matSuffix>launch</mat-icon>
-    </mat-error>
-  </button>
-  <div>
-    <button mat-icon-button [disabled]="es.controlIdx===0"
-            (click)="es.activatePrevControl()">
-      <mat-icon>navigate_before</mat-icon>
+@if (es.errors.length > 0) {
+  <div class="error-display">
+    <button (click)="es.controlForm?.activateControl(es.controlError.formName)" aria-label="{{es.controlError.text}}"
+            class="error"
+            mat-flat-button>
+      <mat-error>
+        {{ es.controlError.text }}
+        <mat-icon matSuffix>launch</mat-icon>
+      </mat-error>
     </button>
-    <mat-error>{{es.controlIdx + 1}} / {{es.errors.length}}</mat-error>
-    <button mat-icon-button
-            [disabled]="es.controlIdx >= es.errors.length-1"
-            (click)="es.activateNextControl()">
-      <mat-icon>navigate_next</mat-icon>
-    </button>
+    <div>
+      <button (click)="es.activatePrevControl()" [disabled]="es.controlIdx===0"
+              mat-icon-button>
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <mat-error>{{ es.controlIdx + 1 }} / {{ es.errors.length }}</mat-error>
+      <button (click)="es.activateNextControl()"
+              [disabled]="es.controlIdx >= es.errors.length-1"
+              mat-icon-button>
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
   </div>
-</div>
-<button class="close" mat-icon-button (click)="close()">
+}
+<button (click)="close()" class="close" mat-icon-button>
   <mat-icon>close</mat-icon>
 </button>
-<div class="error-display" *ngIf="es.info.length>0">
-  <ng-container *ngFor="let info of es.info">
-    <app-literal [class]="info.class" i18n-value [value]="info.label" outerWidth="4" innerWidth="4"></app-literal>
-  </ng-container>
-</div>
+@if (es.info.length > 0) {
+  <div class="error-display">
+    @for (info of es.info; track $index) {
+      <app-literal [class]="info.class" [value]="info.label" i18n-value innerWidth="4" outerWidth="4"></app-literal>
+    }
+  </div>
+}

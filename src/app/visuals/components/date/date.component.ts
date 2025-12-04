@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-date',
-  templateUrl: './date.component.html',
-  styleUrls: ['./date.component.scss']
+    selector: 'app-date',
+    templateUrl: './date.component.html',
+    styleUrls: ['./date.component.css'],
+    standalone: false
 })
 export class DateComponent extends BaseControl implements AfterViewInit, IComponentData {
 
@@ -78,3 +79,4 @@ export class DateComponent extends BaseControl implements AfterViewInit, ICompon
   }
 
 }
+

@@ -1,0 +1,304 @@
+:host {
+  display: flex;
+  flex-flow: column;
+  max-height: 100%;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+
+  --color-null: #a0a0ff;
+}
+
+::ng-deep.mat-mdc-menu-content {
+  display: flex;
+  flex-flow: column;
+  padding: 0 !important;
+  overflow-y: hidden;
+}
+
+.tnull {
+  background: var(--colCurrent);
+}
+
+.time0 {
+}
+
+.tnull.time1 {
+  background: var(--colCurrent) !important;
+}
+
+.t1, .t1.time1 {
+  background: var(--colUrlaub) !important;
+}
+
+.t2, .t2.time1 {
+  background: var(--colUrlaubHalb) !important;
+}
+
+.t3, .t3.time1 {
+  background: var(--colTeilzeitFrei) !important;
+}
+
+.t4, .t4.time1 {
+  background: var(--colFeiertag) !important;
+}
+
+.t5, .t5.time1 {
+  background: var(--colKrank) !important;
+}
+
+.t6, .t6.time1 {
+  background: var(--colInfo) !important;
+}
+
+.t7, .t7.time1 {
+  background: var(--colFrei) !important;
+}
+
+.header {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+
+  .daytypes {
+    display: flex;
+    flex-flow: row;
+    flex: 1;
+
+    button {
+      flex: 1;
+    }
+  }
+
+  .week, .daytypes {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+
+    .active {
+      border-color: rgba(0, 0, 0, 0.5) !important;
+      border-radius: 1em !important;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+    }
+
+    button:not(.weekctrl) {
+      justify-content: center;
+      border: 3px solid transparent;
+    }
+
+    button:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+
+  .week {
+    button:not(.weekctrl) {
+      width: 6em;
+    }
+
+    .weekctrl {
+      min-width: initial;
+    }
+
+    .today {
+      font-weight: bold;
+    }
+  }
+}
+
+.controls {
+  display: flex;
+  flex-flow: row;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 5px;
+
+  button {
+    padding: 0;
+    font-size: 1em;
+    border-radius: 1em;
+    width: 100%;
+    height: 100%;
+    --size: 2em;
+
+    ::ng-deep .mat-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--size);
+      height: 1em;
+      width: 1em;
+    }
+  }
+
+  button.tnull {
+    background: #a0a0ff;
+  }
+
+  button:not(:last-child) {
+    margin-right: 5px;
+  }
+}
+
+.calendarpanel {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 5px;
+
+  .calendar {
+    display: flex;
+    flex-flow: row;
+    overflow-y: auto;
+    max-height: calc(100vh - 310px);
+  }
+
+  .timepanel {
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+    max-height: calc(100vh - 310px);
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+      font-size: 2em;
+      padding: 0.4em;
+      line-height: 1em;
+    }
+
+    .times {
+      display: flex;
+      flex-flow: row;
+      flex-wrap: wrap;
+      flex: 1;
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 5px;
+      overflow-y: auto;
+
+      .mat-mdc-card {
+        cursor: pointer;
+        margin: 2px;
+        padding: 16px;
+        height: max-content;
+        background: red;
+
+        .mat-mdc-card-header .mat-mdc-card-title {
+          margin-bottom: 0;
+        }
+
+        .mat-mdc-card-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 48px;
+        }
+
+        .content {
+          display: flex;
+          flex-flow: row;
+          align-items: center;
+
+          div {
+            padding: 0.5em;
+          }
+
+          input {
+            background: transparent;
+            border: none;
+          }
+        }
+
+        .projhead {
+          display: flex;
+          flex-flow: row;
+          align-items: center;
+
+          .line1 {
+            width: 10%;
+          }
+
+          .line2 {
+            width: 90%;
+          }
+
+          .line1, .line2 {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.3);
+          }
+
+          .text {
+            position: relative;
+            top: 0;
+            font-size: 0.7em;
+            color: rgba(0, 0, 0, 0.5);
+            width: fit-content;
+            padding: 0 0.5em;
+          }
+        }
+
+        .project {
+          margin-top: 0.7em;
+
+          td {
+            font-size: 0.75em;
+            padding-left: 0.2em;
+            padding-right: 0.2em;
+            vertical-align: middle;
+
+            button {
+              width: 32px;
+              height: 32px;
+
+              mat-icon {
+                font-size: 16px;
+                line-height: 16px;
+              }
+            }
+          }
+
+          td:first-child {
+            white-space: nowrap;
+            font-weight: bold;
+            padding-left: 0;
+          }
+        }
+      }
+
+      ::ng-deep .mat-card-header-text {
+        margin: 0 !important;
+      }
+
+      mat-card.active.tnull {
+        background: #a0a0ff;
+      }
+    }
+  }
+
+  .ctrls {
+    display: flex;
+    flex-flow: column;
+  }
+}
+
+mat-card:not(.active) {
+  background: transparent;
+}
+
+#importData {
+  display: none;
+}
+
+*:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}

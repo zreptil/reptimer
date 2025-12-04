@@ -1,0 +1,49 @@
+[mat-dialog-title] {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  margin: 0 !important;
+
+  mat-icon {
+    margin-right: 0.5em;
+    color: red;
+  }
+}
+
+.type2 {
+  --c1: #880038;
+  --c2: #003163;
+  --c3: #9B9D9F;
+
+  color: var(c2);
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(c1), 0 0 30px var(c1), 0 0 40px var(c1), 0 0 55px var(c1), 0 0 75px var(c1);
+
+  * {
+    color: var(c2);
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(c1), 0 0 30px var(c1), 0 0 40px var(c1), 0 0 55px var(c1), 0 0 75px var(c1);
+  }
+
+  background: repeating-linear-gradient(45deg, var(c1), var(c1) 1.5em, var(c2) 0.5em, var(c2) 3em) !important;
+}
+
+[mat-dialog-content] {
+  margin: 0 !important;
+  padding: 1em !important;
+}
+
+[mat-dialog-title],
+[mat-dialog-actions] {
+  color: #000;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+[mat-dialog-actions] {
+  justify-content: flex-end;
+  margin-bottom: 0 !important;
+  padding: 0 0.5em !important;
+  background: var(c3);
+
+  [cdkfocusinitial] {
+    color: var(c2);
+  }
+}

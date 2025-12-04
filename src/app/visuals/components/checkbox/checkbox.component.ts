@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-checkbox',
-  templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss']
+    selector: 'app-checkbox',
+    templateUrl: './checkbox.component.html',
+    styleUrls: ['./checkbox.component.css'],
+    standalone: false
 })
 export class CheckboxComponent extends BaseControl implements OnInit, IComponentData {
 
@@ -59,3 +60,4 @@ export class CheckboxComponent extends BaseControl implements OnInit, IComponent
     this.initElementService.mergeContext(value, this);
   }
 }
+

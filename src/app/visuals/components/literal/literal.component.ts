@@ -19,9 +19,10 @@ import {CPUFormGroup} from '@/core/classes/ibase-component';
  *
  */
 @Component({
-  selector: 'app-literal',
-  templateUrl: './literal.component.html',
-  styleUrls: ['./literal.component.scss']
+    selector: 'app-literal',
+    templateUrl: './literal.component.html',
+    styleUrls: ['./literal.component.css'],
+    standalone: false
 })
 export class LiteralComponent implements OnInit, IComponentData {
 
@@ -57,3 +58,4 @@ export class LiteralComponent implements OnInit, IComponentData {
   }
 
 }
+

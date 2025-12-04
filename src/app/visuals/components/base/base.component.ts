@@ -2,9 +2,10 @@ import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 import {ShowDebugInfoService} from '@/visuals/services/show-debug-info.service';
 
 @Component({
-  selector: 'app-base',
-  templateUrl: './base.component.html',
-  styleUrls: ['./base.component.scss']
+    selector: 'app-base',
+    templateUrl: './base.component.html',
+    styleUrls: ['./base.component.css'],
+    standalone: false
 })
 export class BaseComponent implements OnInit {
   @Input()
@@ -61,3 +62,4 @@ export class BaseComponent implements OnInit {
   }
 
 }
+

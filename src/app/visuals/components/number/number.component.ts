@@ -5,9 +5,10 @@ import {CPUFormGroup} from '@/core/classes/ibase-component';
 import {BaseControl} from '@/visuals/classes/base-control';
 
 @Component({
-  selector: 'app-number',
-  templateUrl: './number.component.html',
-  styleUrls: ['./number.component.scss']
+    selector: 'app-number',
+    templateUrl: './number.component.html',
+    styleUrls: ['./number.component.css'],
+    standalone: false
 })
 export class NumberComponent extends BaseControl implements OnInit, IComponentData {
   @Input() outerWidth: number;
@@ -37,3 +38,4 @@ export class NumberComponent extends BaseControl implements OnInit, IComponentDa
   }
 
 }
+

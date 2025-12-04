@@ -3,9 +3,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-divider',
-  templateUrl: './divider.component.html',
-  styleUrls: ['./divider.component.scss']
+    selector: 'app-divider',
+    templateUrl: './divider.component.html',
+    styleUrls: ['./divider.component.css'],
+    standalone: false
 })
 export class DividerComponent extends BaseControl implements OnInit {
 
@@ -24,3 +25,4 @@ export class DividerComponent extends BaseControl implements OnInit {
     }
   }
 }
+

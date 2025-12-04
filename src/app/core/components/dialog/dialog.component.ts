@@ -7,9 +7,10 @@ import {ValidatorFn} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+    selector: 'app-dialog',
+    templateUrl: './dialog.component.html',
+    styleUrls: ['./dialog.component.css'],
+    standalone: false
 })
 export class DialogComponent implements IBaseComponent, OnInit {
   @ViewChild('formDirective') formDirective;
@@ -65,3 +66,4 @@ export class DialogComponent implements IBaseComponent, OnInit {
   debug(id: string, key: string, ...optionalParams: any[]): void {
   }
 }
+

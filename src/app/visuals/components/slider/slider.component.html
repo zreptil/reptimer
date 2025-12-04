@@ -1,16 +1,15 @@
 <ng-template #cpuInput>
   <div class="slider">
-    <div class="label">{{formData.label}} {{display}} Std.</div>
-    <mat-slider
-      color="primary"
-      [min]="min"
-      [max]="max"
-      [tickInterval]="2"
-      [step]="5"
-      (input)="onSliderMove($event)"
-      [formControl]="formGroup.controls[formName]"
-    ></mat-slider>
+    <div class="label">{{ formData.label }} {{ display }} Std.</div>
+    <mat-slider [max]="max"
+                [min]="min"
+                [showTickMarks]="2"
+                [step]="5"
+                color="primary">
+      <input (valueChange)="onSliderMove($event)"
+             [formControl]="$any(formGroup.controls[formName])" matSliderThumb>
+    </mat-slider>
   </div>
 </ng-template>
 
-<app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>
+<app-base [childContext]="ctx" [componentsTemplate]="cpuInput"></app-base>

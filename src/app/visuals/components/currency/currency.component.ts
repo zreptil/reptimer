@@ -5,9 +5,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-currency',
-  templateUrl: './currency.component.html',
-  styleUrls: ['./currency.component.scss']
+    selector: 'app-currency',
+    templateUrl: './currency.component.html',
+    styleUrls: ['./currency.component.css'],
+    standalone: false
 })
 export class CurrencyComponent extends BaseControl implements OnInit, IComponentData {
   @Input() outerWidth: number;
@@ -50,3 +51,4 @@ export class CurrencyComponent extends BaseControl implements OnInit, IComponent
   }
 
 }
+

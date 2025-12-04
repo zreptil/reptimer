@@ -1,0 +1,82 @@
+:host {
+  --colUrlaub: #64b5f6;
+  --colUrlaubHalb: #90caf9;
+  --colTeilzeitFrei: #a5d6a7;
+  --colUrlaubBody: #90caf9;
+  --colUrlaubHalbBody: #bbdefb;
+  --colTeilzeitFreiBody: #c8e6c9;
+  --colKrank: #ffd54f;
+  --colKrankBody: #ff7;
+  --colFeiertag: #f06292;
+  --colFeiertagBody: #fcc;
+  --colInfo: #f8bbd0;
+  --colToday: #f00;
+  --colFrei: #eee;
+  --colFreiFont: #800;
+  --colCurrent: #aaf;
+  --colCursor: rgba(64, 64, 255, 0.3);
+
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: cornflowerblue;
+}
+
+.splash {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  font-size: 4em;
+  font-weight: bold;
+  animation-duration: 6s;
+  animation-name: div;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes div {
+  0% {
+    transform: rotate(0deg);
+    color: var(--colUrlaub);
+  }
+  25% {
+    transform: rotate(30deg);
+    color: var(--colKrank);
+  }
+  75% {
+    transform: rotate(-30deg);
+    color: var(--colFeiertag);
+  }
+  100% {
+    transform: rotate(0deg);
+    color: var(--colUrlaub);
+  }
+}
+
+img {
+  animation-duration: 6s;
+  animation-name: img;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  width: 1em;
+  margin-right: 0.25em;
+}
+
+@keyframes img {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-30deg);
+  }
+  75% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

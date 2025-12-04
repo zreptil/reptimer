@@ -1,6 +1,8 @@
-<ng-container
-  *ngIf="es.showControlErrorsInControl && formGroup!=null && formName!=null && formGroup.controls[formName].validator!=null">
-  <mat-error
-    *ngFor="let v of es.validatorMessages(formName, '',
-  formGroup.controls[formName].validator(formGroup.controls[formName]))">{{v.text}}</mat-error>
-</ng-container>
+@if (es.showControlErrorsInControl && formGroup != null && formName != null && formGroup.controls[formName].validator != null) {
+  @for (v of es.validatorMessages(formName, '',
+    formGroup.controls[formName].validator(formGroup.controls[formName])); track $index) {
+    <mat-error
+    >{{ v.text }}
+    </mat-error>
+  }
+}

@@ -1,111 +1,135 @@
 <div class="calendarpanel">
   <div class="calendar">
-    <div class="week" *ngIf="false">
-      <button [disabled]="ss.session.day.day === 1 && ss.session.day.month === 1" mat-flat-button class="weekctrl"
-              (click)="clickPrevWeek()">
-        <mat-icon>arrow_left</mat-icon>
-      </button>
-      <button mat-flat-button [class]="weekClass(day)" *ngFor="let day of ss.session.week"
-              (click)="clickWeekDay(day)">
-        <ng-container *ngIf="day.times.length > 0">[</ng-container>
-        {{ss.calendar.weekDayNameShort(day)}} {{day.day}}
-        <ng-container *ngIf="day.times.length > 0">]</ng-container>
-      </button>
-      <button mat-flat-button class="weekctrl" (click)="clickNextWeek()">
-        <mat-icon>arrow_right</mat-icon>
-      </button>
-    </div>
-    <cal-month [navigation]="true" [update]="triggerUpdate" [month]="ss.session.day.month"
+    @if (false) {
+      <div class="week">
+        <button (click)="clickPrevWeek()" [disabled]="ss.session.day.day === 1 && ss.session.day.month === 1" class="weekctrl"
+                mat-button>
+          <mat-icon>arrow_left</mat-icon>
+        </button>
+        @for (day of ss.session.week; track $index) {
+          <button (click)="clickWeekDay(day)" [class]="weekClass(day)"
+                  mat-flat-button>
+            @if (day.times.length > 0) {
+              [
+            }
+            {{ ss.calendar.weekDayNameShort(day) }} {{ day.day }}
+            @if (day.times.length > 0) {
+              ]
+            }
+          </button>
+        }
+        <button (click)="clickNextWeek()" class="weekctrl" mat-flat-button>
+          <mat-icon>arrow_right</mat-icon>
+        </button>
+      </div>
+    }
+    <cal-month [month]="ss.session.day.month" [navigation]="true" [update]="triggerUpdate"
                [year]="ss.session.day.year"></cal-month>
   </div>
   <div class="timepanel">
     <div class="title" i18n>
-      <div>Zeiten für {{ss.session.day.dateString}}</div>
-      <button mat-flat-button
+      <div>Zeiten für {{ ss.session.day.dateString }}</div>
+      <button [class]="classForDaytype"
               [matMenuTriggerFor]="menu"
               aria-label="Tagesart"
               i18n-aria-label
-              [class]="classForDaytype">
-        {{ss.session.day.nameForType(ss.session.day.type)}}
+              mat-flat-button>
+        {{ ss.session.day.nameForType(ss.session.day.type) }}
       </button>
     </div>
     <mat-menu #menu="matMenu" class="daytype-menu">
-      <ng-container *ngFor="let entry of dayTypeList">
-        <button *ngIf="entry.id !== ss.session.day.type"
-                mat-flat-button
-                [class]="typeClass(entry.id)"
-                (click)="clickDayType(entry.id)">{{entry.label}}</button>
-      </ng-container>
+      @for (entry of dayTypeList; track $index) {
+        @if (entry.id !== ss.session.day.type) {
+          <button
+            (click)="clickDayType(entry.id)"
+            [class]="typeClass(entry.id)"
+            mat-flat-button>{{ entry.label }}
+          </button>
+        }
+      }
     </mat-menu>
     <div class="times">
-      <mat-card [class]="timeClass(idx, time)" *ngFor="let time of ss.session.day.times; let idx = index"
-                (click)="toggleTime(idx)">
-        <mat-card-header>
-          <mat-card-title>{{time.typeForDisplay}}</mat-card-title>
-          <button *ngIf="idx===dataIdx" mat-icon-button (click)="deleteTime($event, idx)">
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button *ngIf="idx!==dataIdx" mat-icon-button></button>
-        </mat-card-header>
-        <div class="content">
-          <input type="time" [(ngModel)]="time.fromValue" (ngModelChange)="ss.saveSession()">
-          <div i18n>bis</div>
-          <input type="time" [(ngModel)]="time.toValue" (ngModelChange)="ss.saveSession()">
-        </div>
-        <div class="projhead" *ngIf="time.type === 0 && (idx===dataIdx || (time.projects?.length > 0))">
-          <div class="line1">&nbsp;</div>
-          <div class="text">Projekte</div>
-          <div class="line2">&nbsp;</div>
-        </div>
-        <ng-container *ngIf="time.projects?.length > 0">
-          <table class="project" cellspacing="0" cellpadding="0">
-            <tr *ngFor="let proj of time.projects; let projIdx = index">
-              <td>{{proj.name}}</td>
-              <td>
-                {{proj.durationDisplay}}
-              </td>
-              <td>{{proj.info}}</td>
-              <ng-container *ngIf="idx===dataIdx">
-                <td>
-                  <button mat-icon-button (click)="editProject($event, time, projIdx)">
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                  <button mat-icon-button (click)="deleteProject($event, time, projIdx)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </td>
-              </ng-container>
-            </tr>
-          </table>
-        </ng-container>
-        <div class="content">
-          <button *ngIf="time.type === 0 && idx===dataIdx && time.end != null" mat-icon-button (click)="distributeTime($event, time)">
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
-      </mat-card>
+      @for (time of ss.session.day.times; track $index; let idx = $index) {
+        <mat-card (click)="toggleTime(idx)"
+                  [class]="timeClass(idx, time)">
+          <mat-card-header>
+            <mat-card-title>{{ time.typeForDisplay }}</mat-card-title>
+            @if (idx === dataIdx) {
+              <button (click)="deleteTime($event, idx)" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            }
+            @if (idx !== dataIdx) {
+              <button mat-icon-button></button>
+            }
+          </mat-card-header>
+          <div class="content">
+            <!-- (ngModelChange)="ss.saveSession()"  -->
+            <input (blur)="ss.saveSession()" [(ngModel)]="time.fromValue" type="time">
+            <div i18n>bis</div>
+            <input (blur)="ss.saveSession()" [(ngModel)]="time.toValue" type="time">
+          </div>
+          @if (time.type === 0 && (idx === dataIdx || (time.projects?.length > 0))) {
+            <div class="projhead">
+              <div class="line1">&nbsp;</div>
+              <div class="text">Projekte</div>
+              <div class="line2">&nbsp;</div>
+            </div>
+          }
+          @if (time.projects?.length > 0) {
+            <table cellpadding="0" cellspacing="0" class="project">
+              @for (proj of time.projects; let projIdx = $index; track projIdx) {
+                <tr>
+                  <td>{{ proj.name }}</td>
+                  <td>
+                    {{ proj.durationDisplay }}
+                  </td>
+                  <td>{{ proj.info }}</td>
+                  @if (idx === dataIdx) {
+                    <td>
+                      <button (click)="editProject($event, time, projIdx)" mat-icon-button>
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button (click)="deleteProject($event, time, projIdx)" mat-icon-button>
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  }
+                </tr>
+              }
+            </table>
+          }
+          <div class="content">
+            @if (time.type === 0 && idx === dataIdx && time.end != null) {
+              <button (click)="distributeTime($event, time)" mat-icon-button>
+                <mat-icon>add</mat-icon>
+              </button>
+            }
+          </div>
+        </mat-card>
+      }
     </div>
   </div>
   <div class="ctrls">
-    <button mat-flat-button (click)="clickRefresh()">
+    <button (click)="clickRefresh()" mat-flat-button>
       <mat-icon>refresh</mat-icon>
     </button>
-    <button mat-flat-button (click)="clickExport()">
+    <button (click)="clickExport()" mat-flat-button>
       <mat-icon>save</mat-icon>
     </button>
-    <button mat-flat-button (click)="clickImport()">
+    <button (click)="clickImport()" mat-flat-button>
       <mat-icon>text_snippet</mat-icon>
     </button>
-     <input type="file" id="importData" accept="text/json" (change)="handleImport($event)">
+    <input (change)="handleImport($event)" accept="text/json" id="importData" type="file">
   </div>
 </div>
 <div class="controls">
-  <button mat-flat-button (click)="clickPlay($event)" [class]="weekClass(ss.session.day)">
-    {{playData.text}}
-    <mat-icon>{{playData.icon}}</mat-icon>
+  <button (click)="clickPlay($event)" [class]="weekClass(ss.session.day)" mat-flat-button>
+    {{ playData.text }}
+    <mat-icon>{{ playData.icon }}</mat-icon>
   </button>
 
-  <button mat-flat-button [disabled]="data==null" (click)="clickStop($event)" [class]="weekClass(ss.session.day)">
+  <button (click)="clickStop($event)" [class]="weekClass(ss.session.day)" [disabled]="data==null" mat-flat-button>
     <ng-container i18n>Gehen</ng-container>
     <mat-icon>home</mat-icon>
   </button>

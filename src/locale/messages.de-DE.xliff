@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="2160411809428543998" datatype="html">
+        <source>Arbeitstag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/day-data.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4353401914624818217" datatype="html">
+        <source>Frei</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/day-data.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7606216724451613048" datatype="html">
+        <source>Urlaub</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/day-data.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6515529043985612244" datatype="html">
+        <source>Urlaub 1/2</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/day-data.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8723816733457318156" datatype="html">
+        <source>Teilzeitfrei</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/day-data.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6184292966501253839" datatype="html">
+        <source>Feiertag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/day-data.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7572713683663013879" datatype="html">
+        <source>Krank</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/day-data.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="314315645942131479" datatype="html">
+        <source>Info</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/day-data.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/project-dialog/project-dialog.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5037437391296624618" datatype="html">
+        <source>Information</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/dialog-data.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8720977247725652816" datatype="html">
+        <source>Ok</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/dialog-data.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/dialog-data.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2883646110198626293" datatype="html">
+        <source>Debug Meldung</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/dialog-data.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8702309441108344248" datatype="html">
+        <source>Bestätigung</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/dialog-data.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5982204146953564471" datatype="html">
+        <source>Nein</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/dialog-data.ts</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8807722618432376624" datatype="html">
+        <source>Ja</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/dialog-data.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="57563521806966673" datatype="html">
+        <source>Arbeitszeit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/time-data.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9042260521669277115" datatype="html">
+        <source>Pause</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/time-data.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4096320719528083212" datatype="html">
+        <source>unbekannt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/time-data.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4679918173552317922" datatype="html">
+        <source>Kalender ändern</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/user-data.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7929851370742128255" datatype="html">
+        <source>Kalender hinzufügen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/user-data.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="415729226497434945" datatype="html">
+        <source>Kalender löschen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/user-data.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9137518803187002731" datatype="html">
+        <source>Debugfunktionalität nutzen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/user-data.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8498679138227120839" datatype="html">
+        <source>Administration aufrufen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/user-data.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8044499984033738120" datatype="html">
+        <source>Januar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7029265543969180461" datatype="html">
+        <source>Februar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6007938108488521736" datatype="html">
+        <source>März</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1809521303476565743" datatype="html">
+        <source>April</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2219446267498213550" datatype="html">
+        <source>Mai</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5829316612883860294" datatype="html">
+        <source>Juni</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1899381576479788257" datatype="html">
+        <source>Juli</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3984618989093293779" datatype="html">
+        <source>August</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5872622085239011307" datatype="html">
+        <source>September</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1280165460303116228" datatype="html">
+        <source>Oktober</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1109977718843277527" datatype="html">
+        <source>November</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3022543557445694316" datatype="html">
+        <source>Dezember</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3331087435785673260" datatype="html">
+        <source>???</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5270327487333064698" datatype="html">
+        <source>Montag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2030976869636220684" datatype="html">
+        <source>Dienstag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4990093896014871902" datatype="html">
+        <source>Mittwoch</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9039993581689232399" datatype="html">
+        <source>Donnerstag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1560223753499023916" datatype="html">
+        <source>Freitag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3204076460615791312" datatype="html">
+        <source>Samstag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3155764298718431288" datatype="html">
+        <source>Sonntag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4197236438302165051" datatype="html">
+        <source>Mo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5908714162235067735" datatype="html">
+        <source>Di</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7915175571113450409" datatype="html">
+        <source>Mi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6408870772587289662" datatype="html">
+        <source>Do</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8598262708800132669" datatype="html">
+        <source>Fr</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="569007902695332072" datatype="html">
+        <source>Sa</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2812565712576597206" datatype="html">
+        <source>So</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5957096213757959421" datatype="html">
+        <source>??</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2640308846288645351" datatype="html">
+        <source>-1. Advent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8565032994718682310" datatype="html">
+        <source>-2. Advent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1700679646881091015" datatype="html">
+        <source>-3. Advent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1620478919723740731" datatype="html">
+        <source>-4. Advent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1354529745239475057" datatype="html">
+        <source>-Toten&amp;shy;sonntag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7518394577305312334" datatype="html">
+        <source>-Volks&amp;shy;trauertag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="787668762694012103" datatype="html">
+        <source>-Muttertag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2382050086495280114" datatype="html">
+        <source>-Oster&amp;shy;sonntag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3168247944822148871" datatype="html">
+        <source>-Ascher&amp;shy;mittwoch</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2468229904301976401" datatype="html">
+        <source>Karfreitag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6317149525747194007" datatype="html">
+        <source>Oster&amp;shy;montag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8602322193655392658" datatype="html">
+        <source>Vatertag / Christi Himmelfahrt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">141</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5662834797269001100" datatype="html">
+        <source>Pfingst&amp;shy;montag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7062857525310424675" datatype="html">
+        <source>-Pfingst&amp;shy;sonntag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1660320971915084520" datatype="html">
+        <source>Fron&amp;shy;leichnam</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_models/year-data.ts</context>
+          <context context-type="linenumber">147</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7954281944413144209" datatype="html">
+        <source>Keine Auswahl</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/component.service.ts</context>
+          <context context-type="linenumber">187</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4636844880644405201" datatype="html">
+        <source>Ungültiger Wert [<x id="PH" equiv-text="value"/>]</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/component.service.ts</context>
+          <context context-type="linenumber">228</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4606720270859939216" datatype="html">
+        <source>Unbekannter Fehler - <x id="PH" equiv-text="key"/> / <x id="PH_1" equiv-text="JSON.stringify(error)"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1344018219603307842" datatype="html">
+        <source><x id="PH" equiv-text="name"/> muss befüllt werden</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1172377536082510553" datatype="html">
+        <source><x id="PH" equiv-text="name"/> muss mindestens <x id="PH_1" equiv-text="error.requiredLength"/> Zeichen beinhalten</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7985227372663009369" datatype="html">
+        <source><x id="PH" equiv-text="name"/> darf maximal <x id="PH_1" equiv-text="error.requiredLength"/> Zeichen beinhalten</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4488330626291781143" datatype="html">
+        <source><x id="PH" equiv-text="name"/> muss mindestens den Wert <x id="PH_1" equiv-text="error.min"/> enthalten</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2864371530308070002" datatype="html">
+        <source><x id="PH" equiv-text="name"/> darf maximal den Wert <x id="PH_1" equiv-text="error.max"/> enthalten</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="246403637699982527" datatype="html">
+        <source><x id="PH" equiv-text="name"/> muss eine eMail-Adresse enthalten</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4575361154750084732" datatype="html">
+        <source><x id="PH" equiv-text="name"/> muss eine <x id="PH_1" equiv-text="error.type"/>-Kreditkartennummer enthalten</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6101364018683370340" datatype="html">
+        <source><x id="PH" equiv-text="error.name1"/> muss mit <x id="PH_1" equiv-text="error.name2"/> übereinstimmen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6100695641684853951" datatype="html">
+        <source><x id="PH" equiv-text="error.later"/> muss nach <x id="PH_1" equiv-text="error.earlier"/> liegen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4265729597572731200" datatype="html">
+        <source><x id="PH" equiv-text="name"/> muss dem Format &quot;<x id="PH_1" equiv-text="pattern"/>&quot; entsprechen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5090636327698245709" datatype="html">
+        <source>Der Wert kommt nicht in den Einträgen des Feldes <x id="PH" equiv-text="name"/> vor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/error.service.ts</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2854123663314832793" datatype="html">
+        <source>Speichern</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/session.service.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/project-dialog/project-dialog.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7808756054397155068" datatype="html">
+        <source>Reset</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/session.service.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3688273410243280516" datatype="html">
+        <source>Sollen alle Eingaben zurückgesetzt werden?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/session.service.ts</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2533863549800508837" datatype="html">
+        <source>Lade Daten...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/session.service.ts</context>
+          <context context-type="linenumber">271</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8277325146847525187" datatype="html">
+        <source>Albernes Herumgehüpfe im Workflow wird es hier nicht geben!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/session.service.ts</context>
+          <context context-type="linenumber">347</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5002690415778630546" datatype="html">
+        <source>Der Workflow Schritt konnte nicht gefunden werden.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/session.service.ts</context>
+          <context context-type="linenumber">348</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1698125201013891908" datatype="html">
+        <source>Pflichteingabe</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/validation.service.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7503408636177966143" datatype="html">
+        <source>Fehlerhafte Kreditkartennummer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/validation.service.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6828374506827247733" datatype="html">
+        <source>Fehlerhafte eMail Adresse</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/validation.service.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5989208818582517972" datatype="html">
+        <source>Ungültiges Passwort. Das Passwort muss mindestens 6 Zeichen </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/validation.service.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3882568965462732739" datatype="html">
+        <source>Mindestens <x id="PH" equiv-text="validatorValue.requiredLength"/> Zeichen erforderlich</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/validation.service.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5844744749700022188" datatype="html">
+        <source>Nicht mehr als <x id="PH" equiv-text="validatorValue.requiredLength"/> Zeichen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/_services/validation.service.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6606938861673436552" datatype="html">
+        <source>DB Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">16,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2585156510197659633" datatype="html">
+        <source>Beim Zugriff auf den Server ist ein Fehler aufgetreten.
+Das liegt vermutlich daran, dass das Zertifikat des Servers nicht käuflich erworben wurde.
+Wenn Du die Speicherung der Daten auf dem Server zur Verfügung haben möchtest, dann
+kannst Du das tun, indem Du im Browser auf der Webseite des Servers die Berechtigung
+zum Zugriff erteilst. Soll die Webseite des Servers aufgerufen werden, damit Du dort die
+Berechtigung erteilen kannst?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">29,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9032757086603482237" datatype="html">
+        <source>Willst Du Dich abmelden?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5041354590769758251" datatype="html">
+        <source>Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6979190473765197505" datatype="html">
+        <source> Du kannst auch die Administration aufrufen.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8277532085974692037" datatype="html">
+        <source><x id="START_TAG_DIV" ctype="x-div" equiv-text="&lt;div&gt;"/>Zeiten für <x id="INTERPOLATION" equiv-text="{{ ss.session.day.dateString }}"/><x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&lt;/div&gt;"/><x id="START_TAG_BUTTON" ctype="x-button" equiv-text="&lt;button [class]=&quot;classForDaytype&quot;
+              [matMenuTriggerFor]=&quot;menu&quot;
+              aria-label=&quot;Tagesart&quot;
+              i18n-aria-label
+              mat-flat-button&gt;"/> <x id="INTERPOLATION_1" equiv-text="{{ ss.session.day.nameForType(ss.session.day.type) }}"/> <x id="CLOSE_TAG_BUTTON" ctype="x-button" equiv-text="&lt;/button&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">31,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7223955217268014113" datatype="html">
+        <source>Tagesart</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">34,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4739373515506149638" datatype="html">
+        <source>bis</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">69,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1778786524213893056" datatype="html">
+        <source>Gehen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">133,137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3178308865421534169" datatype="html">
+        <source>Kommen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8379866940554229637" datatype="html">
+        <source>Pause beenden</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4054029360531153137" datatype="html">
+        <source><x id="PH" equiv-text="this.ss.session.day.times[idx].typeForDisplay"/> wirklich löschen?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2311129073801068134" datatype="html">
+        <source>Soll die Zeit für Projekt <x id="PH" equiv-text="time.projects[projIdx].name"/> gelöscht werden?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4816909486251478319" datatype="html">
+        <source>Hiermit werden die Feiertage und Wochenenden des Jahres erneut befüllt. Die Zeiten bleiben erhalten, aber die Arten der Tage, die nicht als Urlaub, Krank oder Teilzeitfrei definiert wurden, werden zurückgesetzt. Soll das ausgeführt werden?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/dashboard/dashboard.component.ts</context>
+          <context context-type="linenumber">194</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8414444871773166189" datatype="html">
+        <source>Projekt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/project-dialog/project-dialog.component.html</context>
+          <context context-type="linenumber">1,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7624133960269641605" datatype="html">
+        <source>Abbrechen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/project-dialog/project-dialog.component.html</context>
+          <context context-type="linenumber">31,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8953033926734869941" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/project-dialog/project-dialog.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3759195998025361753" datatype="html">
+        <source>Dauer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/calendar/project-dialog/project-dialog.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4308807365778230602" datatype="html">
+        <source>&lt;Leer&gt;</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/admin-page/admin-page.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6098456649718842220" datatype="html">
+        <source>Login Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/admin-page/user-dialog/user-dialog.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="302552772064926989" datatype="html">
+        <source> ist autorisiert </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/admin-page/user-dialog/user-dialog.component.html</context>
+          <context context-type="linenumber">9,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6216047118152474883" datatype="html">
+        <source>Voller Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/admin-page/user-dialog/user-dialog.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6943161365737294892" datatype="html">
+        <source>Speichern <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>save<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/admin-page/user-dialog/user-dialog.component.html</context>
+          <context context-type="linenumber">26,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4552549781831779195" datatype="html">
+        <source>Löschen <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>delete<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/admin-page/user-dialog/user-dialog.component.html</context>
+          <context context-type="linenumber">31,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="252203167182468471" datatype="html">
+        <source>Soll der Benutzer <x id="PH" equiv-text="this.user.fullname"/> wirklich gelöscht werden?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/admin-page/user-dialog/user-dialog.component.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1992302649187727540" datatype="html">
+        <source>Anmeldung</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6057821346666596338" datatype="html">
+        <source>Passwort</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="955234964622253432" datatype="html">
+        <source>Two Factor Code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5181690192053543822" datatype="html">
+        <source>Anmelden</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2039855747895292097" datatype="html">
+        <source>Ich habe noch keine Anmeldedaten</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">19,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8556760351739544165" datatype="html">
+        <source>Registrierung</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">24,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2736731364720267618" datatype="html">
+        <source>Registrieren</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3449519599273298269" datatype="html">
+        <source>Ich bin schon bekannt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">48,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4854726178512203427" datatype="html">
+        <source>Zwei Faktor Autorisierung</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">53,55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6299909421614726961" datatype="html">
+        <source>Bitte diesen Code mit einer TFA App einscannen, den Code, den die App generiert eingeben und mit dem Button bestätigen.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="497553890321711420" datatype="html">
+        <source>Erzeugter Code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3451662545060118643" datatype="html">
+        <source>Code bestätigen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">68,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7468234921091292358" datatype="html">
+        <source>Die Daten sind nicht korrekt.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.ts</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1460253141715541351" datatype="html">
+        <source>Der Code ist nicht korrekt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/users/login-dialog/login-dialog.component.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4973528606869406386" datatype="html">
+        <source>Keine Spaltenbeschreibung für die Tabelle gefunden. Fehlende Spalten-Id: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/visuals/components/table/table.component.ts</context>
+          <context context-type="linenumber">278</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5915024512511978100" datatype="html">
+        <source>Datenobjekt ist entweder ungültig oder hat keine Eigenschaft </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/visuals/components/table/table.component.ts</context>
+          <context context-type="linenumber">293</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -3,10 +3,11 @@ import {DayData} from '@/_models/day-data';
 import {SessionService} from '@/_services/session.service';
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'cal-day',
-  templateUrl: './day.component.html',
-  styleUrls: ['./day.component.scss']
+    // tslint:disable-next-line:component-selector
+    selector: 'cal-day',
+    templateUrl: './day.component.html',
+    styleUrls: ['./day.component.css'],
+    standalone: false
 })
 export class DayComponent implements OnInit {
 
@@ -52,3 +53,4 @@ export class DayComponent implements OnInit {
   }
 
 }
+

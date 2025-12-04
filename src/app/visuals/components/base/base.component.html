@@ -1,5 +1,5 @@
 <!-- container for any CPU visual element
-  Implement ChildContext for any given visual element (p.ex. Input-Text, Input-Password, etc.)
+Implement ChildContext for any given visual element (p.ex. Input-Text, Input-Password, etc.)
 -->
 
 <ng-template #content >
@@ -25,10 +25,10 @@
 </ng-template>
 
 <!-- display CPU visual component -->
-<ng-container *ngIf="!childContext.skipOuterInner">
+@if (!childContext.skipOuterInner) {
   <ng-container *ngTemplateOutlet="content;context:childContext"></ng-container>
-</ng-container>
+}
 
-<ng-container *ngIf="childContext.skipOuterInner">
+@if (childContext.skipOuterInner) {
   <ng-container *ngTemplateOutlet="simpleContent;context:childContext"></ng-container>
-</ng-container>
+}

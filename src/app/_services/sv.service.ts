@@ -4,7 +4,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {SVItem} from '@/_models/sv-item';
 import {SVMap} from '@/core/classes/svmap.enum';
 import {EnvironmentService} from '@/_services/environment.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // export const API_ENDPOINT = new InjectionToken<string>('API_ENDPOINT');
 

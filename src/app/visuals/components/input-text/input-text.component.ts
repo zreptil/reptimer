@@ -7,18 +7,10 @@ import {CPUFormGroup} from '@/core/classes/ibase-component';
 import {BaseControl} from '@/visuals/classes/base-control';
 
 @Component({
-  selector: 'app-input-text',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss'],
-  /*
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputTextComponent),
-      multi: true
-    }
-  ]
-  */
+    selector: 'app-input-text',
+    templateUrl: './input-text.component.html',
+    styleUrls: ['./input-text.component.css'],
+    standalone: false
 })
 export class InputTextComponent extends BaseControl implements OnInit, IComponentData/*, ControlValueAccessor*/ /*, AfterViewInit*/ {
 
@@ -101,3 +93,4 @@ export class InputTextComponent extends BaseControl implements OnInit, IComponen
     }
    */
 }
+

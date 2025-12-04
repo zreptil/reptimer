@@ -9,13 +9,14 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {MatStepper} from '@angular/material/stepper';
 
 @Component({
-  selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss'],
-  providers: [{
-    provide: STEPPER_GLOBAL_OPTIONS,
-    useValue: {displayDefaultIndicatorType: false}
-  }]
+    selector: 'app-nav-bar',
+    templateUrl: './nav-bar.component.html',
+    styleUrls: ['./nav-bar.component.css'],
+    providers: [{
+            provide: STEPPER_GLOBAL_OPTIONS,
+            useValue: { displayDefaultIndicatorType: false }
+        }],
+    standalone: false
 })
 export class NavBarComponent extends BaseControl implements OnInit {
   @ViewChild('stepper') stepper: MatStepper;
@@ -92,3 +93,4 @@ export class NavBarComponent extends BaseControl implements OnInit {
     });
   }
 }
+

@@ -7,9 +7,10 @@ import {BaseControl} from '@/visuals/classes/base-control';
 import {CPUFormGroup} from '@/core/classes/ibase-component';
 
 @Component({
-  selector: 'app-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss']
+    selector: 'app-select',
+    templateUrl: './select.component.html',
+    styleUrls: ['./select.component.css'],
+    standalone: false
 })
 export class SelectComponent extends BaseControl implements OnInit, IComponentData {
 
@@ -74,3 +75,4 @@ export class SelectComponent extends BaseControl implements OnInit, IComponentDa
     this.renderer.removeClass(this.getInvalidFocusRoot(), this.cssClassInvalid);
   }
 }
+

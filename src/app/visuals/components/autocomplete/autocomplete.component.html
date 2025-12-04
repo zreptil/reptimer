@@ -2,16 +2,18 @@
   <mat-form-field>
     <mat-label>{{formData.label}}</mat-label>
     <input matInput
-           type="text"
-           [formControl]="formGroup.controls[formName]"
-           [matAutocomplete]="auto"
-           [required]="formData.isRequired">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option.label}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</ng-template>
+      type="text"
+      [formControl]="formGroup.controls[formName]"
+      [matAutocomplete]="auto"
+      [required]="formData.isRequired">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        @for (option of filteredOptions | async; track option) {
+          <mat-option [value]="option">
+            {{option.label}}
+          </mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </ng-template>
 
-<app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>
+  <app-base [componentsTemplate]="cpuInput" [childContext]="ctx"></app-base>

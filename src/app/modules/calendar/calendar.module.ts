@@ -9,6 +9,7 @@ import {DayComponent} from './day/day.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProjectDialogComponent} from '@/modules/calendar/project-dialog/project-dialog.component';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,13 @@ import {ProjectDialogComponent} from '@/modules/calendar/project-dialog/project-
     ProjectDialogComponent
   ],
   imports: [
+    BrowserModule,
     CommonModule,
-    CalendarRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     VisualsModule,
-    FormsModule,
-    ReactiveFormsModule
+    CalendarRoutingModule
   ]
 })
 export class CalendarModule {

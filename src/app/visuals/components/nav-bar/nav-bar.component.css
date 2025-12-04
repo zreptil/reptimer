@@ -1,0 +1,39 @@
+:host {
+  ::ng-deep.stepper {
+    ::ng-deep.mat-tab-list {
+      position: initial;
+    }
+  }
+
+  nav {
+    .mat-tab-label-active {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    ::ng-deep.mat-ink-bar {
+      display: none;
+    }
+
+    ::ng-deep.mat-tab-list a {
+      border-bottom: none;
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+  }
+
+  .mat-stepper-horizontal {
+    -display: flex;
+
+    ::ng-deep.mat-horizontal-content-container {
+      display: none;
+    }
+  }
+
+  ::ng-deep.mat-step-header .mat-step-icon-selected,
+  ::ng-deep.mat-step-header .mat-step-icon-state-done,
+  ::ng-deep.mat-step-header .mat-step-icon-state-edit {
+    background-color: $clCpuRed;
+    color: white;
+  }
+}

@@ -1,0 +1,166 @@
+@font-face {
+  font-family: "Avenir";
+  src: url('./assets/fonts/AvenirLTStd-Roman.otf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Avenir Bold";
+  src: url('./assets/fonts/AvenirLTStd-Black.otf') format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Avenir Cursive";
+  src: url('./assets/fonts/AvenirLTStd-Oblique.otf') format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Frutiger";
+  src: url('./assets/fonts/FrutigerLTStd-Roman.otf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Frutiger Bold";
+  src: url('./assets/fonts/FrutigerLTStd-Black.otf') format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Frutiger Cursive";
+  src: url('./assets/fonts/FrutigerLTStd-Italic.otf') format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url('assets/fonts/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+:host {
+  --clBlack: #000000;
+  --clWhite: #FFFFFF;
+  --cube: 1rem;
+}
+
+::selection {
+  background-color: var(--clBlack);
+  color: var(--clWhite);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  --calSize: 0.7em;
+  --size: calc(8 * var(--calSize));
+
+  --colUrlaub: #64b5f6;
+  --colUrlaubHalb: #90caf9;
+  --colTeilzeitFrei: #a5d6a7;
+  --colUrlaubBody: #90caf9;
+  --colUrlaubHalbBody: #bbdefb;
+  --colTeilzeitFreiBody: #c8e6c9;
+  --colKrank: #ffd54f;
+  --colKrankBody: #ff7;
+  --colFeiertag: #f06292;
+  --colFeiertagBody: #fcc;
+  --colInfo: #f8bbd0;
+  --colToday: #f00;
+  --colFrei: #eee;
+  --colFreiFont: #800;
+  --colCurrent: #aaf;
+  --colCursor: rgba(64, 64, 255, 0.3);
+
+  font-size: var(--calSize);
+}
+
+body, html {
+  display: flex;
+  flex-flow: row;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  background-color: var(--clWhite);
+  height: 100%;
+  font-family: Avenir, AvenirLTStd-Roman, serif;
+  font-weight: 500;
+}
+
+body {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+td {
+  vertical-align: top;
+  font-family: Avenir, AvenirLTStd-Roman, serif;
+  font-size: calc(var(--cube) * 3);
+}
+
+.debug-outer {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  border-radius: 0.8em;
+  background: repeating-linear-gradient(
+    45deg,
+    #fa0,
+    #fa0 10px,
+    #000 10px,
+    #000 20px
+  );
+
+  div.debug, a.debug {
+    background: rgba(240, 240, 240, 0.95);
+    border-radius: 0.6em;
+  }
+
+  div.debug {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    padding: 0.3em;
+    margin-left: 5px;
+  }
+}
+
+mat-icon {
+  font-family: 'Material Icons' !important;
+  /* optional: font-feature-settings: 'liga'; text-rendering: optimizeLegibility; etc. */
+}

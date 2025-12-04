@@ -7,9 +7,10 @@ import {ISelectItem} from '@/visuals/model/iselectitem';
 import {CPUInvalidAndFocusSetter} from '@/visuals/classes/cpuinvalid-and-focus-setter';
 
 @Component({
-  selector: 'app-radio-group',
-  templateUrl: './radio-group.component.html',
-  styleUrls: ['./radio-group.component.scss']
+    selector: 'app-radio-group',
+    templateUrl: './radio-group.component.html',
+    styleUrls: ['./radio-group.component.css'],
+    standalone: false
 })
 export class RadioGroupComponent extends BaseControl implements OnInit, AfterViewInit, IComponentData {
   @Input() outerWidth: number;
@@ -71,3 +72,4 @@ export class RadioGroupComponent extends BaseControl implements OnInit, AfterVie
     return (this.formGroup.data[this.formName].label || '').replace(/\s+/g, '');
   }
 }
+

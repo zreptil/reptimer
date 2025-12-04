@@ -8,10 +8,11 @@ import {AdminUserData} from '@/_models/admin-user-data';
 import {PermissionInfos} from '@/_models/user-data';
 
 @Component({
-  selector: 'app-user-dialog',
-  templateUrl: './user-dialog.component.html',
-  styleUrls: ['../../../../core/components/dialog/dialog.component.scss',
-    './user-dialog.component.scss']
+    selector: 'app-user-dialog',
+    templateUrl: './user-dialog.component.html',
+    styleUrls: ['../../../../core/components/dialog/dialog.component.css',
+        './user-dialog.component.css'],
+    standalone: false
 })
 export class UserDialogComponent implements OnInit {
   form: UntypedFormGroup;
@@ -73,3 +74,4 @@ export class UserDialogComponent implements OnInit {
     });
   }
 }
+
